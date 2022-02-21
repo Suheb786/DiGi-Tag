@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import 'app/Theme/theme.dart';
 import 'app/routes/app_pages.dart';
 
 void main() async {
@@ -11,6 +12,7 @@ void main() async {
   runApp(
     GetMaterialApp(
       title: "Application",
+      theme: Themes.lighttheme,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     ),
