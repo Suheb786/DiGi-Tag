@@ -14,7 +14,7 @@ dependencies:
   firebase_storage: ^10.2.7
   flutter:
     sdk: flutter
- 
+  flutter_svg: ^1.0.3
   get: 4.6.1
 
 dev_dependencies:
@@ -28,3 +28,8 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+
+  fonts:
+    - family: SofiaPro
+      fonts:
+        - asset: assets/fonts/sofiapro.ttf
