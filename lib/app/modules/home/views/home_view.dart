@@ -5,30 +5,35 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
 import 'package:get/get.dart';
 
-import '../../../Decoration/widgets.dart';
 import '../controllers/home_controller.dart';
+import '../../../Decoration/widgets.dart';
 
 class HomeView extends GetView<HomeController> {
+  HomeView({Key? key}) : super(key: key);
+  var status = false.obs;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Color(0xff2d71b2),
-        body: LayoutBuilder(
-          builder: (context, constraints) => Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: Decorations.grdntBG,
+    return Scaffold(
+      backgroundColor: const Color(0xff2d71b2),
+      body: LayoutBuilder(
+        builder: (context, constraints) => Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: Decorations.grdntBG,
+          child: SafeArea(
             child: Column(
               children: [
-                Spacer(),
+                SizedBox(
+                  height: 56,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       child: customText("Hi, Mohammad", 20),
                       decoration: const BoxDecoration(
@@ -41,44 +46,58 @@ class HomeView extends GetView<HomeController> {
                         ],
                       ),
                     ),
-                    Spacer(
+                    const Spacer(
                       flex: 4,
                     ),
                     InkWell(
                         onTap: (() {}),
                         child: SvgPicture.asset('assets/icons/Vector.svg')),
-                    Spacer(),
+                    const Spacer(),
                     InkWell(
                         onTap: (() {}),
                         child: SvgPicture.asset('assets/icons/Bell.svg')),
-                    Spacer(),
+                    const Spacer(),
                     InkWell(
                         onTap: (() {}),
                         child: SvgPicture.asset('assets/icons/drawer.svg')),
-                    Spacer()
+                    const Spacer()
                   ],
                 ),
-                Spacer(),
-                Container(
-                  height: 40,
-                  width: 80,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Color(0x26ffffff)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SvgPicture.asset(
-                      'assets/icons/MedicalSupport.svg',
-                    ),
-                  ),
-                ),
-                Spacer(),
+                const Spacer(),
+                const MedicalSupportIcon(),
+                const Spacer(),
                 const ProfileStack(),
-                Spacer(
-                  flex: 11,
+                const SizedBox(
+                  height: 23,
+                ),
+                Obx(() => FlutterSwitch(
+                      value: status.value,
+                      padding: 2,
+                      onToggle: (val) {
+                        if (status.value == false) {
+                          status.value = true;
+                          print("Audit On");
+                        } else {
+                          status.value = false;
+                          print("Audit Off");
+                        }
+                      },
+                      showOnOff: true,
+                      inactiveText: "Audit",
+                      activeText: "Audit",
+                      width: 73,
+                      height: 27,
+                      inactiveColor: Color(0x80004E79),
+                      activeColor: Color(0x80004E79),
+                      inactiveToggleColor: Color(0x9942FFDD),
+                      inactiveToggleBorder:
+                          Border.all(width: 1, color: Color(0x663347B4)),
+                    )),
+                const SizedBox(
+                  height: 300,
                 ),
                 const IconStack(),
-                SizedBox(
+                const SizedBox(
                   height: 65,
                 )
               ],
