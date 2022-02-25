@@ -14,7 +14,7 @@ import '../../../Decoration/widgets.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
-  var status = false.obs;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

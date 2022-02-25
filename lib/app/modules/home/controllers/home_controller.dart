@@ -18,3 +18,6 @@ class HomeController extends GetxController {
   void onClose() {}
   void increment() => count.value++;
 }
+
+//* observable variable for switch *//
+var status = false.obs;
