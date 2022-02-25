@@ -65,7 +65,7 @@ class HomeView extends GetView<HomeController> {
                 const SizedBox(
                   height: 300,
                 ),
-                const IconStack(),
+                 IconStack(),
                 const SizedBox(
                   height: 65,
                 )

@@ -48,6 +48,7 @@ class LoginView extends GetView<LoginController> {
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: Container(child: passwordTextField()),
                     ),
+                    IconStack(),
                   ],
                 ),
               ),

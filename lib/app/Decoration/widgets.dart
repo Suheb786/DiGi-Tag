@@ -94,7 +94,7 @@ class ProfileStack extends StatelessWidget {
 //* ---Icon Cirles Stack Widget on Home Screen-- //
 
 class IconStack extends StatelessWidget {
-  const IconStack({
+  IconStack({
     Key? key,
   }) : super(key: key);
 
@@ -319,3 +319,23 @@ TextFormField passwordTextField() => TextFormField(
           hintStyle: TextStyle(color: Color(0xE6F5F2FF), fontFamily: 'Sofia'),
           hintText: "Password"),
     );
+
+//* ---Signin Icon -- //
+class SigninIcon extends StatelessWidget {
+  const SigninIcon({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
+          BoxShadow(
+            color: Color(0x40000000),
+            offset: Offset(10, 10),
+            blurRadius: 40,
+          )
+        ]),
+        child: Image.asset('assets/icons/Sign _In_Button.png'));
+  }
+}
