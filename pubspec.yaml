@@ -36,6 +36,11 @@ flutter:
       fonts:
         - asset: assets/fonts/sofiapro.ttf
 
+    - family: Sofia
+      fonts:
+        - asset: assets/fonts/Sofia-Regular.ttf    
+  
+
 flutter_icons:
   android: true
   ios: true

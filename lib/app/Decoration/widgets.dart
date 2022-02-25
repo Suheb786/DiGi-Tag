@@ -1,11 +1,16 @@
+//?-----------------Imported Packages -------------------------//
+
 import 'package:digitag/app/Decoration/text/text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 import 'colors/originBg.dart';
+
+//?-----------------Home SCREEN -------------------------//
 
 //* ---Scanner Icon Widget on Home Screen-- //
 class ScanIcon extends StatelessWidget {
@@ -188,34 +193,35 @@ class CustomSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterSwitch(
-          value: status.value,
-          padding: 1,
-          onToggle: (val) {
-            if (status.value == false) {
-              status.value = true;
-              print("Audit On");
-            } else {
-              status.value = false;
-              print("Audit Off");
-            }
-          },
-          valueFontSize: 9,
-          showOnOff: true,
-         inactiveText: "Audit Off",
-         activeText: "Audit On",
-         activeTextColor: Color(0xffBAFFEE),
-         inactiveTextColor: Color(0xffBAFFEE),
-          width: 75,
-          inactiveIcon: Icon(Icons.festival,color: Colors.white,),
-        activeToggleBorder:  Border.all(width: 1, color: Color(0x663347B4)),
-          
-          height: 27,
-          inactiveColor: Color(0x80004E79),
-          activeColor: Color(0x80004E79),
-          inactiveToggleColor: Color(0x9942FFDD),
-          inactiveToggleBorder:
-              Border.all(width: 1, color: Color(0x663347B4)),
-        );
+      value: status.value,
+      padding: 1,
+      onToggle: (val) {
+        if (status.value == false) {
+          status.value = true;
+          print("Audit On");
+        } else {
+          status.value = false;
+          print("Audit Off");
+        }
+      },
+      valueFontSize: 9,
+      showOnOff: true,
+      inactiveText: "Audit Off",
+      activeText: "Audit On",
+      activeTextColor: Color(0xffBAFFEE),
+      inactiveTextColor: Color(0xffBAFFEE),
+      width: 75,
+      inactiveIcon: Icon(
+        Icons.festival,
+        color: Colors.white,
+      ),
+      activeToggleBorder: Border.all(width: 1, color: Color(0x663347B4)),
+      height: 27,
+      inactiveColor: Color(0x80004E79),
+      activeColor: Color(0x80004E79),
+      inactiveToggleColor: Color(0x9942FFDD),
+      inactiveToggleBorder: Border.all(width: 1, color: Color(0x663347B4)),
+    );
   }
 }
 
@@ -234,28 +240,82 @@ class Custom_UserName_Icons extends StatelessWidget {
         const Spacer(),
         Container(
           child: customText("Hi, Mohammad", 20),
-          
         ),
         const Spacer(
           flex: 4,
         ),
         InkWell(
-            onTap: (() {
-              
-
-            }),
-            child: SvgPicture.asset('assets/icons/Vector.svg')),
+            onTap: (() {}), child: SvgPicture.asset('assets/icons/Vector.svg')),
         const Spacer(),
         InkWell(
-            onTap: (() {}),
-            child: SvgPicture.asset('assets/icons/Bell.svg')),
+            onTap: (() {}), child: SvgPicture.asset('assets/icons/Bell.svg')),
         const Spacer(),
         InkWell(
-            onTap: (() {}),
-            child: SvgPicture.asset('assets/icons/drawer.svg')),
+            onTap: (() {}), child: SvgPicture.asset('assets/icons/drawer.svg')),
         const Spacer()
       ],
     );
   }
 }
 
+//?-----------------LOGIN SCREEN -------------------------//
+//* User Id Text Field//
+
+TextFormField uidTextField() {
+  return TextFormField(
+    style: const TextStyle(
+        color: Color(0xB3002B4A),
+        fontFamily: 'Sofia',
+        letterSpacing: 1,
+        fontWeight: FontWeight.bold),
+    decoration: InputDecoration(
+        isDense: true,
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.75),
+        contentPadding: EdgeInsets.all(16.0),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(width: 2, color: Color(0xff4B57B6)),
+          borderRadius: BorderRadius.circular(7),
+        ),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(7),
+            borderSide: BorderSide.none),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(7),
+          borderSide: BorderSide(
+            width: 2,
+            color: Colors.red.withOpacity(0.75),
+          ),
+        ),
+        hintStyle: TextStyle(color: Color(0xB32278B7), fontFamily: 'Sofia'),
+        hintText: "Enter UID*"),
+  );
+}
+
+//* Password Text Field//
+TextFormField passwordTextField() => TextFormField(
+      obscureText: true,
+      style: const TextStyle(
+          color: Colors.white,
+          fontFamily: 'Sofia',
+          letterSpacing: 1,
+          fontWeight: FontWeight.bold),
+      decoration: InputDecoration(
+          border: InputBorder.none,
+          isDense: true,
+          filled: true,
+          fillColor: Color(0x803F007D),
+          contentPadding: EdgeInsets.all(16.0),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(7),
+          ),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(7),
+              borderSide: BorderSide.none),
+          errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(7),
+              borderSide: BorderSide.none),
+          hintStyle: TextStyle(color: Color(0xE6F5F2FF), fontFamily: 'Sofia'),
+          hintText: "Password"),
+    );
