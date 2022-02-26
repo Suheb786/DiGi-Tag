@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 import 'package:get/get.dart';
 
@@ -18,7 +19,24 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff2d71b2),
+      // appBar: AppBar(
+      //   leading: IconButton(
+      //       onPressed: () {
+      //         ZoomDrawer.of(context)!.toggle();
+      //       },
+      //       icon: Icon(Icons.snapchat)),
+      //   // actions: [
+      //   //   IconButton(
+      //   //       onPressed: () {
+      //   //         ZoomDrawer.of(context)!.toggle();
+      //   //       },
+      //   //       icon: Icon(Icons.snapchat))
+      //   // ],
+      //   backgroundColor: Colors.transparent,
+      //   title: Text("Hi, Mohammad"),
+      //   elevation: 0,
+      // ),
+      backgroundColor: Color(0xff50e6da),
       body: LayoutBuilder(
         builder: (context, constraints) => Container(
           height: double.infinity,

@@ -3,6 +3,6 @@ import 'package:flutter/material.dart';
 
 class Decorations {
   static final grdntBG = BoxDecoration(
-      gradient: BGColors.originalBackground,
-      borderRadius: BorderRadius.circular(10));
+    gradient: BGColors.originalBackground,
+  );
 }

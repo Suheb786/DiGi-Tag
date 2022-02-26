@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 
@@ -166,15 +167,18 @@ class MedicalSupportIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      width: 80,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50), color: Color(0x26ffffff)),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SvgPicture.asset(
-          'assets/icons/MedicalSupport.svg',
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        height: 40,
+        width: 80,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50), color: Color(0x26ffffff)),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SvgPicture.asset(
+            'assets/icons/MedicalSupport.svg',
+          ),
         ),
       ),
     );
@@ -251,10 +255,13 @@ class Custom_UserName_Icons extends StatelessWidget {
             onTap: (() {}), child: SvgPicture.asset('assets/icons/Bell.svg')),
         const Spacer(),
         InkWell(
-            onTap: (() {}), child: SvgPicture.asset('assets/icons/drawer.svg')),
+            onTap: (() {
+              ZoomDrawer.of(context)!.toggle();
+              print("presseed");
+            }),
+            child: SvgPicture.asset('assets/icons/drawer.svg')),
         const Spacer()
       ],
     );
   }
 }
-
