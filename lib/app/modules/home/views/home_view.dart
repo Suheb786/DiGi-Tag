@@ -28,7 +28,7 @@ class HomeView extends GetView<HomeController> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 56,
+                  height: 36,
                 ),
                 Custom_UserName_Icons(),
                 const Spacer(),
@@ -50,9 +50,9 @@ class HomeView extends GetView<HomeController> {
                           print("Audit Off");
                         }
                       },
-                      valueFontSize: 13,
+                      valueFontSize: 10,
                       showOnOff: true,
-                      inactiveText: "Audit",
+                      inactiveText: "Audit On",
                       activeText: "OFF",
                       width: 73,
                       height: 27,
@@ -65,7 +65,7 @@ class HomeView extends GetView<HomeController> {
                 const SizedBox(
                   height: 300,
                 ),
-                 IconStack(),
+                IconStack(),
                 const SizedBox(
                   height: 65,
                 )
