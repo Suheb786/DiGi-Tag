@@ -249,17 +249,28 @@ class Custom_UserName_Icons extends StatelessWidget {
           flex: 4,
         ),
         InkWell(
-            onTap: (() {}), child: SvgPicture.asset('assets/icons/Vector.svg')),
+            onTap: (() {}),
+            child: SvgPicture.asset(
+              'assets/icons/Search.svg',
+              height: 19,
+            )),
         const Spacer(),
         InkWell(
-            onTap: (() {}), child: SvgPicture.asset('assets/icons/Bell.svg')),
+            onTap: (() {}),
+            child: SvgPicture.asset(
+              'assets/icons/Bell.svg',
+              height: 19,
+            )),
         const Spacer(),
         InkWell(
             onTap: (() {
               ZoomDrawer.of(context)!.toggle();
               print("presseed");
             }),
-            child: SvgPicture.asset('assets/icons/drawer.svg')),
+            child: SvgPicture.asset(
+              'assets/icons/tabmenuicon.svg',
+              height: 19,
+            )),
         const Spacer()
       ],
     );
