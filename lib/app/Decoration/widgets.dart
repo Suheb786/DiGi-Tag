@@ -1,6 +1,7 @@
 //?-----------------Imported Packages -------------------------//
 
 import 'package:digitag/app/Decoration/text/text.dart';
+import 'package:digitag/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -144,7 +145,9 @@ class IconStack extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Get.to(Routes.LOGIN);
+              },
               child: const OverflowBox(
                 maxWidth: 78,
                 maxHeight: 78,

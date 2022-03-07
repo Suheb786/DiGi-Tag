@@ -38,12 +38,12 @@ class DrawerView extends GetView<Drawer_Controller> {
 
 class MenuItems {
   static final beststdnt = MenuItem(
-    Icons.star_rounded,
-    'JIT Elites',
+    Icons.person_rounded,
+    'Profile',
   );
   static final editprfl = MenuItem(
-    Icons.mode_edit_rounded,
-    'Edit Profile',
+    Icons.star_rounded,
+    'JIT Elites',
   );
   static final showqr = MenuItem(
     Icons.qr_code_2_rounded,
@@ -85,40 +85,41 @@ class MenuPage extends StatelessWidget {
             colors: const [Color(0xff2BBDC7), Color(0xff2E48A7)],
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Spacer(
-              flex: 3,
-            ),
-            ...MenuItems.all.map(buildMenuItem).toList(),
-            Spacer(
-              flex: 2,
-            ),
-            Row(
-              children: [
-                SizedBox(width: 25),
-                InkWell(
-                  child: Text(
-                    "Log Out",
-                    style: TextStyle(
-                        letterSpacing: 1,
-                        fontFamily: 'Sofia',
-                        fontSize: 12,
-                        color: Color(0xffD4E0FF)),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Spacer(
+                flex: 3,
+              ),
+              ...MenuItems.all.map(buildMenuItem).toList(),
+              Spacer(
+                flex: 2,
+              ),
+              Row(
+                children: [
+                  SizedBox(width: 25),
+                  InkWell(
+                    child: Text(
+                      "Log Out",
+                      style: TextStyle(
+                          letterSpacing: 1,
+                          fontFamily: 'Sofia',
+                          fontSize: 12,
+                          color: Color(0xffB6C8FF)),
+                    ),
                   ),
-                ),
-                Transform.rotate(
-                  angle: -1.57,
-                  child: Container(
-                    color: Color(0xffBED0FF),
-                    width: 30,
-                    height: 1,
+                  Transform.rotate(
+                    angle: -1.57,
+                    child: Container(
+                      color: Color(0xff5B76C8),
+                      width: 23,
+                      height: 2,
+                    ),
                   ),
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: Center(
+                  InkWell(
+                    onTap: () {},
                     child: RichText(
                         text: TextSpan(children: [
                       TextSpan(
@@ -127,7 +128,7 @@ class MenuPage extends StatelessWidget {
                             fontFamily: 'Sofia',
                             letterSpacing: 1,
                             fontSize: 12,
-                            color: Color(0xffBED0FF)),
+                            color: Color(0xffB6C8FF)),
                       ),
                       TextSpan(
                         text: "SoftKru",
@@ -138,14 +139,14 @@ class MenuPage extends StatelessWidget {
                             color: Color(0xffFF8CD1)),
                       ),
                     ])),
-                  ),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 40,
-            )
-          ],
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 40,
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -156,12 +157,12 @@ class MenuPage extends StatelessWidget {
         leading: Icon(
           item.icon,
           size: 22,
-          color: Color(0xffDDFFF7),
+          color: Color(0xff9FDDFF),
         ),
         title: Text(
           item.title,
           style: TextStyle(
-              color: Color(0xffDDFFF7),
+              color: Color(0xff9FDDFF),
               fontFamily: 'Sofia',
               fontSize: 13,
               letterSpacing: 1.2),

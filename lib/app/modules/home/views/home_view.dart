@@ -68,11 +68,11 @@ class HomeView extends GetView<HomeController> {
                           print("Audit Off");
                         }
                       },
-                      valueFontSize: 10,
+                      valueFontSize: 9,
                       showOnOff: true,
                       inactiveText: "Audit On",
                       activeText: "OFF",
-                      width: 73,
+                      width: 75,
                       height: 27,
                       inactiveColor: Color(0x80004E79),
                       activeColor: Color(0x80004E79),
