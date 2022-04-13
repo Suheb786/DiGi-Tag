@@ -1,6 +1,7 @@
 //?-----------------LOGIN SCREEN -------------------------//
 //* User Id Text Field//
 
+import 'package:digitag/app/modules/views/drawer_view.dart';
 import 'package:digitag/app/modules/views/home_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -131,7 +132,7 @@ class SignIn_Circle_Stack_Button extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Get.to(() => HomeView());
+                Get.to(() => DrawerView());
               },
               child: const OverflowBox(
                 maxWidth: 68,
