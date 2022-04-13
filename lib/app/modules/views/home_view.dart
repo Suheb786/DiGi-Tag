@@ -14,29 +14,13 @@ import '../controllers/home_controller.dart';
 import '../widgets/random_widgets.dart';
 
 class HomeView extends GetView<HomeController> {
+  HomeController homecontroller = Get.find<HomeController>();
   HomeView({Key? key}) : super(key: key);
-  var status = false.obs;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   leading: IconButton(
-      //       onPressed: () {
-      //         ZoomDrawer.of(context)!.toggle();
-      //       },
-      //       icon: Icon(Icons.snapchat)),
-      //   // actions: [
-      //   //   IconButton(
-      //   //       onPressed: () {
-      //   //         ZoomDrawer.of(context)!.toggle();
-      //   //       },
-      //   //       icon: Icon(Icons.snapchat))
-      //   // ],
-      //   backgroundColor: Colors.transparent,
-      //   title: Text("Hi, Mohammad"),
-      //   elevation: 0,
-      // ),
-      backgroundColor: Color(0xff50e6da),
+      backgroundColor: const Color(0xff50e6da),
       body: LayoutBuilder(
         builder: (context, constraints) => Container(
           height: double.infinity,
@@ -57,15 +41,13 @@ class HomeView extends GetView<HomeController> {
                   height: 23,
                 ),
                 Obx(() => FlutterSwitch(
-                      value: status.value,
+                      value: controller.status.value,
                       padding: 2,
                       onToggle: (val) {
-                        if (status.value == false) {
-                          status.value = true;
-                          print("Audit On");
+                        if (homecontroller.status.value == false) {
+                          homecontroller.status.value = true;
                         } else {
-                          status.value = false;
-                          print("Audit Off");
+                          homecontroller.status.value = false;
                         }
                       },
                       valueFontSize: 9,
@@ -74,11 +56,11 @@ class HomeView extends GetView<HomeController> {
                       activeText: "OFF",
                       width: 75,
                       height: 27,
-                      inactiveColor: Color(0x80004E79),
-                      activeColor: Color(0x80004E79),
-                      inactiveToggleColor: Color(0x9942FFDD),
+                      inactiveColor: const Color(0x80004E79),
+                      activeColor: const Color(0x80004E79),
+                      inactiveToggleColor: const Color(0x9942FFDD),
                       inactiveToggleBorder:
-                          Border.all(width: 1, color: Color(0x663347B4)),
+                          Border.all(width: 1, color: const Color(0x663347B4)),
                     )),
                 const SizedBox(
                   height: 300,

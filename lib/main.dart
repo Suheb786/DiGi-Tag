@@ -1,3 +1,4 @@
+import 'package:digitag/app/modules/controllers/home_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ import 'app/routes/app_pages.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Get.put(HomeController());
   runApp(
     GetMaterialApp(
       title: "Application",
@@ -18,6 +20,3 @@ void main() async {
     ),
   );
 }
-
-
-// Comment from Saffer branch
