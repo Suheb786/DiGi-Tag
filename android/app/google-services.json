@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "458113203076",
+    "project_id": "digi-tag",
+    "storage_bucket": "digi-tag.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458113203076:android:abcae53b251e510a1e3bd1",
+        "android_client_info": {
+          "package_name": "com.softkru.digitag"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "458113203076-m2l6dc88hup0fepunj234vhllhrkgpcj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeK9v5AsdqANFZmNrrzy5-RjaaT-Pod-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "458113203076-m2l6dc88hup0fepunj234vhllhrkgpcj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
