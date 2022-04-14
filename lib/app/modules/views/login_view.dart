@@ -9,10 +9,14 @@ import 'package:get/get.dart';
 import '../widgets/decoration.dart';
 import '../controllers/login_controller.dart';
 import '../widgets/login_in_widgets.dart';
+import '../widgets/textfield.dart';
 
 class LoginView extends GetView<LoginController> {
   @override
+  LoginController logincontroller = Get.find<LoginController>();
+  @override
   Widget build(BuildContext context) {
+    final responsive = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xff2d71b2),
@@ -23,6 +27,7 @@ class LoginView extends GetView<LoginController> {
           decoration: Decorations.grdntBG,
           child: SafeArea(
             child: Form(
+              key: logincontroller.loginFormKey,
               child: Column(
                 children: [
                   SizedBox(height: 65),
@@ -31,7 +36,7 @@ class LoginView extends GetView<LoginController> {
                     style: TextStyle(
                         fontSize: 45, color: Colors.white, fontFamily: 'Sofia'),
                   ),
-                  const SizedBox(height: 35),
+                  SizedBox(height: responsive.height / 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: Container(
@@ -47,15 +52,18 @@ class LoginView extends GetView<LoginController> {
                             ]),
                         child: uidTextField()),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: responsive.height / 40),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: Container(child: passwordTextField()),
                   ),
                   SizedBox(
-                    height: 60,
+                    height: responsive.height / 30,
                   ),
                   Custom_Help_Text(),
+                  SizedBox(
+                    height: responsive.height / 30,
+                  ),
                   const SignIn_Circle_Stack_Button(),
                   Column(
                     children: [

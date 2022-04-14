@@ -1,72 +1,13 @@
 //?-----------------LOGIN SCREEN -------------------------//
 //* User Id Text Field//
 
+import 'package:digitag/app/modules/controllers/login_controller.dart';
 import 'package:digitag/app/modules/views/drawer_view.dart';
 import 'package:digitag/app/modules/views/home_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-TextFormField uidTextField() {
-  return TextFormField(
-    style: const TextStyle(
-        color: Color(0xB3002B4A),
-        fontFamily: 'Sofia',
-        letterSpacing: 1,
-        fontSize: 14,
-        fontWeight: FontWeight.bold),
-    decoration: InputDecoration(
-        isDense: true,
-        filled: true,
-        fillColor: Colors.white.withOpacity(0.75),
-        contentPadding: EdgeInsets.all(12.0),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(width: 2, color: Color(0xff4B57B6)),
-          borderRadius: BorderRadius.circular(7),
-        ),
-        enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(7),
-            borderSide: BorderSide.none),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(7),
-          borderSide: BorderSide(
-            width: 2,
-            color: Colors.red.withOpacity(0.75),
-          ),
-        ),
-        hintStyle: TextStyle(color: Color(0xB32278B7), fontFamily: 'Sofia'),
-        hintText: "Enter UID*"),
-  );
-}
-
-//* Password Text Field//
-TextFormField passwordTextField() => TextFormField(
-    obscureText: true,
-    style: const TextStyle(
-      color: Colors.white,
-      fontFamily: 'Sofia',
-      fontSize: 14,
-      letterSpacing: 1,
-    ),
-    decoration: InputDecoration(
-        border: InputBorder.none,
-        isDense: true,
-        filled: true,
-        fillColor: Color(0x803F007D),
-        contentPadding: EdgeInsets.all(12.0),
-        focusedBorder: OutlineInputBorder(
-          borderSide:
-              BorderSide(color: Colors.white.withOpacity(0.75), width: 2),
-          borderRadius: BorderRadius.circular(7),
-        ),
-        enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(7),
-            borderSide: BorderSide.none),
-        errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(7),
-            borderSide: BorderSide.none),
-        hintStyle: TextStyle(color: Color(0xE6F5F2FF), fontFamily: 'Sofia'),
-        hintText: "Password"));
+import 'package:google_fonts/google_fonts.dart';
 
 //* ---Signin Icon -- //
 class SigninIcon extends StatelessWidget {
@@ -76,7 +17,19 @@ class SigninIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset('assets/icons/Sign _In_Button.png');
+    return InkWell(
+        onTap: (() {
+          if (Get.find<LoginController>()
+              .loginFormKey
+              .currentState!
+              .validate()) {
+            Get.to(DrawerView());
+          }
+        }),
+        child: OverflowBox(
+            maxWidth: 68,
+            maxHeight: 68,
+            child: Image.asset('assets/icons/Sign _In_Button.png')));
   }
 }
 
@@ -130,16 +83,7 @@ class SignIn_Circle_Stack_Button extends StatelessWidget {
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {
-                Get.to(() => DrawerView());
-              },
-              child: const OverflowBox(
-                maxWidth: 68,
-                maxHeight: 68,
-                child: SigninIcon(),
-              ),
-            ),
+            SigninIcon(),
           ],
         ),
       ),
@@ -160,28 +104,22 @@ class Custom_Help_Text extends StatelessWidget {
         print("show Help Screen");
       }),
       child: RichText(
-        text: const TextSpan(
+        text: TextSpan(
           children: [
             TextSpan(
               text: "Need ",
-              style: TextStyle(
-                  fontFamily: 'Sofia Pro',
-                  color: Color(0xB3FFFFFF),
-                  fontWeight: FontWeight.bold),
+              style: GoogleFonts.montserrat(
+                  color: Color(0xB3FFFFFF), fontWeight: FontWeight.bold),
             ),
             TextSpan(
               text: "Help ",
-              style: TextStyle(
-                  fontFamily: 'Sofia Pro',
-                  color: Color(0xffFFD952),
-                  fontWeight: FontWeight.bold),
+              style: GoogleFonts.montserrat(
+                  color: Color(0xffFFD952), fontWeight: FontWeight.bold),
             ),
             TextSpan(
               text: "for Password ?",
-              style: TextStyle(
-                  fontFamily: 'Sofia Pro',
-                  color: Color(0xB3FFFFFF),
-                  fontWeight: FontWeight.bold),
+              style: GoogleFonts.montserrat(
+                  color: Color(0xB3FFFFFF), fontWeight: FontWeight.bold),
             ),
           ],
         ),
