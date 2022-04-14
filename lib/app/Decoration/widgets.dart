@@ -234,8 +234,8 @@ class CustomSwitch extends StatelessWidget {
 
 //* User's Name and Icons in Top Row *//
 
-class Custom_UserName_Icons extends StatelessWidget {
-  const Custom_UserName_Icons({
+class CustomUserNameIcons extends StatelessWidget {
+  const CustomUserNameIcons({
     Key? key,
   }) : super(key: key);
 
