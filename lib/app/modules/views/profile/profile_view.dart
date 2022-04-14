@@ -63,6 +63,7 @@ class ProfileView extends GetView<ProfileController> {
                       ],
                     ),
                   ),
+
                   Obx(
                     () => Expanded(
                       flex: 4,
@@ -70,6 +71,7 @@ class ProfileView extends GetView<ProfileController> {
                           ? AuditOnWidget()
                           : AuditOffWidget(),
                     ),
+
                   ),
                 ],
               ),
