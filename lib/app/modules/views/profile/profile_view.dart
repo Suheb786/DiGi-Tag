@@ -11,7 +11,7 @@ import '../../controllers/profile_controller.dart';
 import 'audit_off_widget.dart';
 
 class ProfileView extends GetView<ProfileController> {
-  HomeController homeController = Get.find<HomeController>();
+  ProfileController profileController = Get.find<ProfileController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,18 +29,17 @@ class ProfileView extends GetView<ProfileController> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Custom_UserName_Icons(),
-                      const MedicalSupportIcon(),
-                      const ProfileStack(),
+                      const CustomUserNameIcons(),
+                      
                       Obx(
                         () => FlutterSwitch(
-                          value: homeController.status.value,
+                          value: profileController.status.value,
                           padding: 2,
                           onToggle: (val) {
-                            if (homeController.status.value == false) {
-                              homeController.status.value = true;
+                            if (profileController.status.value == false) {
+                              profileController.status.value = true;
                             } else {
-                              homeController.status.value = false;
+                              profileController.status.value = false;
                             }
                           },
                           valueFontSize: 9,
@@ -62,7 +61,7 @@ class ProfileView extends GetView<ProfileController> {
                 Obx(
                   () => Expanded(
                     flex: 4,
-                    child: Get.find<HomeController>().status.value
+                    child: profileController.status.value
                         ? AuditOnWidget()
                         : AuditOffWidget(),
                   ),

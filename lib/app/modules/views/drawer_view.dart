@@ -11,6 +11,7 @@ import '../controllers/drawer_controller.dart';
 
 class DrawerView extends GetView<Drawer_Controller> {
   DrawerView({Key? key}) : super(key: key);
+  MenuItem currentItem = MenuItems.editprfl;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class DrawerView extends GetView<Drawer_Controller> {
       shadowLayer2Color: Colors.white.withOpacity(0.15),
       style: DrawerStyle.Style1,
       mainScreen: HomeView(),
-      menuScreen: MenuPage(),
+      menuScreen: MenuPage(currentItem: currentItem, onSelectedItem: (item) {}),
     );
   }
 }
@@ -69,9 +70,16 @@ class MenuItem {
 }
 
 class MenuPage extends StatelessWidget {
+  final MenuItem currentItem;
+  final ValueChanged<MenuItem> onSelectedItem;
+
   const MenuPage({
     Key? key,
-  }) : super(key: key);
+    required this.currentItem,
+    required this.onSelectedItem,
+  }) : super(
+          key: key,
+        );
 
   @override
   Widget build(BuildContext context) {
@@ -153,6 +161,7 @@ class MenuPage extends StatelessWidget {
   }
 
   Widget buildMenuItem(MenuItem item) => ListTile(
+        selected: currentItem == item,
         minLeadingWidth: 20,
         leading: Icon(
           item.icon,
@@ -167,6 +176,8 @@ class MenuPage extends StatelessWidget {
               fontSize: 13,
               letterSpacing: 1.2),
         ),
-        onTap: () {},
+        onTap: () {
+          onSelectedItem(item);
+        },
       );
 }

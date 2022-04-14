@@ -1,4 +1,7 @@
 import 'package:digitag/app/Decoration/colors/originBg.dart';
+import 'package:digitag/app/modules/controllers/profile_controller.dart';
+import 'package:digitag/app/modules/views/profile/audit_off_widget.dart';
+import 'package:digitag/app/modules/views/profile/audit_on_widget.dart';
 import 'package:digitag/app/modules/widgets/decoration.dart';
 import 'package:digitag/app/Decoration/text/text.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,7 +17,7 @@ import '../controllers/home_controller.dart';
 import '../widgets/random_widgets.dart';
 
 class HomeView extends GetView<HomeController> {
-  HomeController homecontroller = Get.find<HomeController>();
+  ProfileController profilecontroller = Get.find<ProfileController>();
   HomeView({Key? key}) : super(key: key);
 
   @override
@@ -41,13 +44,13 @@ class HomeView extends GetView<HomeController> {
                   height: 23,
                 ),
                 Obx(() => FlutterSwitch(
-                      value: controller.status.value,
+                      value: profilecontroller.status.value,
                       padding: 2,
                       onToggle: (val) {
-                        if (homecontroller.status.value == false) {
-                          homecontroller.status.value = true;
+                        if (profilecontroller.status.value == false) {
+                          profilecontroller.status.value = true;
                         } else {
-                          homecontroller.status.value = false;
+                          profilecontroller.status.value = false;
                         }
                       },
                       valueFontSize: 9,
@@ -65,7 +68,9 @@ class HomeView extends GetView<HomeController> {
                 const SizedBox(
                   height: 300,
                 ),
-                IconStack(),
+                Obx((() => profilecontroller.status.value
+                    ? Expanded(child: AuditOnWidget())
+                    : IconStack())),
                 const SizedBox(
                   height: 65,
                 )
