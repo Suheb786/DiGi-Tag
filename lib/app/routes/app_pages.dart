@@ -9,7 +9,6 @@ import '../modules/bindings/profile_binding.dart';
 import '../modules/views/drawer_view.dart';
 import '../modules/views/home_view.dart';
 
-
 import '../modules/views/profile/profile_view.dart';
 
 part 'app_routes.dart';
@@ -17,9 +16,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-
   static const INITIAL = Routes.DRAWER;
-
 
   static final routes = [
     GetPage(

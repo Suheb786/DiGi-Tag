@@ -18,6 +18,7 @@ void main() async {
 
   runApp(
     GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Application",
       theme: Themes.lighttheme,
       initialRoute: AppPages.INITIAL,

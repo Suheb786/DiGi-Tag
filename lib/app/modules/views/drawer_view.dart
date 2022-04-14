@@ -1,6 +1,5 @@
-
-
 import 'package:digitag/app/modules/views/home_view.dart';
+import 'package:digitag/app/modules/views/profile/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -10,9 +9,11 @@ import 'package:get/get.dart';
 import '../controllers/drawer_controller.dart';
 
 class DrawerView extends GetView<Drawer_Controller> {
-  DrawerView({Key? key}) : super(key: key);
+  DrawerView({
+    Key? key,
+  }) : super(key: key);
   MenuItem currentItem = MenuItems.editprfl;
-
+  // Widget drawermenu;
   @override
   Widget build(BuildContext context) {
     return ZoomDrawer(

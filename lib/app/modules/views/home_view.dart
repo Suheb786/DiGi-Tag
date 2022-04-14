@@ -14,6 +14,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
+import '../widgets/appbar.dart';
 import '../widgets/random_widgets.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -22,7 +23,9 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    final responsive = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: MyAppBar(context),
       backgroundColor: const Color(0xff50e6da),
       body: LayoutBuilder(
         builder: (context, constraints) => Container(
@@ -31,14 +34,13 @@ class HomeView extends GetView<HomeController> {
           decoration: Decorations.grdntBG,
           child: SafeArea(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  height: 36,
+                  height: responsive.height / 40,
                 ),
-                Custom_UserName_Icons(),
-                const Spacer(),
-                const MedicalSupportIcon(),
-                const Spacer(),
+                MedicalSupportIcon(),
+                SizedBox(height: responsive.height / 20),
                 const ProfileStack(),
                 const SizedBox(
                   height: 23,

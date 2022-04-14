@@ -47,7 +47,9 @@ class ProfileStack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.to(() => ProfileView()),
+      onTap: () {
+        Get.to(ProfileView());
+      },
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -246,29 +248,29 @@ class Custom_UserName_Icons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const Spacer(),
+        // const Spacer(),
         Container(
           child: customText("Hi, Mohammad", 20),
         ),
-        const Spacer(
-          flex: 4,
-        ),
+        // const Spacer(
+        //   flex: 4,
+        // ),
         InkWell(
             onTap: (() {}),
             child: SvgPicture.asset(
               'assets/icons/Search.svg',
               height: 19,
             )),
-        const Spacer(),
+        // const Spacer(),
         InkWell(
             onTap: (() {}),
             child: SvgPicture.asset(
               'assets/icons/Bell.svg',
               height: 19,
             )),
-        const Spacer(),
+        //   const Spacer(),
         InkWell(
             onTap: (() {
               ZoomDrawer.of(context)!.toggle();
@@ -278,7 +280,7 @@ class Custom_UserName_Icons extends StatelessWidget {
               'assets/icons/tabmenuicon.svg',
               height: 19,
             )),
-        const Spacer()
+        //    const Spacer()
       ],
     );
   }

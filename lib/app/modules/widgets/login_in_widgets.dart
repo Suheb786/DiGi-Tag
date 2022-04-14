@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 //* ---Signin Icon -- //
 class SigninIcon extends StatelessWidget {
   const SigninIcon({
