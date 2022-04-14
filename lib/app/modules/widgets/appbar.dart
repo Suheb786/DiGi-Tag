@@ -1,17 +1,20 @@
 import 'package:digitag/app/Decoration/text/text.dart';
-import 'package:digitag/app/modules/views/drawer_view.dart';
-import 'package:digitag/app/modules/views/home_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
-AppBar MyAppBar(BuildContext context) {
+import 'package:get/get.dart';
+
+import '../../../main.dart';
+
+
+
+
+AppBar MyAppBar(double deviceWidth,int screen) {
   return AppBar(
     toolbarHeight: 60,
     title: Row(
       children: [
-        SizedBox(width: MediaQuery.of(context).size.width / 40),
+        SizedBox(width: deviceWidth / 40),
         customText("Hi, Mohammad", 20),
       ],
     ),
@@ -25,17 +28,18 @@ AppBar MyAppBar(BuildContext context) {
                 'assets/icons/Search.svg',
                 height: 19,
               )),
-          SizedBox(width: MediaQuery.of(context).size.width / 18),
+          SizedBox(width: deviceWidth / 18),
           InkWell(
               onTap: (() {}),
               child: SvgPicture.asset(
                 'assets/icons/Bell.svg',
                 height: 19,
               )),
-          SizedBox(width: MediaQuery.of(context).size.width / 18),
+          SizedBox(width: deviceWidth / 18),
           InkWell(
               onTap: (() {
-                ZoomDrawer.of(context)!.toggle();
+                // ZoomDrawer.of(context)!.toggle();
+                Get.find<MyDrawerController>().toggleDrawer(screenNum: screen);
                 // DrawerView(drawermenu: HomeView());
                 print("presseed");
               }),
@@ -43,7 +47,7 @@ AppBar MyAppBar(BuildContext context) {
                 'assets/icons/tabmenuicon.svg',
                 height: 19,
               )),
-          SizedBox(width: MediaQuery.of(context).size.width / 15),
+          SizedBox(width: deviceWidth / 15),
         ],
       )
     ],

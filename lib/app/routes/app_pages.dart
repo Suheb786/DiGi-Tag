@@ -31,7 +31,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DRAWER,
-      page: () => DrawerView(),
+      page: () => DrawerView(screen: Get.arguments),
       binding: DrawerBinding(),
     ),
     GetPage(

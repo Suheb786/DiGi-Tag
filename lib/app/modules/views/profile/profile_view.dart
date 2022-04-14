@@ -8,6 +8,7 @@ import 'package:flutter_switch/flutter_switch.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../main.dart';
 import '../../../Decoration/decoration.dart';
 import '../../../Decoration/widgets.dart';
 import '../../controllers/profile_controller.dart';
@@ -15,11 +16,12 @@ import 'audit_off_widget.dart';
 
 class ProfileView extends GetView<ProfileController> {
   ProfileController profileController = Get.find<ProfileController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBar(context),
-        backgroundColor: Color(0xff50e6da),
+        appBar: MyAppBar(MediaQuery.of(context).size.width,1),
+        backgroundColor: const Color(0xff50e6da),
         body: LayoutBuilder(
             builder: (context, constraints) => Container(
                   height: double.infinity,
@@ -34,7 +36,7 @@ class ProfileView extends GetView<ProfileController> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               // Custom_UserName_Icons(),
-                              const MedicalSupportIcon(),
+
                               const ProfileStack(),
                               Obx(
                                 () => FlutterSwitch(

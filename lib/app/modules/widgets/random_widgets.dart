@@ -1,6 +1,7 @@
 //?-----------------Imported Packages -------------------------//
 
 import 'package:digitag/app/Decoration/text/text.dart';
+import 'package:digitag/app/modules/views/drawer_view.dart';
 import 'package:digitag/app/modules/views/profile/profile_view.dart';
 import 'package:digitag/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
@@ -48,7 +49,11 @@ class ProfileStack extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(ProfileView());
+        Get.offAll(DrawerView(
+          screen: 1,
+        ));
+
+        // Get.offAllNamed(Routes.DRAWER,arguments: 1);
       },
       child: Stack(
         alignment: Alignment.center,

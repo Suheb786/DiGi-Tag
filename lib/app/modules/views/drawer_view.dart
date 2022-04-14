@@ -1,5 +1,7 @@
+import 'package:digitag/app/modules/controllers/home_controller.dart';
 import 'package:digitag/app/modules/views/home_view.dart';
 import 'package:digitag/app/modules/views/profile/profile_view.dart';
+import 'package:digitag/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -8,34 +10,55 @@ import 'package:get/get.dart';
 
 import '../controllers/drawer_controller.dart';
 
-class DrawerView extends GetView<Drawer_Controller> {
+class DrawerView extends GetView<MyDrawerController> {
+  int? screen;
   DrawerView({
     Key? key,
+    this.screen = 0,
   }) : super(key: key);
   MenuItem currentItem = MenuItems.editprfl;
   // Widget drawermenu;
   @override
   Widget build(BuildContext context) {
-    return ZoomDrawer(
-      angle: 0,
-      boxShadow: [
-        BoxShadow(
-            color: Color(0x660000000),
-            offset: Offset(10, 4),
-            blurRadius: 20.0,
-            spreadRadius: 0.0)
-      ],
-      borderRadius: 42,
-      slideWidth: 200,
-      isRtl: false,
-      showShadow: true,
-      shadowLayer1Color: Colors.white.withOpacity(0.1),
-      shadowLayer2Color: Colors.white.withOpacity(0.15),
-      style: DrawerStyle.Style1,
-      mainScreen: HomeView(),
-      menuScreen: MenuPage(currentItem: currentItem, onSelectedItem: (item) {}),
-    );
+    return GetBuilder<MyDrawerController>(builder: (controller) {
+      return ZoomDrawer(
+        controller: controller.zoomDrawerController,
+        angle: 0,
+        boxShadow: const [
+          BoxShadow(
+              color: Color(0x66000000),
+              offset: Offset(10, 4),
+              blurRadius: 20.0,
+              spreadRadius: 0.0)
+        ],
+        borderRadius: 42,
+        slideWidth: 200,
+        isRtl: false,
+        showShadow: true,
+        shadowLayer1Color: Colors.white.withOpacity(0.1),
+        shadowLayer2Color: Colors.white.withOpacity(0.15),
+        style: DrawerStyle.Style1,
+        mainScreen: getMainScreen(screen??0),
+        menuScreen:
+            MenuPage(currentItem: currentItem, onSelectedItem: (item) {}),
+      );
+    });
   }
+}
+
+Widget getMainScreen(int screen){
+  return Builder(builder: (context) {
+          switch (screen) {
+            case 0:
+              return HomeView();
+
+            case 1:
+              return ProfileView();
+
+            default:
+              return HomeView();
+          }
+        });
 }
 
 class MenuItems {
@@ -179,6 +202,19 @@ class MenuPage extends StatelessWidget {
         ),
         onTap: () {
           onSelectedItem(item);
+          switch (item.title) {
+            case "Profile":
+              Get.offAll(DrawerView(
+                screen: 1,
+              ));
+              break;
+            case "JIT Elites":
+              Get.offAll(DrawerView(
+                screen: 0,
+              ));
+              break;
+            default:
+          }
         },
       );
 }
