@@ -1,6 +1,7 @@
 //?-----------------Imported Packages -------------------------//
 
 import 'package:digitag/app/Decoration/text/text.dart';
+import 'package:digitag/app/modules/views/profile/profile_view.dart';
 import 'package:digitag/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,51 +46,54 @@ class ProfileStack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        ClipOval(
-          child: Container(
-            height: 164,
-            width: 164,
-            color: Color(0x1Affffff),
-          ),
-        ),
-        ClipOval(
-          child: Container(
-            height: 146,
-            width: 146,
-            color: Color(0x33ffffff),
-          ),
-        ),
-        ClipOval(
-          child: Container(
-            height: 124,
-            width: 124,
-            color: Color(0x40ffffff),
-          ),
-        ),
-        ClipOval(
-          child: Container(
-            child: Image.asset(
-              'assets/images/demopic.png',
-            ),
-            height: 104,
-            width: 104,
-            decoration: const BoxDecoration(
-              color: Color(0x4Dffffff),
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x40000000),
-                  offset: Offset(0, 4),
-                  blurRadius: 10,
-                )
-              ],
+    return InkWell(
+      onTap: () => Get.to(() => ProfileView()),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          ClipOval(
+            child: Container(
+              height: 164,
+              width: 164,
+              color: Color(0x1Affffff),
             ),
           ),
-        ),
-      ],
+          ClipOval(
+            child: Container(
+              height: 146,
+              width: 146,
+              color: Color(0x33ffffff),
+            ),
+          ),
+          ClipOval(
+            child: Container(
+              height: 124,
+              width: 124,
+              color: Color(0x40ffffff),
+            ),
+          ),
+          ClipOval(
+            child: Container(
+              child: Image.asset(
+                'assets/images/demopic.png',
+              ),
+              height: 104,
+              width: 104,
+              decoration: const BoxDecoration(
+                color: Color(0x4Dffffff),
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0x40000000),
+                    offset: Offset(0, 4),
+                    blurRadius: 10,
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
