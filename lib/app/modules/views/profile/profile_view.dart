@@ -63,8 +63,8 @@ class ProfileView extends GetView<ProfileController> {
                   () => Expanded(
                     flex: 4,
                     child: Get.find<HomeController>().status.value
-                        ? AuditOffWidget()
-                        : AuditOnWidget(),
+                        ? AuditOnWidget()
+                        : AuditOffWidget(),
                   ),
                 ),
               ],
