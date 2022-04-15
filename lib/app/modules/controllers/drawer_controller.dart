@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class Drawer_Controller extends GetxController {
+class DrawerController extends GetxController {
   //TODO: Implement DrawerController
 
   final count = 0.obs;

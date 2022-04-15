@@ -3,6 +3,9 @@ import 'package:digitag/app/modules/views/drawer_view.dart';
 import 'package:digitag/app/modules/views/home_view.dart';
 import 'package:digitag/app/modules/views/profile/audit_on_widget.dart';
 import 'package:digitag/app/modules/widgets/appbar.dart';
+import 'package:digitag/app/modules/widgets/custom_User_Name_Icons.dart';
+import 'package:digitag/app/modules/widgets/profile_Stack.dart';
+import 'package:digitag/app/modules/widgets/random_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
@@ -10,7 +13,7 @@ import 'package:get/get.dart';
 
 import '../../../../main.dart';
 import '../../../Decoration/decoration.dart';
-import '../../../Decoration/widgets.dart';
+
 import '../../controllers/profile_controller.dart';
 import 'audit_off_widget.dart';
 
@@ -22,7 +25,7 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBar(MediaQuery.of(context).size.width, 1),
+        // appBar: MyAppBar(MediaQuery.of(context).size.width, 1),
         backgroundColor: const Color(0xff50e6da),
         body: LayoutBuilder(
             builder: (context, constraints) => Container(
@@ -38,8 +41,7 @@ class ProfileView extends GetView<ProfileController> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              // Custom_UserName_Icons(),
-
+                              CustomUserNameIcons(),
                               const ProfileStack(),
                               Obx(
                                 () => FlutterSwitch(

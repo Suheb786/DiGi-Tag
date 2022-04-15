@@ -11,6 +11,10 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 
 import '../widgets/appbar.dart';
+import '../widgets/custom_User_Name_Icons.dart';
+import '../widgets/icon_Stack.dart';
+import '../widgets/medical_Support_Icon.dart';
+import '../widgets/profile_Stack.dart';
 import '../widgets/random_widgets.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -35,7 +39,7 @@ class HomeView extends GetView<HomeController> {
                 SizedBox(
                   height: responsive.height / 40,
                 ),
-                Custom_UserName_Icons(),
+                CustomUserNameIcons(),
                 const Spacer(),
                 const MedicalSupportIcon(),
                 const Spacer(),
