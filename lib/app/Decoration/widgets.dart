@@ -1,6 +1,7 @@
 //?-----------------Imported Packages -------------------------//
 
 import 'package:digitag/app/Decoration/text/text.dart';
+import 'package:digitag/app/modules/controllers/home_controller.dart';
 import 'package:digitag/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -234,11 +235,14 @@ class CustomSwitch extends StatelessWidget {
 
 //* User's Name and Icons in Top Row *//
 
+
 class CustomUserNameIcons extends StatelessWidget {
   const CustomUserNameIcons({
+
+
     Key? key,
   }) : super(key: key);
-
+  HomeController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -259,7 +263,9 @@ class CustomUserNameIcons extends StatelessWidget {
             )),
         const Spacer(),
         InkWell(
-            onTap: (() {}),
+            onTap: (() {
+              print("presseed 2222222");
+            }),
             child: SvgPicture.asset(
               'assets/icons/Bell.svg',
               height: 19,
@@ -267,6 +273,8 @@ class CustomUserNameIcons extends StatelessWidget {
         const Spacer(),
         InkWell(
             onTap: (() {
+              print("yaha tk chal rha hia");
+
               ZoomDrawer.of(context)!.toggle();
               print("presseed");
             }),

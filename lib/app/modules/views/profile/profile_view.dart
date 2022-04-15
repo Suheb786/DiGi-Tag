@@ -17,6 +17,8 @@ import 'audit_off_widget.dart';
 class ProfileView extends GetView<ProfileController> {
   ProfileController profileController = Get.find<ProfileController>();
 
+  HomeController _controller = Get.find<HomeController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +32,7 @@ class ProfileView extends GetView<ProfileController> {
                   child: SafeArea(
                     child: Column(
                       children: [
+  controller.openclosetype.value = "profile";
                         Expanded(
                           flex: 3,
                           child: Column(
@@ -66,6 +69,8 @@ class ProfileView extends GetView<ProfileController> {
                             ],
                           ),
                         ),
+
+
                         Obx(
                           () => Expanded(
                             flex: 4,
@@ -77,6 +82,9 @@ class ProfileView extends GetView<ProfileController> {
                       ],
                     ),
                   ),
+
                 )));
+
+ 
   }
 }

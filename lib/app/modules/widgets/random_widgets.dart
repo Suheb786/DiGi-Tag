@@ -1,7 +1,11 @@
 //?-----------------Imported Packages -------------------------//
 
 import 'package:digitag/app/Decoration/text/text.dart';
+
 import 'package:digitag/app/modules/views/drawer_view.dart';
+
+import 'package:digitag/app/modules/controllers/home_controller.dart';
+
 import 'package:digitag/app/modules/views/profile/profile_view.dart';
 import 'package:digitag/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,7 +21,7 @@ import '../../Decoration/colors/originBg.dart';
 //?-----------------Home SCREEN -------------------------//
 
 //* ---Scanner Icon Widget on Home Screen-- //
-class ScanIcon extends StatelessWidget {
+class   controller.openclosetype.value = "profile";ScanIcon extends StatelessWidget {
   const ScanIcon({
     Key? key,
   }) : super(key: key);
@@ -49,11 +53,13 @@ class ProfileStack extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+
         Get.offAll(DrawerView(
           screen: 1,
         ));
 
         // Get.offAllNamed(Routes.DRAWER,arguments: 1);
+
       },
       child: Stack(
         alignment: Alignment.center,
@@ -246,10 +252,10 @@ class CustomSwitch extends StatelessWidget {
 //* User's Name and Icons in Top Row *//
 
 class Custom_UserName_Icons extends StatelessWidget {
-  const Custom_UserName_Icons({
+  Custom_UserName_Icons({
     Key? key,
   }) : super(key: key);
-
+  HomeController controller = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -278,6 +284,7 @@ class Custom_UserName_Icons extends StatelessWidget {
         //   const Spacer(),
         InkWell(
             onTap: (() {
+              controller.openclosetype.value = "home";
               ZoomDrawer.of(context)!.toggle();
               print("presseed");
             }),

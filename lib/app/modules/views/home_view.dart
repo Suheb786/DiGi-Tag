@@ -10,6 +10,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:matrix4_transform/matrix4_transform.dart';
 
 import 'package:get/get.dart';
 
@@ -40,9 +41,13 @@ class HomeView extends GetView<MyDrawerController> {
                 SizedBox(
                   height: responsive.height / 40,
                 ),
-                MedicalSupportIcon(),
-                SizedBox(height: responsive.height / 20),
-                const ProfileStack(),
+
+                Custom_UserName_Icons(),
+                const Spacer(),
+                const MedicalSupportIcon(),
+                const Spacer(),
+                ProfileStack(),
+
                 const SizedBox(
                   height: 23,
                 ),

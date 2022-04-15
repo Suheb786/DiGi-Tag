@@ -2,6 +2,7 @@ import 'package:digitag/app/modules/views/home_view.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
+
   var setScreen = 0.obs;
 
   @override
@@ -10,4 +11,5 @@ class HomeController extends GetxController {
     
     super.onInit();
   }
+
 }

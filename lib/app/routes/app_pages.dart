@@ -1,5 +1,7 @@
 import 'package:digitag/app/modules/bindings/home_binding.dart';
 import 'package:digitag/app/modules/views/login_view.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
 import '../modules/bindings/drawer_binding.dart';
