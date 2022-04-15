@@ -11,7 +11,7 @@ class IconStack extends StatelessWidget {
   IconStack({
     Key? key,
   }) : super(key: key);
-
+  final qrKey = GlobalKey(debugLabel: "QR");
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -60,7 +60,7 @@ class IconStack extends StatelessWidget {
               onTap: () {
                 Get.to(Routes.LOGIN);
               },
-              child: const OverflowBox(
+              child: OverflowBox(
                 maxWidth: 78,
                 maxHeight: 78,
                 child: ScanIcon(),

@@ -1,3 +1,5 @@
 import 'package:get/get.dart';
 
-class MyController extends GetxController {}
+class QrScannerController extends GetxController {
+  var barcode = RxnString(null);
+}

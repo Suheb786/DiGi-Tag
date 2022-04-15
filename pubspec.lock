@@ -317,6 +317,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+  mobile_scanner:
+    dependency: "direct main"
+    description:
+      name: mobile_scanner
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   path:
     dependency: transitive
     description:
@@ -415,13 +422,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
-  qu_qr_code_scanner:
-    dependency: "direct main"
-    description:
-      name: qu_qr_code_scanner
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.4+2"
   sky_engine:
     dependency: transitive
     description: flutter
