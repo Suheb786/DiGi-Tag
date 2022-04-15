@@ -15,7 +15,6 @@ import 'package:get/get.dart';
 
 import '../controllers/drawer_controller.dart';
 
-
 class DrawerView extends GetView<MyDrawerController> {
   int? screen;
   DrawerView({
@@ -44,28 +43,26 @@ class DrawerView extends GetView<MyDrawerController> {
         shadowLayer1Color: Colors.white.withOpacity(0.1),
         shadowLayer2Color: Colors.white.withOpacity(0.15),
         style: DrawerStyle.Style1,
-        mainScreen: getMainScreen(screen??0),
-        menuScreen:
-            MenuPage(currentItem: currentItem, onSelectedItem: (item) {}),
+        mainScreen: getMainScreen(screen ?? 0),
+        menuScreen: MenuPage(onSelectedItem: (item) {}),
       );
     });
-
   }
 }
 
-Widget getMainScreen(int screen){
+Widget getMainScreen(int screen) {
   return Builder(builder: (context) {
-          switch (screen) {
-            case 0:
-              return HomeView();
+    switch (screen) {
+      case 0:
+        return HomeView();
 
-            case 1:
-              return ProfileView();
+      case 1:
+        return ProfileView();
 
-            default:
-              return HomeView();
-          }
-        });
+      default:
+        return HomeView();
+    }
+  });
 }
 
 class MenuItems {

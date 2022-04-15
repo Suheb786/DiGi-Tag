@@ -22,7 +22,7 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBar(MediaQuery.of(context).size.width,1),
+        appBar: MyAppBar(MediaQuery.of(context).size.width, 1),
         backgroundColor: const Color(0xff50e6da),
         body: LayoutBuilder(
             builder: (context, constraints) => Container(
@@ -32,7 +32,7 @@ class ProfileView extends GetView<ProfileController> {
                   child: SafeArea(
                     child: Column(
                       children: [
-  controller.openclosetype.value = "profile";
+                        // controller.openclosetype.value = "profile";
                         Expanded(
                           flex: 3,
                           child: Column(
@@ -70,7 +70,6 @@ class ProfileView extends GetView<ProfileController> {
                           ),
                         ),
 
-
                         Obx(
                           () => Expanded(
                             flex: 4,
@@ -82,9 +81,6 @@ class ProfileView extends GetView<ProfileController> {
                       ],
                     ),
                   ),
-
                 )));
-
- 
   }
 }

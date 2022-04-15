@@ -1,25 +1,19 @@
-import 'package:digitag/app/Decoration/colors/originBg.dart';
+import 'package:digitag/app/modules/controllers/home_controller.dart';
 import 'package:digitag/app/modules/controllers/profile_controller.dart';
-import 'package:digitag/app/modules/views/profile/audit_off_widget.dart';
+
 import 'package:digitag/app/modules/views/profile/audit_on_widget.dart';
 import 'package:digitag/app/modules/widgets/decoration.dart';
-import 'package:digitag/app/Decoration/text/text.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:matrix4_transform/matrix4_transform.dart';
 
 import 'package:get/get.dart';
 
-import '../../../main.dart';
-import '../controllers/home_controller.dart';
 import '../widgets/appbar.dart';
 import '../widgets/random_widgets.dart';
 
-class HomeView extends GetView<MyDrawerController> {
+class HomeView extends GetView<HomeController> {
   ProfileController profilecontroller = Get.find<ProfileController>();
   HomeView({Key? key}) : super(key: key);
 
@@ -27,7 +21,7 @@ class HomeView extends GetView<MyDrawerController> {
   Widget build(BuildContext context) {
     final responsive = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: MyAppBar(MediaQuery.of(context).size.width,0),
+      //appBar: MyAppBar(MediaQuery.of(context).size.width, 0),
       backgroundColor: const Color(0xff50e6da),
       body: LayoutBuilder(
         builder: (context, constraints) => Container(
@@ -41,13 +35,11 @@ class HomeView extends GetView<MyDrawerController> {
                 SizedBox(
                   height: responsive.height / 40,
                 ),
-
                 Custom_UserName_Icons(),
                 const Spacer(),
                 const MedicalSupportIcon(),
                 const Spacer(),
                 ProfileStack(),
-
                 const SizedBox(
                   height: 23,
                 ),
