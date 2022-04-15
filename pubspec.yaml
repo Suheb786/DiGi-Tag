@@ -20,6 +20,7 @@ dependencies:
   flutter_zoom_drawer: ^2.3.1
   get: 4.6.1
   google_fonts: ^2.3.1
+  matrix4_transform: ^2.0.1
   qu_qr_code_scanner: ^0.1.4+2
 
 dev_dependencies:

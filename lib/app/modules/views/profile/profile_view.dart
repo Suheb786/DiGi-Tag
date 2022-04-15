@@ -14,6 +14,7 @@ import 'audit_off_widget.dart';
 
 class ProfileView extends GetView<ProfileController> {
   ProfileController profileController = Get.find<ProfileController>();
+  HomeController _controller = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +35,7 @@ class ProfileView extends GetView<ProfileController> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Custom_UserName_Icons(),
-                        const MedicalSupportIcon(),
+                        // const MedicalSupportIcon(),
                         const ProfileStack(),
                         Obx(
                           () => FlutterSwitch(
@@ -63,7 +64,6 @@ class ProfileView extends GetView<ProfileController> {
                       ],
                     ),
                   ),
-
                   Obx(
                     () => Expanded(
                       flex: 4,
@@ -71,7 +71,6 @@ class ProfileView extends GetView<ProfileController> {
                           ? AuditOnWidget()
                           : AuditOffWidget(),
                     ),
-
                   ),
                 ],
               ),

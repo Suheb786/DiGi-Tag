@@ -1,6 +1,7 @@
-
-
+import 'package:digitag/app/modules/controllers/home_controller.dart';
 import 'package:digitag/app/modules/views/home_view.dart';
+import 'package:digitag/app/modules/views/login_view.dart';
+import 'package:digitag/app/modules/views/profile/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -11,11 +12,13 @@ import '../controllers/drawer_controller.dart';
 
 class DrawerView extends GetView<Drawer_Controller> {
   DrawerView({Key? key}) : super(key: key);
-  MenuItem currentItem = MenuItems.editprfl;
-
+  final _drawerController = ZoomDrawerController();
+  HomeController _controller = Get.find();
   @override
   Widget build(BuildContext context) {
-    return ZoomDrawer(
+    return GestureDetector(
+        child: ZoomDrawer(
+      controller: _drawerController,
       angle: 0,
       boxShadow: [
         BoxShadow(
@@ -31,9 +34,12 @@ class DrawerView extends GetView<Drawer_Controller> {
       shadowLayer1Color: Colors.white.withOpacity(0.1),
       shadowLayer2Color: Colors.white.withOpacity(0.15),
       style: DrawerStyle.Style1,
-      mainScreen: HomeView(),
-      menuScreen: MenuPage(currentItem: currentItem, onSelectedItem: (item) {}),
-    );
+      mainScreen: _controller.openclosetype.value == "home" ||
+              _controller.openclosetype.isEmpty
+          ? HomeView()
+          : ProfileView(),
+      menuScreen: MenuPage(onSelectedItem: (item) {}),
+    ));
   }
 }
 
@@ -70,12 +76,10 @@ class MenuItem {
 }
 
 class MenuPage extends StatelessWidget {
-  final MenuItem currentItem;
   final ValueChanged<MenuItem> onSelectedItem;
 
   const MenuPage({
     Key? key,
-    required this.currentItem,
     required this.onSelectedItem,
   }) : super(
           key: key,
@@ -109,6 +113,7 @@ class MenuPage extends StatelessWidget {
                 children: [
                   SizedBox(width: 25),
                   InkWell(
+                    onTap: (() => Get.to(LoginView())),
                     child: Text(
                       "Log Out",
                       style: TextStyle(
@@ -129,7 +134,7 @@ class MenuPage extends StatelessWidget {
                   InkWell(
                     onTap: () {},
                     child: RichText(
-                        text: TextSpan(children: [
+                        text: const TextSpan(children: [
                       TextSpan(
                         text: "Contact ",
                         style: TextStyle(
@@ -161,8 +166,8 @@ class MenuPage extends StatelessWidget {
   }
 
   Widget buildMenuItem(MenuItem item) => ListTile(
-        selected: currentItem == item,
         minLeadingWidth: 20,
+        selectedTileColor: Colors.white,
         leading: Icon(
           item.icon,
           size: 22,
@@ -177,6 +182,24 @@ class MenuPage extends StatelessWidget {
               letterSpacing: 1.2),
         ),
         onTap: () {
+          switch (item.title) {
+            case "Profile":
+              {
+                Get.to(ProfileView());
+              }
+              break;
+            case "JIT Elites":
+              {
+                Get.to(LoginView());
+              }
+              break;
+            case "Show QR":
+              {
+                Get.to(ProfileView());
+              }
+              break;
+          }
+          debugPrint("dekho ${item.title}");
           onSelectedItem(item);
         },
       );

@@ -1,6 +1,7 @@
 //?-----------------Imported Packages -------------------------//
 
 import 'package:digitag/app/Decoration/text/text.dart';
+import 'package:digitag/app/modules/controllers/home_controller.dart';
 import 'package:digitag/app/modules/views/profile/profile_view.dart';
 import 'package:digitag/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
@@ -47,7 +48,9 @@ class ProfileStack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.to(() => ProfileView()),
+      onTap: () {
+        Get.to(() => ProfileView());
+      },
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -239,10 +242,10 @@ class CustomSwitch extends StatelessWidget {
 //* User's Name and Icons in Top Row *//
 
 class Custom_UserName_Icons extends StatelessWidget {
-  const Custom_UserName_Icons({
+  Custom_UserName_Icons({
     Key? key,
   }) : super(key: key);
-
+  HomeController controller = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -271,6 +274,7 @@ class Custom_UserName_Icons extends StatelessWidget {
         const Spacer(),
         InkWell(
             onTap: (() {
+              controller.openclosetype.value = "home";
               ZoomDrawer.of(context)!.toggle();
               print("presseed");
             }),

@@ -1,5 +1,7 @@
 import 'package:digitag/app/modules/bindings/home_binding.dart';
 import 'package:digitag/app/modules/views/login_view.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
 import '../modules/bindings/drawer_binding.dart';
@@ -9,7 +11,6 @@ import '../modules/bindings/profile_binding.dart';
 import '../modules/views/drawer_view.dart';
 import '../modules/views/home_view.dart';
 
-
 import '../modules/views/profile/profile_view.dart';
 
 part 'app_routes.dart';
@@ -17,9 +18,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-
   static const INITIAL = Routes.DRAWER;
-
 
   static final routes = [
     GetPage(
