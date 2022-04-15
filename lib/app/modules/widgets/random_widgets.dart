@@ -1,7 +1,11 @@
 //?-----------------Imported Packages -------------------------//
 
 import 'package:digitag/app/Decoration/text/text.dart';
+
+import 'package:digitag/app/modules/views/drawer_view.dart';
+
 import 'package:digitag/app/modules/controllers/home_controller.dart';
+
 import 'package:digitag/app/modules/views/profile/profile_view.dart';
 import 'package:digitag/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,7 +21,7 @@ import '../../Decoration/colors/originBg.dart';
 //?-----------------Home SCREEN -------------------------//
 
 //* ---Scanner Icon Widget on Home Screen-- //
-class ScanIcon extends StatelessWidget {
+class   controller.openclosetype.value = "profile";ScanIcon extends StatelessWidget {
   const ScanIcon({
     Key? key,
   }) : super(key: key);
@@ -49,7 +53,13 @@ class ProfileStack extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => ProfileView());
+
+        Get.offAll(DrawerView(
+          screen: 1,
+        ));
+
+        // Get.offAllNamed(Routes.DRAWER,arguments: 1);
+
       },
       child: Stack(
         alignment: Alignment.center,
@@ -249,29 +259,29 @@ class Custom_UserName_Icons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const Spacer(),
+        // const Spacer(),
         Container(
           child: customText("Hi, Mohammad", 20),
         ),
-        const Spacer(
-          flex: 4,
-        ),
+        // const Spacer(
+        //   flex: 4,
+        // ),
         InkWell(
             onTap: (() {}),
             child: SvgPicture.asset(
               'assets/icons/Search.svg',
               height: 19,
             )),
-        const Spacer(),
+        // const Spacer(),
         InkWell(
             onTap: (() {}),
             child: SvgPicture.asset(
               'assets/icons/Bell.svg',
               height: 19,
             )),
-        const Spacer(),
+        //   const Spacer(),
         InkWell(
             onTap: (() {
               controller.openclosetype.value = "home";
@@ -282,7 +292,7 @@ class Custom_UserName_Icons extends StatelessWidget {
               'assets/icons/tabmenuicon.svg',
               height: 19,
             )),
-        const Spacer()
+        //    const Spacer()
       ],
     );
   }

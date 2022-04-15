@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../main.dart';
 import '../widgets/decoration.dart';
 import '../controllers/login_controller.dart';
 import '../widgets/login_in_widgets.dart';
 import '../widgets/textfield.dart';
 
-class LoginView extends GetView<LoginController> {
+class LoginView extends GetView<MyDrawerController> {
   @override
   LoginController logincontroller = Get.find<LoginController>();
   @override

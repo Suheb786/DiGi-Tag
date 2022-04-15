@@ -14,16 +14,20 @@ import 'package:matrix4_transform/matrix4_transform.dart';
 
 import 'package:get/get.dart';
 
+import '../../../main.dart';
 import '../controllers/home_controller.dart';
+import '../widgets/appbar.dart';
 import '../widgets/random_widgets.dart';
 
-class HomeView extends GetView<HomeController> {
+class HomeView extends GetView<MyDrawerController> {
   ProfileController profilecontroller = Get.find<ProfileController>();
   HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final responsive = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: MyAppBar(MediaQuery.of(context).size.width,0),
       backgroundColor: const Color(0xff50e6da),
       body: LayoutBuilder(
         builder: (context, constraints) => Container(
@@ -32,15 +36,18 @@ class HomeView extends GetView<HomeController> {
           decoration: Decorations.grdntBG,
           child: SafeArea(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  height: 36,
+                  height: responsive.height / 40,
                 ),
+
                 Custom_UserName_Icons(),
                 const Spacer(),
                 const MedicalSupportIcon(),
                 const Spacer(),
                 ProfileStack(),
+
                 const SizedBox(
                   height: 23,
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ProfileDetailsCard extends StatelessWidget {
   final String mainTitle;
@@ -17,7 +18,7 @@ class ProfileDetailsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(5.0),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
@@ -46,7 +47,13 @@ class ProfileDetailsCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const CircleAvatar(),
+                    CircleAvatar(
+                      backgroundColor: mainTitleColor,
+                      // child: SvgPicture.asset(
+                      //   'assets/profile_icons/contactIcon.svg',
+                      //   alignment: Alignment.center,
+                      // ),
+                    ),
                   ],
                 ),
                 FittedBox(
