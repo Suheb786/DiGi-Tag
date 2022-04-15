@@ -1,6 +1,7 @@
 //?-----------------Imported Packages -------------------------//
 
 import 'package:digitag/app/Decoration/text/text.dart';
+import 'package:digitag/app/Decoration/widgets.dart';
 
 import 'package:digitag/app/modules/views/drawer_view.dart';
 
@@ -9,6 +10,9 @@ import 'package:digitag/app/modules/controllers/home_controller.dart';
 import 'package:digitag/app/modules/views/profile/profile_view.dart';
 import 'package:digitag/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -21,26 +25,21 @@ import '../../Decoration/colors/originBg.dart';
 //?-----------------Home SCREEN -------------------------//
 
 //* ---Scanner Icon Widget on Home Screen-- //
-class   controller.openclosetype.value = "profile";ScanIcon extends StatelessWidget {
-  const ScanIcon({
-    Key? key,
-  }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
-        BoxShadow(
-          color: Color(0x40000000),
-          offset: Offset(10, 10),
-          blurRadius: 40,
-        )
-      ]),
-      child: Image.asset(
-        'assets/icons/scanicon.png',
-      ),
-    );
-  }
+@override
+Widget build(BuildContext context) {
+  return Container(
+    decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
+      BoxShadow(
+        color: Color(0x40000000),
+        offset: Offset(10, 10),
+        blurRadius: 40,
+      )
+    ]),
+    child: Image.asset(
+      'assets/icons/scanicon.png',
+    ),
+  );
 }
 
 //* ---Profile Stack Widget on Home Screen-- //
@@ -53,13 +52,11 @@ class ProfileStack extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-
         Get.offAll(DrawerView(
           screen: 1,
         ));
 
         // Get.offAllNamed(Routes.DRAWER,arguments: 1);
-
       },
       child: Stack(
         alignment: Alignment.center,
@@ -261,30 +258,30 @@ class Custom_UserName_Icons extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        // const Spacer(),
+        const Spacer(),
         Container(
           child: customText("Hi, Mohammad", 20),
         ),
-        // const Spacer(
-        //   flex: 4,
-        // ),
+        const Spacer(
+          flex: 4,
+        ),
         InkWell(
             onTap: (() {}),
             child: SvgPicture.asset(
               'assets/icons/Search.svg',
               height: 19,
             )),
-        // const Spacer(),
+        const Spacer(),
         InkWell(
             onTap: (() {}),
             child: SvgPicture.asset(
               'assets/icons/Bell.svg',
               height: 19,
             )),
-        //   const Spacer(),
+        const Spacer(),
         InkWell(
             onTap: (() {
-              controller.openclosetype.value = "home";
+              // controller.openclosetype.value = "home";
               ZoomDrawer.of(context)!.toggle();
               print("presseed");
             }),
@@ -292,7 +289,7 @@ class Custom_UserName_Icons extends StatelessWidget {
               'assets/icons/tabmenuicon.svg',
               height: 19,
             )),
-        //    const Spacer()
+        const Spacer()
       ],
     );
   }

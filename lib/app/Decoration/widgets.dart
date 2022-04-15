@@ -235,11 +235,8 @@ class CustomSwitch extends StatelessWidget {
 
 //* User's Name and Icons in Top Row *//
 
-
-class CustomUserNameIcons extends StatelessWidget {
-  const CustomUserNameIcons({
-
-
+class Custom_UserName_Icons extends StatelessWidget {
+  Custom_UserName_Icons({
     Key? key,
   }) : super(key: key);
   HomeController controller = Get.find();
