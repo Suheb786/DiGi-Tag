@@ -1,15 +1,41 @@
-import 'package:digitag/app/modules/views/home_view.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  var setScreen = 0.obs;
+  // List<Screen> previousScreens = [Screen.homeView];
 
-  @override
-  void onInit() {
-    setScreen.value = 0;
+  // void addPreviousScreen(Screen screen) {
+  //   previousScreens.add(screen);
+  //   for (var i = 0; i < previousScreens.length; i++) {
+  //     if (previousScreens.length < 2) {
+  //       break;
+  //     } else {
+  //       previousScreens.removeAt(i);
+  //     }
+  //   }
+  //   debugPrint(previousScreens.toList().toString());
 
-    super.onInit();
-  }
+  //   if (previousScreens.length > 3) {
+  //     previousScreens.removeRange(0, previousScreens.length - 4);
+  //   }
+  // }
 
-  void drawerGesture() {}
+  // Screen getPreviousScreen({required Screen currentScreen}) {
+  //   if (currentScreen != previousScreens[previousScreens.length - 2]) {
+  //     return previousScreens[previousScreens.length - 2];
+  //   } else {
+  //     for (int i = previousScreens.length; i >= 0; i--) {
+  //       print(previousScreens[i]);
+  //       if (previousScreens[i] != currentScreen) {
+  //         print("Return ${previousScreens[i]}");
+  //       }
+  //     }
+  //     debugPrint("else block");
+  //     return Screen.homeView;
+  //   }
+  // }
+
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  // }
 }

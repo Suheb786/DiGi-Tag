@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
+
 import '../../Decoration/colors/originBg.dart';
 
 class QrScannerView extends GetView<QrScannerController> {

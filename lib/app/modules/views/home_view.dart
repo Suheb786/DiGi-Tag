@@ -1,22 +1,16 @@
-import 'package:digitag/app/modules/controllers/home_controller.dart';
-import 'package:digitag/app/modules/controllers/profile_controller.dart';
-
-import 'package:digitag/app/modules/views/profile/audit_on_widget.dart';
-import 'package:digitag/app/modules/widgets/decoration.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-
 import 'package:get/get.dart';
 
+import '../controllers/home_controller.dart';
+import '../controllers/profile_controller.dart';
 import '../widgets/appbar.dart';
-import '../widgets/custom_User_Name_Icons.dart';
+import '../widgets/decoration.dart';
 import '../widgets/icon_Stack.dart';
 import '../widgets/medical_Support_Icon.dart';
 import '../widgets/profile_Stack.dart';
-import '../widgets/random_widgets.dart';
+import 'profile/audit_on_widget.dart';
 
 class HomeView extends GetView<HomeController> {
   ProfileController profilecontroller = Get.find<ProfileController>();
@@ -26,7 +20,8 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     final responsive = MediaQuery.of(context).size;
     return Scaffold(
-      //appBar: MyAppBar(MediaQuery.of(context).size.width, 0),
+      appBar: MyAppBar(MediaQuery.of(context).size.width, 0,
+          ctx: context, onHomeView: true),
       backgroundColor: const Color(0xff50e6da),
       body: GestureDetector(
         onHorizontalDragUpdate: (details) {
@@ -48,7 +43,7 @@ class HomeView extends GetView<HomeController> {
                   SizedBox(
                     height: responsive.height / 40,
                   ),
-                  CustomUserNameIcons(),
+                  // CustomUserNameIcons(),
                   const Spacer(),
                   const MedicalSupportIcon(),
                   const Spacer(),

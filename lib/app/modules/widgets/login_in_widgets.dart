@@ -3,10 +3,8 @@
 
 import 'package:digitag/app/modules/controllers/login_controller.dart';
 import 'package:digitag/app/modules/views/drawer_view.dart';
-import 'package:digitag/app/modules/views/home_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,7 +22,11 @@ class SigninIcon extends StatelessWidget {
               .loginFormKey
               .currentState!
               .validate()) {
-            Get.to(DrawerView());
+            Get.to(
+              DrawerView(
+                // screen: Screen.homeView,
+              ),
+            );
           }
         }),
         child: OverflowBox(
@@ -93,8 +95,8 @@ class SignIn_Circle_Stack_Button extends StatelessWidget {
 }
 
 //* Help Rich Text //
-class Custom_Help_Text extends StatelessWidget {
-  const Custom_Help_Text({
+class CustomHelpText extends StatelessWidget {
+  const CustomHelpText({
     Key? key,
   }) : super(key: key);
 
