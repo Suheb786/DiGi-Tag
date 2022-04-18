@@ -7,11 +7,16 @@ import '../controllers/login_controller.dart';
 
 LoginController loginController = Get.find<LoginController>();
 
-TextFormField uidTextField() {
+TextFormField CustomField({
+  required String? Function(String?) validator,
+  required String hint,
+  required TextEditingController controller,
+}) {
   return TextFormField(
+    autovalidateMode: AutovalidateMode.onUserInteraction,
     maxLength: 10,
-    controller: loginController.uidController,
-    validator: (value) => loginController.uIDvalid(value!),
+    controller: controller,
+    validator: validator,
     style: const TextStyle(
         color: Color(0xB3002B4A),
         fontFamily: 'Sofia',
@@ -38,13 +43,13 @@ TextFormField uidTextField() {
           borderRadius: BorderRadius.circular(7),
           borderSide: BorderSide(
             width: 2,
-            color: Color.fromARGB(255, 133, 40, 33).withOpacity(0.75),
+            color: Color.fromARGB(255, 131, 66, 14).withOpacity(0.75),
           ),
         ),
         errorStyle: GoogleFonts.montserrat(
             fontSize: 10, color: Colors.white.withOpacity(0.75)),
         hintStyle: TextStyle(color: Color(0xB32278B7), fontFamily: 'Sofia'),
-        hintText: "Enter UID*"),
+        hintText: hint),
   );
 }
 

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
@@ -13,7 +12,6 @@ import 'package:digitag/app/modules/widgets/random_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-
 
 import 'package:get/get.dart';
 
@@ -40,7 +38,6 @@ class ProfileView extends GetView<ProfileController> {
     return Scaffold(
         // appBar: MyAppBar(MediaQuery.of(context).size.width, 1),
         backgroundColor: const Color(0xff50e6da),
-
         body: GestureDetector(
           onHorizontalDragUpdate: (details) {
             if ((details.primaryDelta! > 1.0)) {
@@ -67,10 +64,10 @@ class ProfileView extends GetView<ProfileController> {
                                 const ProfileStack(),
                                 Obx(
                                   () => FlutterSwitch(
-                                    value: profileController.status.value,
+                                    value: controller.status.value,
                                     padding: 2,
                                     onToggle: (val) {
-                                      profileController.audioSwitchCheck();
+                                      controller.audioSwitchCheck();
                                     },
                                     valueFontSize: 9,
                                     showOnOff: true,
@@ -94,10 +91,9 @@ class ProfileView extends GetView<ProfileController> {
                           Obx(
                             () => Expanded(
                               flex: 4,
-                              child: profileController.status.value
+                              child: controller.status.value
                                   ? AuditOnWidget()
                                   : AuditOffWidget(),
-
                             ),
                           ),
                         ],

@@ -1,16 +1,17 @@
-import 'package:digitag/app/modules/bindings/home_binding.dart';
-import 'package:digitag/app/modules/views/login_view.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
 import '../modules/bindings/drawer_binding.dart';
-
+import '../modules/bindings/home_binding.dart';
 import '../modules/bindings/login_binding.dart';
 import '../modules/bindings/profile_binding.dart';
+import '../modules/bindings/otp_view_binding.dart';
+import '../modules/views/otp_view_view.dart';
 import '../modules/views/drawer_view.dart';
 import '../modules/views/home_view.dart';
-
+import '../modules/views/login_view.dart';
 import '../modules/views/profile/profile_view.dart';
 
 part 'app_routes.dart';
@@ -18,7 +19,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.DRAWER;
+  static const INITIAL = Routes.OTP_VIEW;
 
   static final routes = [
     GetPage(
@@ -40,6 +41,11 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.OTP_VIEW,
+      page: () => OtpViewView(),
+      binding: OtpViewBinding(),
     ),
   ];
 }

@@ -35,10 +35,16 @@ class SigninIcon extends StatelessWidget {
 }
 
 //* OverFlow Stack Circle for SignIn Button and bottom info Text //
-class SignIn_Circle_Stack_Button extends StatelessWidget {
-  const SignIn_Circle_Stack_Button({
+class SignUp_Round_Button extends StatelessWidget {
+  Widget widget;
+  Widget extraBigCircle;
+  SignUp_Round_Button({
+    required this.widget,
+    required this.extraBigCircle,
     Key? key,
-  }) : super(key: key);
+  }) : super(
+          key: key,
+        );
 
   @override
   Widget build(BuildContext context) {
@@ -48,15 +54,7 @@ class SignIn_Circle_Stack_Button extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            OverflowBox(
-              maxWidth: 490,
-              maxHeight: 490,
-              child: ClipOval(
-                child: Container(
-                  color: Color(0x0Dffffff),
-                ),
-              ),
-            ),
+            extraBigCircle,
             OverflowBox(
               maxHeight: 292,
               maxWidth: 292,
@@ -84,7 +82,7 @@ class SignIn_Circle_Stack_Button extends StatelessWidget {
                 ),
               ),
             ),
-            SigninIcon(),
+            widget
           ],
         ),
       ),

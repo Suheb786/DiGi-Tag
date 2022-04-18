@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../main.dart';
+import '../widgets/bit_text.dart';
 import '../widgets/decoration.dart';
 import '../controllers/login_controller.dart';
+import '../widgets/footerText.dart';
 import '../widgets/login_in_widgets.dart';
 import '../widgets/textfield.dart';
 
@@ -30,11 +32,7 @@ class LoginView extends GetView<MyDrawerController> {
               child: Column(
                 children: [
                   SizedBox(height: 65),
-                  const Text(
-                    "LogIn",
-                    style: TextStyle(
-                        fontSize: 45, color: Colors.white, fontFamily: 'Sofia'),
-                  ),
+                  BigText("Log IN"),
                   SizedBox(height: responsive.height / 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -49,7 +47,11 @@ class LoginView extends GetView<MyDrawerController> {
                                 spreadRadius: 0.0,
                               )
                             ]),
-                        child: uidTextField()),
+                        child: CustomField(
+                            validator: (value) =>
+                                loginController.uIDvalid(value!),
+                            controller: logincontroller.uidController,
+                            hint: "Enter UID")),
                   ),
                   SizedBox(height: responsive.height / 40),
                   Padding(
@@ -63,30 +65,19 @@ class LoginView extends GetView<MyDrawerController> {
                   SizedBox(
                     height: responsive.height / 30,
                   ),
-                  const SignIn_Circle_Stack_Button(),
-                  Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        child: const Padding(
-                          padding: EdgeInsets.only(left: 50.0),
-                          child: Text(
-                            "UID* is Provided on your Digi-Tag.",
-                            textAlign: TextAlign.end,
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontFamily: 'Sofia',
-                              color: Color(0xB3FFFFFF),
-                            ),
-                          ),
+                  SignUp_Round_Button(
+                    extraBigCircle: OverflowBox(
+                      maxWidth: 490,
+                      maxHeight: 490,
+                      child: ClipOval(
+                        child: Container(
+                          color: const Color(0x0Dffffff),
                         ),
                       ),
-                      const Custom_Contact_Text(),
-                      SizedBox(
-                        height: 20,
-                      )
-                    ],
+                    ),
+                    widget: SigninIcon(key: key),
                   ),
+                  FooterText(),
                 ],
               ),
             ),
