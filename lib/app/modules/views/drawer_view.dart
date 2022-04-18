@@ -2,61 +2,62 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
-import '../../../main.dart';
+import '../../routes/app_pages.dart';
 import 'home_view.dart';
 import 'login_view.dart';
-import 'profile/profile_view.dart';
 
-class DrawerView extends GetView<MyDrawerController> {
-  int? screen;
+class DrawerView extends GetView<DrawerController> {
+  // int? screen;
+  // Screen screen;
 
   DrawerView({
     Key? key,
-    this.screen = 0,
+    // required this.screen,
+    // this.screen = 0,
   }) : super(key: key);
   MenuItem currentItem = MenuItems.editprfl;
   // Widget drawermenu;
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<MyDrawerController>(builder: (controller) {
-      return ZoomDrawer(
-        controller: controller.zoomDrawerController,
-        angle: 0,
-        boxShadow: const [
-          BoxShadow(
-              color: Color(0x66000000),
-              offset: Offset(10, 4),
-              blurRadius: 20.0,
-              spreadRadius: 0.0)
-        ],
-        borderRadius: 42,
-        slideWidth: 200,
-        isRtl: false,
-        showShadow: true,
-        shadowLayer1Color: Colors.white.withOpacity(0.1),
-        shadowLayer2Color: Colors.white.withOpacity(0.15),
-        style: DrawerStyle.Style1,
-        mainScreen: getMainScreen(screen ?? 0),
-        menuScreen: MenuPage(onSelectedItem: (item) {}),
-      );
-    });
+    return ZoomDrawer(
+      // controller: controller.zoomDrawerController,
+      angle: 0,
+      boxShadow: const [
+        BoxShadow(
+            color: Color(0x66000000),
+            offset: Offset(10, 4),
+            blurRadius: 20.0,
+            spreadRadius: 0.0)
+      ],
+      borderRadius: 42,
+      slideWidth: 200,
+      isRtl: false,
+      showShadow: true,
+      shadowLayer1Color: Colors.white.withOpacity(0.1),
+      shadowLayer2Color: Colors.white.withOpacity(0.15),
+      style: DrawerStyle.Style1,
+      // mainScreen: getMainScreen(screen),
+      mainScreen: HomeView(),
+      menuScreen: MenuPage(onSelectedItem: (item) {}),
+    );
   }
 }
 
-Widget getMainScreen(int screen) {
-  return Builder(builder: (context) {
-    switch (screen) {
-      case 0:
-        return HomeView();
-
-      case 1:
-        return ProfileView();
-
-      default:
-        return HomeView();
-    }
-  });
-}
+// Widget getMainScreen(Screen screen) {
+//   return Builder(builder: (context) {
+//     switch (screen) {
+//       case Screen.homeView:
+//         // Get.find<HomeController>().addPreviousScreen(Screen.homeView);
+//         return HomeView();
+//       case Screen.profileView:
+//         // Get.find<HomeController>().addPreviousScreen(Screen.profileView);
+//         return ProfileView();
+//       default:
+//         // Get.find<HomeController>().addPreviousScreen(Screen.homeView);
+//         return HomeView();
+//     }
+//   });
+// }
 
 class MenuItems {
   static final home = MenuItem(
@@ -223,16 +224,26 @@ class MenuPage extends StatelessWidget {
           onSelectedItem(item);
           switch (item.title) {
             case "Home":
-              Get.offAll(DrawerView(
-                screen: 0,
-              ));
+              Get.offAllNamed(Routes.DRAWER);
+              // Get.find<HomeController>().addPreviousScreen(Screen.homeView);
+              // Get.offAll(DrawerView(
+              //   screen: Screen.homeView,
+              // ));
               break;
             case "Profile":
-              Get.offAll(DrawerView(
-                screen: 1,
-              ));
+              Get.toNamed(Routes.PROFILE);
+              // Get.find<HomeController>().addPreviousScreen(Screen.profileView);
+              // Get.offAll(DrawerView(
+              //   screen: Screen.profileView,
+              // ));
               break;
             default:
+
+              // Get.find<HomeController>().addPreviousScreen(Screen.homeView);
+              // Get.offAll(DrawerView(
+              //   screen: Screen.homeView,
+              // ));
+              break;
           }
         },
       );

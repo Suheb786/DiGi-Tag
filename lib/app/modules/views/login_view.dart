@@ -1,18 +1,20 @@
-import 'package:digitag/app/modules/widgets/random_widgets.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+
+
+import '../controllers/login_controller.dart';
+import '../widgets/decoration.dart';
 
 import '../../../main.dart';
 import '../widgets/bit_text.dart';
 import '../widgets/decoration.dart';
 import '../controllers/login_controller.dart';
 import '../widgets/footerText.dart';
+
 import '../widgets/login_in_widgets.dart';
 import '../widgets/textfield.dart';
 
-class LoginView extends GetView<MyDrawerController> {
+class LoginView extends GetView<LoginController> {
   @override
   LoginController logincontroller = Get.find<LoginController>();
   @override
@@ -61,7 +63,7 @@ class LoginView extends GetView<MyDrawerController> {
                   SizedBox(
                     height: responsive.height / 30,
                   ),
-                  Custom_Help_Text(),
+                  CustomHelpText(),
                   SizedBox(
                     height: responsive.height / 30,
                   ),

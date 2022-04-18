@@ -1,8 +1,7 @@
 //* ---Profile Stack Widget on Home Screen-- //
+import 'package:digitag/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../views/drawer_view.dart';
 
 class ProfileStack extends StatelessWidget {
   const ProfileStack({
@@ -13,11 +12,13 @@ class ProfileStack extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.offAll(DrawerView(
-          screen: 1,
-        ));
+        // Get.offAll(DrawerView(
+        //   screen: Screen.profileView,
+        // ));
 
         // Get.offAllNamed(Routes.DRAWER,arguments: 1);
+
+        Get.toNamed(Routes.PROFILE);
       },
       child: Stack(
         alignment: Alignment.center,
