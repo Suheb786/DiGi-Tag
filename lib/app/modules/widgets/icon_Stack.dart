@@ -11,7 +11,7 @@ class IconStack extends StatelessWidget {
   IconStack({
     Key? key,
   }) : super(key: key);
-  final qrKey = GlobalKey(debugLabel: "QR");
+  // final qrKey = GlobalKey(debugLabel: "QR");
   @override
   Widget build(BuildContext context) {
     return Expanded(

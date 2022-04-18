@@ -54,13 +54,13 @@ class ProfileDetailsCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    CircleAvatar(
-                      radius: 15,
-                      backgroundColor: mainTitleColor,
-                      // child: SvgPicture.asset(
-                      //   'assets/profile_icons/contactIcon.svg',
-                      //   alignment: Alignment.center,
-                      // ),
+                    Container(
+                      height: 30,
+                      width: 30,
+                      child: Image.asset(
+                        'assets/profile_icons/medicalICon.png',
+                        alignment: Alignment.center,
+                      ),
                     ),
                   ],
                 ),

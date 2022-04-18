@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 import '../controllers/login_controller.dart';
 import '../widgets/decoration.dart';
 
@@ -16,7 +15,7 @@ import '../widgets/textfield.dart';
 
 class LoginView extends GetView<LoginController> {
   @override
-  LoginController logincontroller = Get.find<LoginController>();
+  // LoginController logincontroller = Get.find<LoginController>();
   @override
   Widget build(BuildContext context) {
     final responsive = MediaQuery.of(context).size;
@@ -30,7 +29,7 @@ class LoginView extends GetView<LoginController> {
           decoration: Decorations.grdntBG,
           child: SafeArea(
             child: Form(
-              key: logincontroller.loginFormKey,
+              // key: controller.loginFormKey,
               child: Column(
                 children: [
                   SizedBox(height: 65),
@@ -52,7 +51,7 @@ class LoginView extends GetView<LoginController> {
                         child: CustomField(
                             validator: (value) =>
                                 loginController.uIDvalid(value!),
-                            controller: logincontroller.uidController,
+                            controller: controller.uidController,
                             hint: "Enter UID")),
                   ),
                   SizedBox(height: responsive.height / 40),
@@ -67,7 +66,7 @@ class LoginView extends GetView<LoginController> {
                   SizedBox(
                     height: responsive.height / 30,
                   ),
-                  SignUp_Round_Button(
+                  SignUpRoundButton(
                     extraBigCircle: OverflowBox(
                       maxWidth: 490,
                       maxHeight: 490,

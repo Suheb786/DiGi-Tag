@@ -5,7 +5,7 @@ class LoginController extends GetxController {
   var regex = RegExp(
       "^(?=.{8,32}\$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%^&*(),.?:{}|<>]).*");
 
-  final loginFormKey = GlobalKey<FormState>();
+  // final loginFormKey = GlobalKey<FormState>();
   final TextEditingController uidController = TextEditingController();
   final TextEditingController passwrodController = TextEditingController();
 

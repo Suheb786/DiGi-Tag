@@ -60,10 +60,6 @@ class DrawerView extends GetView<DrawerController> {
 // }
 
 class MenuItems {
-  static final home = MenuItem(
-    Icons.home,
-    "Home",
-  );
   static final beststdnt = MenuItem(
     Icons.person_rounded,
     'Profile',
@@ -79,7 +75,6 @@ class MenuItems {
   static final shareprfl = MenuItem(Icons.share_rounded, 'Share Profile');
 
   static List<MenuItem> all = <MenuItem>[
-    home,
     beststdnt,
     editprfl,
     showqr,

@@ -26,7 +26,7 @@ class HomeView extends GetView<HomeController> {
       body: GestureDetector(
         onHorizontalDragUpdate: (details) {
           if ((details.primaryDelta! > 0.0)) {
-            ZoomDrawer.of(context)!.toggle();
+            ZoomDrawer.of(context)!.open();
           } else if (details.primaryDelta! < 10.0) {
             ZoomDrawer.of(context)!.close();
           }
