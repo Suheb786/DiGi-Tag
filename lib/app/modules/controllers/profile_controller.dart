@@ -1,7 +1,12 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
   var status = false.obs;
+
+
+  ScrollController profileScrollController = ScrollController();
+  var scrollOffset = 0.0.obs;
 
   void audioSwitchCheck() {
     if (status.value == false) {
@@ -10,6 +15,7 @@ class ProfileController extends GetxController {
       status.value = false;
     }
   }
+
 
   final count = 0.obs;
   @override

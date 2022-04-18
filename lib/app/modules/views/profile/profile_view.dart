@@ -1,3 +1,7 @@
+
+import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
+
 import 'package:digitag/app/modules/controllers/home_controller.dart';
 import 'package:digitag/app/modules/views/drawer_view.dart';
 import 'package:digitag/app/modules/views/home_view.dart';
@@ -10,24 +14,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
+
 import 'package:get/get.dart';
 
-import '../../../../main.dart';
 import '../../../Decoration/decoration.dart';
 
 import '../../controllers/profile_controller.dart';
+import '../../widgets/appbar.dart';
 import 'audit_off_widget.dart';
+import 'audit_on_widget.dart';
 
 class ProfileView extends GetView<ProfileController> {
-  ProfileController profileController = Get.find<ProfileController>();
+  // ProfileController profileController = Get.find<ProfileController>();
 
-  HomeController _controller = Get.find<HomeController>();
+  // HomeController _controller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
+    controller.profileScrollController.addListener(
+      () {
+        controller.scrollOffset.value =
+            controller.profileScrollController.offset;
+      },
+    );
     return Scaffold(
         // appBar: MyAppBar(MediaQuery.of(context).size.width, 1),
         backgroundColor: const Color(0xff50e6da),
+
         body: GestureDetector(
           onHorizontalDragUpdate: (details) {
             if ((details.primaryDelta! > 1.0)) {
@@ -84,6 +97,7 @@ class ProfileView extends GetView<ProfileController> {
                               child: profileController.status.value
                                   ? AuditOnWidget()
                                   : AuditOffWidget(),
+
                             ),
                           ),
                         ],

@@ -1,22 +1,15 @@
-import 'package:digitag/app/modules/controllers/home_controller.dart';
-import 'package:digitag/app/modules/views/home_view.dart';
-
-import 'package:digitag/app/modules/views/profile/profile_view.dart';
-import 'package:digitag/main.dart';
-
-import 'package:digitag/app/modules/views/login_view.dart';
-import 'package:digitag/app/modules/views/profile/profile_view.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-
 import 'package:get/get.dart';
 
-import '../controllers/drawer_controller.dart';
+import '../../../main.dart';
+import 'home_view.dart';
+import 'login_view.dart';
+import 'profile/profile_view.dart';
 
 class DrawerView extends GetView<MyDrawerController> {
   int? screen;
+
   DrawerView({
     Key? key,
     this.screen = 0,
@@ -66,6 +59,10 @@ Widget getMainScreen(int screen) {
 }
 
 class MenuItems {
+  static final home = MenuItem(
+    Icons.home,
+    "Home",
+  );
   static final beststdnt = MenuItem(
     Icons.person_rounded,
     'Profile',
@@ -81,6 +78,7 @@ class MenuItems {
   static final shareprfl = MenuItem(Icons.share_rounded, 'Share Profile');
 
   static List<MenuItem> all = <MenuItem>[
+    home,
     beststdnt,
     editprfl,
     showqr,
@@ -112,11 +110,11 @@ class MenuPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: const [Color(0xff2BBDC7), Color(0xff2E48A7)],
+            colors: [Color(0xff2BBDC7), Color(0xff2E48A7)],
           ),
         ),
         child: Padding(
@@ -124,19 +122,19 @@ class MenuPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Spacer(
+              const Spacer(
                 flex: 3,
               ),
               ...MenuItems.all.map(buildMenuItem).toList(),
-              Spacer(
+              const Spacer(
                 flex: 2,
               ),
               Row(
                 children: [
-                  SizedBox(width: 25),
+                  const SizedBox(width: 25),
                   InkWell(
                     onTap: (() => Get.to(LoginView())),
-                    child: Text(
+                    child: const Text(
                       "Log Out",
                       style: TextStyle(
                           letterSpacing: 1,
@@ -177,7 +175,7 @@ class MenuPage extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               )
             ],
@@ -197,41 +195,41 @@ class MenuPage extends StatelessWidget {
         ),
         title: Text(
           item.title,
-          style: TextStyle(
+          style: const TextStyle(
               color: Color(0xff9FDDFF),
               fontFamily: 'Sofia',
               fontSize: 13,
               letterSpacing: 1.2),
         ),
         onTap: () {
-          switch (item.title) {
-            case "Profile":
-              {
-                Get.to(ProfileView());
-              }
-              break;
-            case "JIT Elites":
-              {
-                Get.to(LoginView());
-              }
-              break;
-            case "Show QR":
-              {
-                Get.to(ProfileView());
-              }
-              break;
-          }
+          // switch (item.title) {
+          //   case "Profile":
+          //     {
+          //       Get.to(ProfileView());
+          //     }
+          //     break;
+          //   case "JIT Elites":
+          //     {
+          //       Get.to(LoginView());
+          //     }
+          //     break;
+          //   case "Show QR":
+          //     {
+          //       Get.to(ProfileView());
+          //     }
+          //     break;
+          // }
           debugPrint("dekho ${item.title}");
           onSelectedItem(item);
           switch (item.title) {
+            case "Home":
+              Get.offAll(DrawerView(
+                screen: 0,
+              ));
+              break;
             case "Profile":
               Get.offAll(DrawerView(
                 screen: 1,
-              ));
-              break;
-            case "JIT Elites":
-              Get.offAll(DrawerView(
-                screen: 0,
               ));
               break;
             default:
