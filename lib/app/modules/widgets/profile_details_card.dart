@@ -23,7 +23,7 @@ class ProfileDetailsCard extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Colors.white,
+            color: Colors.white.withOpacity(0.8),
             boxShadow: [
               BoxShadow(
                   color: shadowColor.withOpacity(0.35),
