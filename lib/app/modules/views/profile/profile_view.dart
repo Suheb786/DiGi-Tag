@@ -1,6 +1,23 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
+
+import 'package:digitag/app/modules/controllers/home_controller.dart';
+import 'package:digitag/app/modules/views/drawer_view.dart';
+import 'package:digitag/app/modules/views/home_view.dart';
+import 'package:digitag/app/modules/views/profile/audit_on_widget.dart';
+import 'package:digitag/app/modules/widgets/appbar.dart';
+import 'package:digitag/app/modules/widgets/custom_User_Name_Icons.dart';
+import 'package:digitag/app/modules/widgets/profile_Stack.dart';
+import 'package:digitag/app/modules/widgets/random_widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+
 import 'package:get/get.dart';
 
 import '../../../Decoration/decoration.dart';
@@ -112,6 +129,8 @@ class ProfileView extends GetView<ProfileController> {
                                   ),
                                 ],
                               ),
+
+        
                             ),
                           ])),
                     ))));

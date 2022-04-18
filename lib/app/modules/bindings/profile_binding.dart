@@ -8,6 +8,6 @@ class ProfileBinding extends Bindings {
     // Get.lazyPut<ProfileController>(
     //   () => ProfileController(),
     // );
-    Get.put(ProfileController());
+    //// Get.put(ProfileController());
   }
 }
