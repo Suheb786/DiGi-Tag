@@ -5,7 +5,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 
 class OtpViewController extends GetxController {
   TextEditingController phonenocontroller = TextEditingController();
-  // final phonekey = GlobalKey<FormState>();
+  final phonekey = GlobalKey<FormState>();
 
   validphone(phone) {
     if (!GetUtils.isPhoneNumber(phone)) {
@@ -14,9 +14,9 @@ class OtpViewController extends GetxController {
   }
 
   phonecheck() {
-    // if (phonekey.currentState!.validate()) {
-    //   Get.off(() => HomeView());
-    // }
+    if (phonekey.currentState!.validate()) {
+      Get.off(() => HomeView());
+    }
   }
 
   final count = 0.obs;

@@ -23,7 +23,7 @@ class ProfileDetailsCard extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Colors.white,
+            color: Colors.white.withOpacity(0.8),
             boxShadow: [
               BoxShadow(
                   color: shadowColor.withOpacity(0.35),
@@ -54,13 +54,13 @@ class ProfileDetailsCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      height: 30,
-                      width: 30,
-                      child: Image.asset(
-                        'assets/profile_icons/medicalICon.png',
-                        alignment: Alignment.center,
-                      ),
+                    CircleAvatar(
+                      radius: 15,
+                      backgroundColor: mainTitleColor,
+                      // child: SvgPicture.asset(
+                      //   'assets/profile_icons/contactIcon.svg',
+                      //   alignment: Alignment.center,
+                      // ),
                     ),
                   ],
                 ),

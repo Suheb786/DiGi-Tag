@@ -7,12 +7,12 @@ import 'package:get/get.dart';
 import '../modules/bindings/drawer_binding.dart';
 import '../modules/bindings/home_binding.dart';
 import '../modules/bindings/login_binding.dart';
-import '../modules/bindings/profile_binding.dart';
 import '../modules/bindings/otp_view_binding.dart';
-import '../modules/views/otp_view_view.dart';
+import '../modules/bindings/profile_binding.dart';
 import '../modules/views/drawer_view.dart';
 import '../modules/views/home_view.dart';
 import '../modules/views/login_view.dart';
+import '../modules/views/otp_view_view.dart';
 import '../modules/views/profile/profile_view.dart';
 
 part 'app_routes.dart';
