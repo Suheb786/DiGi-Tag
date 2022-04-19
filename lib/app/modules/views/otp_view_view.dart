@@ -25,7 +25,7 @@ class OtpViewView extends GetView<OtpViewController> {
           width: double.infinity,
           decoration: Decorations.grdntBG,
           child: Form(
-            key: controller.phonekey,
+            // key: controller.phonekey,
             child: Column(
               children: [
                 SizedBox(height: responsive.height / 10),
@@ -59,7 +59,7 @@ class OtpViewView extends GetView<OtpViewController> {
                 OTPField(),
                 SizedBox(height: responsive.height / 30),
                 Resend_OTP_Text(),
-                SignUp_Round_Button(
+                SignUpRoundButton(
                   extraBigCircle: Container(height: 0),
                   widget: InkWell(
                       onTap: () {

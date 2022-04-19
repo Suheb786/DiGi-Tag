@@ -24,8 +24,8 @@ class SigninIcon extends StatelessWidget {
               .validate()) {
             Get.to(
               DrawerView(
-                // screen: Screen.homeView,
-              ),
+                  // screen: Screen.homeView,
+                  ),
             );
           }
         }),
@@ -37,10 +37,10 @@ class SigninIcon extends StatelessWidget {
 }
 
 //* OverFlow Stack Circle for SignIn Button and bottom info Text //
-class SignUp_Round_Button extends StatelessWidget {
+class SignUpRoundButton extends StatelessWidget {
   Widget widget;
   Widget extraBigCircle;
-  SignUp_Round_Button({
+  SignUpRoundButton({
     required this.widget,
     required this.extraBigCircle,
     Key? key,
