@@ -17,4 +17,5 @@ abstract class _Paths {
   static const DRAWER = '/drawer';
   static const PROFILE = '/profile';
   static const OTP_VIEW = '/otp-view';
+  static const QrScanner = '/qrScanner';
 }

@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
-import 'package:pinput/pinput.dart';
 
 import '../../Decoration/decoration.dart';
 import '../controllers/otp_view_controller.dart';

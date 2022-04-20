@@ -1,3 +1,5 @@
+import 'package:digitag/app/modules/bindings/qr_scanner_binding.dart';
+import 'package:digitag/app/modules/views/qr_scanner.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -47,6 +49,11 @@ class AppPages {
       name: _Paths.OTP_VIEW,
       page: () => OtpViewView(),
       binding: OtpViewBinding(),
+    ),
+    GetPage(
+      name: _Paths.QrScanner,
+      page: () => QrScannerView(),
+      binding: QrBinding(),
     ),
   ];
 }

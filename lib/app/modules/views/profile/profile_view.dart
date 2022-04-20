@@ -1,4 +1,8 @@
+
 import 'package:digitag/app/modules/widgets/custom_appbar.dart';
+
+import 'package:digitag/app/modules/views/drawer_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -28,6 +32,7 @@ class ProfileView extends GetView<ProfileController> {
       },
     );
     return WillPopScope(
+
       onWillPop: () => controller.onBack(),
       child: Scaffold(
         extendBodyBehindAppBar: true,
@@ -104,6 +109,7 @@ class ProfileView extends GetView<ProfileController> {
             // );
             //   },
             // ),
+
           ),
         ),
       ),

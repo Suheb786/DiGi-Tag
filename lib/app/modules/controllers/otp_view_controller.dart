@@ -1,7 +1,6 @@
 import 'package:digitag/app/modules/views/home_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
 
 class OtpViewController extends GetxController {
   TextEditingController phonenocontroller = TextEditingController();
