@@ -15,6 +15,12 @@ class AuditOnWidget extends StatelessWidget {
         AuditCard(),
         AuditCard(),
         AuditCard(),
+        AuditCard(),
+        AuditCard(),
+        AuditCard(),
+        AuditCard(),
+        AuditCard(),
+        AuditCard(),
       ],
     );
   }

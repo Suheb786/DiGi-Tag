@@ -17,7 +17,7 @@ void main() async {
   Get.put(HomeController());
   Get.put(LoginController());
   Get.put(ProfileController());
-  Get.put<MyDrawerController>(MyDrawerController());
+  // Get.put<MyDrawerController>(MyDrawerController());
 
   // Get.put(QrScannerController()); //! QrScannerController was not working fine frome here it was calling the controller but when user went back and come again controller stopped ; so It has done to be called from QrScannerView() with Get.put()...
 
@@ -32,16 +32,16 @@ void main() async {
   );
 }
 
-class MyDrawerController extends GetxController {
-  final zoomDrawerController = ZoomDrawerController();
+// class MyDrawerController extends GetxController {
+//   final zoomDrawerController = ZoomDrawerController();
 
-  int setScreen = 0;
+//   int setScreen = 0;
 
-  void toggleDrawer({required int screenNum}) {
-    print("Toggle drawer");
-    print(screenNum);
-    setScreen = screenNum;
-    update();
-    zoomDrawerController.toggle?.call();
-  }
-}
+//   void toggleDrawer({required int screenNum}) {
+//     print("Toggle drawer");
+//     print(screenNum);
+//     setScreen = screenNum;
+//     update();
+//     zoomDrawerController.toggle?.call();
+//   }
+// }

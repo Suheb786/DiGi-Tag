@@ -61,6 +61,8 @@ class ProfileDetailsCard extends StatelessWidget {
                       //   'assets/profile_icons/contactIcon.svg',
                       //   alignment: Alignment.center,
                       // ),
+                      child: Image.asset(
+                          "assets/icons/profile_icons/courseIcon.png"),
                     ),
                   ],
                 ),
