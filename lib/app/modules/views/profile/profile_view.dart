@@ -45,7 +45,7 @@ class ProfileView extends GetView<ProfileController> {
       body: GestureDetector(
         onHorizontalDragUpdate: (details) {
           if ((details.primaryDelta! > 1.0)) {
-            ZoomDrawer.of(context)!.toggle();
+            ZoomDrawer.of(context)!.open();
           } else if (details.primaryDelta! < 10.0) {
             ZoomDrawer.of(context)!.close();
           }

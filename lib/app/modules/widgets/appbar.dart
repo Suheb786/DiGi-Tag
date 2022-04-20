@@ -56,6 +56,7 @@ AppBar MyAppBar(
                   // Get.find<MyDrawerController>()
                   //     .toggleDrawer(screenNum: screen);
                   ZoomDrawer.of(ctx)!.toggle();
+                  print("object");
                   // DrawerView(drawermenu: HomeView());
                   print("presseed");
                 }),

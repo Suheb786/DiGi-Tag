@@ -1,5 +1,6 @@
 import 'package:digitag/app/modules/controllers/home_controller.dart';
 import 'package:digitag/app/modules/controllers/profile_controller.dart';
+import 'package:digitag/app/modules/controllers/qr_scanner_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -17,6 +18,7 @@ void main() async {
   Get.put(LoginController());
   Get.put(ProfileController());
   Get.put<MyDrawerController>(MyDrawerController());
+  Get.put(QrScannerController());
 
   runApp(
     GetMaterialApp(
