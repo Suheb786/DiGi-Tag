@@ -7,6 +7,7 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.2
+  file_picker: ^4.5.1
   firebase: ^9.0.2
   firebase_analytics: ^9.1.0
   firebase_auth: ^3.3.7
@@ -20,6 +21,7 @@ dependencies:
   flutter_zoom_drawer: ^2.3.1
   get: ^4.6.1
   google_fonts: ^2.3.1
+  image_picker: ^0.8.5
   matrix4_transform: ^2.0.1
   mobile_scanner: ^1.0.0
   pinput: ^2.2.7

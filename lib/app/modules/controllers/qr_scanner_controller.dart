@@ -6,5 +6,21 @@ import '../views/profile/profile_view.dart';
 
 class QrScannerController extends GetxController {
   var barcode = RxnString(null);
-  MobileScannerController cameraController = MobileScannerController();
+  MobileScannerController cameracontroller = MobileScannerController();
+  bool isStarted = true;
+
+  @override
+  void onClose() {
+    cameracontroller.dispose();
+
+    super.onClose();
+  }
+
+  @override
+  void dispose() {
+    cameracontroller.dispose();
+    super.dispose();
+  }
+
+  // String? barcode;
 }
