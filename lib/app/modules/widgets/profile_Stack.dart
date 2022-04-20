@@ -23,34 +23,25 @@ class ProfileStack extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          ClipOval(
-            child: Container(
-              height: 164,
-              width: 164,
-              color: Color(0x1Affffff),
-            ),
+          const CircleAvatar(
+            backgroundColor: Color(0x1Affffff),
+            radius: 85,
           ),
-          ClipOval(
-            child: Container(
-              height: 146,
-              width: 146,
-              color: Color(0x33ffffff),
-            ),
+          const CircleAvatar(
+            backgroundColor: Color(0x33ffffff),
+            radius: 75,
           ),
-          ClipOval(
-            child: Container(
-              height: 124,
-              width: 124,
-              color: Color(0x40ffffff),
-            ),
+          const CircleAvatar(
+            backgroundColor: Color(0x40ffffff),
+            radius: 65,
           ),
-          ClipOval(
+          CircleAvatar(
+            backgroundColor: const Color(0x4Dffffff),
+            radius: 55,
             child: Container(
               child: Image.asset(
                 'assets/images/demopic.png',
               ),
-              height: 104,
-              width: 104,
               decoration: const BoxDecoration(
                 color: Color(0x4Dffffff),
                 shape: BoxShape.circle,
@@ -69,3 +60,53 @@ class ProfileStack extends StatelessWidget {
     );
   }
 }
+
+
+
+// children: [
+//           ClipRRect(
+//             borderRadius: BorderRadius.circular(100),
+//             child: Container(
+//               height: 164,
+//               width: 164,
+//               color: Color(0x1Affffff),
+//             ),
+//           ),
+//           ClipRRect(
+//             borderRadius: BorderRadius.circular(100),
+//             child: Container(
+//               height: 146,
+//               width: 146,
+//               color: Color(0x33ffffff),
+//             ),
+//           ),
+//           ClipRRect(
+//             borderRadius: BorderRadius.circular(100),
+//             child: Container(
+//               height: 124,
+//               width: 124,
+//               color: Color(0x40ffffff),
+//             ),
+//           ),
+//           ClipRRect(
+//             borderRadius: BorderRadius.circular(100),
+//             child: Container(
+//               child: Image.asset(
+//                 'assets/images/demopic.png',
+//               ),
+//               height: 104,
+//               width: 104,
+//               decoration: const BoxDecoration(
+//                 color: Color(0x4Dffffff),
+//                 shape: BoxShape.circle,
+//                 boxShadow: [
+//                   BoxShadow(
+//                     color: Color(0x40000000),
+//                     offset: Offset(0, 4),
+//                     blurRadius: 10,
+//                   )
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ],

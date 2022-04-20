@@ -16,7 +16,7 @@ void main() async {
   Get.put(HomeController());
   Get.put(LoginController());
   Get.put(ProfileController());
-  Get.put<MyDrawerController>(MyDrawerController());
+  // Get.put<MyDrawerController>(MyDrawerController());
 
   runApp(
     GetMaterialApp(
@@ -29,16 +29,16 @@ void main() async {
   );
 }
 
-class MyDrawerController extends GetxController {
-  final zoomDrawerController = ZoomDrawerController();
+// class MyDrawerController extends GetxController {
+//   final zoomDrawerController = ZoomDrawerController();
 
-  int setScreen = 0;
+//   int setScreen = 0;
 
-  void toggleDrawer({required int screenNum}) {
-    print("Toggle drawer");
-    print(screenNum);
-    setScreen = screenNum;
-    update();
-    zoomDrawerController.toggle?.call();
-  }
-}
+//   void toggleDrawer({required int screenNum}) {
+//     print("Toggle drawer");
+//     print(screenNum);
+//     setScreen = screenNum;
+//     update();
+//     zoomDrawerController.toggle?.call();
+//   }
+// }

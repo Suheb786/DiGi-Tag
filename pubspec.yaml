@@ -35,7 +35,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
-    - assets/profile_icons/
+    - assets/icons/profile_icons/
 
   fonts:
     - family: SofiaPro
