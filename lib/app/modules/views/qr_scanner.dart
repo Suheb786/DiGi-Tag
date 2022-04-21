@@ -248,11 +248,7 @@ class QrScannerView extends GetView<QrScannerController> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                15,
-                                      )
+                                      Spacer(),
                                     ],
                                   ),
                                   SizedBox(
@@ -307,6 +303,9 @@ class QrScannerView extends GetView<QrScannerController> {
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: 20,
+                    )
                   ],
                 ),
                 // Align(

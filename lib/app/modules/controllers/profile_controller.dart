@@ -10,10 +10,13 @@ class ProfileController extends GetxController {
   ScrollController profileScrollController = ScrollController();
   var scrollOffset = 0.0.obs;
   Future<bool> onBack() async {
-    Get.offAllNamed(Routes.DRAWER);
-    // ZoomDrawer.of(context)!.close();
-    status.value = false;
-
+    if (status.value == true) {
+      status.value = false;
+    } else {
+      Get.offAllNamed(Routes.DRAWER);
+      // ZoomDrawer.of(context)!.close();
+      status.value = false;
+    }
     return false;
   }
 

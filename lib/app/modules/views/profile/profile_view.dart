@@ -1,4 +1,3 @@
-
 import 'package:digitag/app/modules/widgets/custom_appbar.dart';
 
 import 'package:digitag/app/modules/views/drawer_view.dart';
@@ -32,7 +31,6 @@ class ProfileView extends GetView<ProfileController> {
       },
     );
     return WillPopScope(
-
       onWillPop: () => controller.onBack(),
       child: Scaffold(
         extendBodyBehindAppBar: true,
@@ -109,7 +107,6 @@ class ProfileView extends GetView<ProfileController> {
             // );
             //   },
             // ),
-
           ),
         ),
       ),
