@@ -8,6 +8,7 @@ abstract class Routes {
   static const DRAWER = _Paths.DRAWER;
   static const PROFILE = _Paths.PROFILE;
   static const OTP_VIEW = _Paths.OTP_VIEW;
+  static const FORM = _Paths.FORM;
 }
 
 abstract class _Paths {
@@ -18,4 +19,5 @@ abstract class _Paths {
   static const PROFILE = '/profile';
   static const OTP_VIEW = '/otp-view';
   static const QrScanner = '/qrScanner';
+  static const FORM = '/form';
 }
