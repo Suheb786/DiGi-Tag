@@ -1,0 +1,4 @@
+enum Voting {
+  up,
+  down,
+}

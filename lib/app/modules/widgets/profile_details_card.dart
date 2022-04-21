@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 class ProfileDetailsCard extends StatelessWidget {
   final String mainTitle;
   final String middleTitle;
+  final String assetImagePath;
   final String bottomTitle;
   final Color mainTitleColor;
   final Color shadowColor;
+
   const ProfileDetailsCard({
     Key? key,
     required this.mainTitleColor,
     required this.mainTitle,
+    required this.assetImagePath,
     required this.middleTitle,
     required this.bottomTitle,
     required this.shadowColor,
@@ -61,8 +64,9 @@ class ProfileDetailsCard extends StatelessWidget {
                       //   'assets/profile_icons/contactIcon.svg',
                       //   alignment: Alignment.center,
                       // ),
-                      child: Image.asset(
-                          "assets/icons/profile_icons/courseIcon.png"),
+                      backgroundImage: AssetImage(assetImagePath),
+                      // child: Image.asset(
+                      //     "assets/icons/profile_icons/courseIcon.png"),
                     ),
                   ],
                 ),

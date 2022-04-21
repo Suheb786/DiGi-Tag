@@ -1,4 +1,3 @@
-
 import 'package:digitag/app/modules/widgets/custom_appbar.dart';
 
 import 'package:digitag/app/modules/views/drawer_view.dart';
@@ -32,7 +31,6 @@ class ProfileView extends GetView<ProfileController> {
       },
     );
     return WillPopScope(
-
       onWillPop: () => controller.onBack(),
       child: Scaffold(
         extendBodyBehindAppBar: true,
@@ -61,6 +59,7 @@ class ProfileView extends GetView<ProfileController> {
           width: double.infinity,
           decoration: Decorations.grdntBG,
           child: NestedScrollView(
+            controller: controller.profileScrollController,
             headerSliverBuilder: (context, bool innerBoxIsScrolled) {
               return [
                 CustomAppBar(
@@ -89,18 +88,29 @@ class ProfileView extends GetView<ProfileController> {
                     ),
                   ),
                   Expanded(
-                    child: CustomScrollView(
-                      // physics: const ClampingScrollPhysics(),
-                      slivers: [
-                        SliverFillRemaining(
-                          hasScrollBody: false,
-                          child: Obx(
-                            () => controller.status.value
-                                ? AuditOnWidget()
-                                : AuditOffWidget(),
+                    child:
+                        NotificationListener<OverscrollIndicatorNotification>(
+                      onNotification: (overScroll) {
+                        overScroll.disallowIndicator();
+                        // print();
+                        return false;
+                      },
+                      child: CustomScrollView(
+                        // controller: controller.profileScrollController,
+
+                        physics: BouncingScrollPhysics(),
+                        slivers: [
+                          SliverFillRemaining(
+                            // fillOverscroll: true,
+                            hasScrollBody: false,
+                            child: Obx(
+                              () => controller.status.value
+                                  ? AuditOnWidget()
+                                  : AuditOffWidget(),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -109,7 +119,6 @@ class ProfileView extends GetView<ProfileController> {
             // );
             //   },
             // ),
-
           ),
         ),
       ),
