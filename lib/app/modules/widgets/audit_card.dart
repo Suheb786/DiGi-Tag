@@ -1,5 +1,6 @@
 import 'package:digitag/app/Decoration/enums/voting.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../Decoration/colors/app_colors.dart';
 
@@ -53,21 +54,21 @@ class AuditCardWidget extends StatelessWidget {
                           ).image),
                       shape: BoxShape.circle),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Text(
                   facultyName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: "SofiaPro",
                     fontWeight: FontWeight.bold,
                     color: AppColors.auditOnCardName,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Text(
                   branch,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: "SofiaPro",
                     fontStyle: FontStyle.italic,
                     color: AppColors.auditOnCardBranch,
@@ -81,19 +82,29 @@ class AuditCardWidget extends StatelessWidget {
               ),
               child: Stack(
                 clipBehavior: Clip.none,
-                // fit: StackFit.expand,
                 children: [
                   InkWell(
                     onTap: (() => showDialog(
                           context: context,
                           builder: (_) {
                             return AlertDialog(
+                              actions: [
+                                TextButton(
+                                    onPressed: () => Get.back(),
+                                    child: const Text(
+                                      "Ok",
+                                      style: TextStyle(
+                                        fontFamily: "SofiaPro",
+                                        color: AppColors.auditOnCardName,
+                                      ),
+                                    ))
+                              ],
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               title: Text(
                                 facultyName,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontFamily: "SofiaPro",
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.auditOnCardName,
@@ -102,7 +113,7 @@ class AuditCardWidget extends StatelessWidget {
                               backgroundColor: Colors.white.withOpacity(0.9),
                               content: Text(
                                 message,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontFamily: "SofiaPro",
                                   color: AppColors.auditCardBodyTextColor,
                                 ),
@@ -111,7 +122,7 @@ class AuditCardWidget extends StatelessWidget {
                           },
                         )),
                     child: Container(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       height: 50,
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -133,17 +144,6 @@ class AuditCardWidget extends StatelessWidget {
                   Positioned(
                     bottom: -12,
                     right: -12,
-                    // child: CircleAvatar(
-                    //   radius: 15,
-                    //   // backgroundImage: AssetImage(
-                    //   //   "assets/icons/profile_icons/like_Icon.png",
-                    //   // ),
-                    //   child: Image.asset(
-                    //     "assets/icons/profile_icons/like_Icon.png",
-                    //     fit: BoxFit.cover,
-                    //   ),
-                    // ),
-
                     child: Container(
                       width: 30.0,
                       height: 30.0,
