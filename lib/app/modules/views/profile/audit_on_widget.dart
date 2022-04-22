@@ -1,4 +1,5 @@
 import 'package:digitag/app/Decoration/enums/voting.dart';
+import 'package:digitag/app/models/audit_card_model.dart';
 
 import 'package:digitag/app/modules/controllers/profile_controller.dart';
 import 'package:digitag/app/modules/views/profile/audit_off_widget.dart';
@@ -15,18 +16,69 @@ class AuditOnWidget extends StatelessWidget {
   // ProfileController profileController = Get.find<ProfileController>();
   AuditOnWidget({Key? key}) : super(key: key);
 
+  List<AuditCard> auditCardList = [
+    const AuditCard(
+      branch: "CSE",
+      facultyName: "Abhimanue Mishra",
+      message: "Good work keep it up",
+      userImageUrl: "assets/images/demopic.png",
+      voting: Voting.up,
+    ),
+    const AuditCard(
+        branch: "ME",
+        facultyName: "Akhil Mishra",
+        message: "Quick brown fox jump",
+        userImageUrl: "assets/images/demopic.png",
+        voting: Voting.down),
+    const AuditCard(
+      branch: "CSE",
+      facultyName: "Abhimanue Mishra",
+      message: "Good work keep it up",
+      userImageUrl: "assets/images/demopic.png",
+      voting: Voting.up,
+    ),
+    const AuditCard(
+        branch: "ME",
+        facultyName: "Akhil Mishra",
+        message: "Quick brown fox jump",
+        userImageUrl: "assets/images/demopic.png",
+        voting: Voting.down),
+    const AuditCard(
+      branch: "CSE",
+      facultyName: "Abhimanue Mishra",
+      message: "Good work keep it up",
+      userImageUrl: "assets/images/demopic.png",
+      voting: Voting.up,
+    ),
+    const AuditCard(
+        branch: "ME",
+        facultyName: "Akhil Mishra",
+        message: "Quick brown fox jump",
+        userImageUrl: "assets/images/demopic.png",
+        voting: Voting.down),
+  ];
+
   @override
   Widget build(BuildContext context) {
+    // return ListView.builder(
+    //   shrinkWrap: true,
+    //   physics: const NeverScrollableScrollPhysics(),
+    //   itemCount: auditCardList.length,
+    //   itemBuilder: (_, index) => AuditCardWidget(
+    //       facultyName: auditCardList[index].facultyName,
+    //       message: auditCardList[index].message,
+    //       userImageUrl: auditCardList[index].userImageUrl,
+    //       branch: auditCardList[index].branch,
+    //       voting: auditCardList[index].voting),
+    // );
     return Column(
-      children: const [
-        AuditCard(
-          branch: "CSE",
-          facultyName: "Abhimanue Mishra",
-          message: "Good work keep it up",
-          userImageUrl: "assets/images/demopic.png",
-          voting: Voting.up,
-        ),
-      ],
-    );
+        children: auditCardList.map((e) {
+      return AuditCardWidget(
+          facultyName: e.facultyName,
+          message: e.message,
+          userImageUrl: e.userImageUrl,
+          branch: e.branch,
+          voting: e.voting);
+    }).toList());
   }
 }

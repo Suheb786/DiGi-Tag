@@ -6,10 +6,12 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import '../../Decoration/text/text.dart';
 
 class CustomAppBar extends StatelessWidget {
+  
   final double deviceWidth;
   final bool? onHomeView;
   final BuildContext ctx;
   const CustomAppBar({
+    
     required this.deviceWidth,
     this.onHomeView = false,
     required this.ctx,

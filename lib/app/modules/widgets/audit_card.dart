@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 import '../../Decoration/colors/app_colors.dart';
 
-class AuditCard extends StatelessWidget {
+class AuditCardWidget extends StatelessWidget {
   final String message;
   final String facultyName;
   final String userImageUrl;
   final String branch;
   final Voting voting;
 
-  const AuditCard({
+  const AuditCardWidget({
     Key? key,
     required this.facultyName,
     required this.message,
