@@ -1,35 +1,23 @@
-import 'package:digitag/app/modules/widgets/custom_appbar.dart';
-
-import 'package:digitag/app/modules/views/drawer_view.dart';
-
+import 'package:digitag/app/modules/controllers/profile_controller.dart';
+import 'package:digitag/app/modules/controllers/qr_generator_controller.dart';
+import 'package:digitag/app/modules/views/qr_generator/qr_generator_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:flutter_switch/flutter_switch.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../../Decoration/decoration.dart';
-import '../../../Decoration/text/text.dart';
-import '../../controllers/profile_controller.dart';
-import '../../widgets/appbar.dart';
 import '../../widgets/audit_toggle_button.dart';
-import '../../widgets/profile_Stack.dart';
-import 'audit_off_widget.dart';
-import 'audit_on_widget.dart';
+import '../../widgets/custom_appbar.dart';
+import '../profile/audit_off_widget.dart';
+import '../profile/audit_on_widget.dart';
 
-class ProfileView extends GetView<ProfileController> {
-  const ProfileView({Key? key}) : super(key: key);
+class QrGeneratorView extends GetView<QrGeneratorController> {
+  const QrGeneratorView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    controller.profileScrollController.addListener(
-      () {
-        controller.scrollOffset.value =
-            controller.profileScrollController.offset;
-      },
-    );
     return WillPopScope(
-      onWillPop: () => controller.onBack(),
+      onWillPop: () => Get.find<ProfileController>().onBack(),
       child: Scaffold(
         extendBodyBehindAppBar: true,
         extendBody: true,
@@ -38,7 +26,6 @@ class ProfileView extends GetView<ProfileController> {
           width: double.infinity,
           decoration: Decorations.grdntBG,
           child: NestedScrollView(
-            controller: controller.profileScrollController,
             headerSliverBuilder: (context, bool innerBoxIsScrolled) {
               return [
                 CustomAppBar(
@@ -53,9 +40,9 @@ class ProfileView extends GetView<ProfileController> {
                 children: [
                   Obx(
                     () => AuditToggleButton(
-                      value: controller.status.value,
+                      value: Get.find<ProfileController>().status.value,
                       onToggle: (val) {
-                        controller.audioSwitchCheck();
+                        Get.find<ProfileController>().audioSwitchCheck();
                       },
                     ),
                   ),
@@ -74,9 +61,9 @@ class ProfileView extends GetView<ProfileController> {
                             // fillOverscroll: true,
                             hasScrollBody: false,
                             child: Obx(
-                              () => controller.status.value
+                              () => Get.find<ProfileController>().status.value
                                   ? AuditOnWidget()
-                                  : AuditOffWidget(),
+                                  : QrGeneratorWidget(),
                             ),
                           ),
                         ],

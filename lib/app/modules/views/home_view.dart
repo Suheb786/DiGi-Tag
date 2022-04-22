@@ -67,6 +67,7 @@ class HomeView extends GetView<HomeController> {
               headerSliverBuilder: (context, bool innerBoxIsScrolled) {
                 return [
                   CustomAppBar(
+                    title: "Hi, Mohammad",
                     deviceWidth: MediaQuery.of(context).size.width,
                     ctx: context,
                     onHomeView: true,

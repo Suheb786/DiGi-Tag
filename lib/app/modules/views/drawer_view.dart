@@ -234,6 +234,10 @@ class MenuPage extends StatelessWidget {
               //   screen: Screen.profileView,
               // ));
               break;
+            case "Show QR":
+              Get.find<ProfileController>().status.value = false;
+              Get.toNamed(Routes.QR_GENERATOR);
+              break;
             default:
 
               // Get.find<HomeController>().addPreviousScreen(Screen.homeView);

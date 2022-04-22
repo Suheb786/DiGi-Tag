@@ -1,3 +1,5 @@
+import 'package:digitag/app/modules/bindings/qr_generator_binding.dart';
+import 'package:digitag/app/modules/views/qr_generator/qr_generator_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -31,6 +33,7 @@ class AppPages {
       page: () => HomeView(),
       binding: HomeBinding(),
     ),
+   
     GetPage(
       name: _Paths.LOGIN,
       page: () => LoginView(),
@@ -52,9 +55,14 @@ class AppPages {
       binding: OtpViewBinding(),
     ),
     GetPage(
-      name: _Paths.QrScanner,
+      name: _Paths.QR_SCANNER,
       page: () => QrScannerView(),
-      binding: QrBinding(),
+      binding: QrScannerBinding(),
+    ),
+     GetPage(
+      name: _Paths.QR_GENERATOR,
+      page: () => QrGeneratorView(),
+      binding: QrGeneratorBinding(),
     ),
     GetPage(
       name: _Paths.FORM,

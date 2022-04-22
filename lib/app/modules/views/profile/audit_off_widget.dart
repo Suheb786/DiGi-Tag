@@ -120,7 +120,7 @@ class AuditOffWidget extends StatelessWidget {
                     //   mainAxisSpacing: 5,
                     //   crossAxisSpacing: 5,
                     // ),
-                    children: [
+                    children: const[
                       SocialMediaButton(url: "assets/icons/social/FB icon.jpg"),
                       SocialMediaButton(
                           url: "assets/icons/social/Insta icon.jpg"),

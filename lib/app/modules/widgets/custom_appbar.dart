@@ -12,9 +12,13 @@ import '../../Decoration/text/text.dart';
 class CustomAppBar extends StatelessWidget {
   final double deviceWidth;
   final bool onHomeView;
+  final String title;
+  final String titlePrefix;
   final BuildContext ctx;
   const CustomAppBar({
     required this.deviceWidth,
+    required this.title,
+    this.titlePrefix = "",
     this.onHomeView = false,
     required this.ctx,
     Key? key,
@@ -28,7 +32,6 @@ class CustomAppBar extends StatelessWidget {
       // initState: (_) {},
       builder: (_) {
         return SliverAppBar(
-          
           stretch: true,
           // pinned: true,
           // snap: true,
@@ -41,11 +44,16 @@ class CustomAppBar extends StatelessWidget {
           // collapsedHeight: 60,
           backgroundColor: Colors.transparent,
           // backgroundColor: const Color(0xff50e6da),
-          title: Row(
-            children: [
-              SizedBox(width: MediaQuery.of(context).size.width / 40),
-              customText("Hi, Mohammad", 20),
-            ],
+          title: FittedBox(
+            child: Row(
+              children: [
+                SizedBox(width: MediaQuery.of(context).size.width / 40),
+                customText(
+                  titlePrefix.isNotEmpty ? titlePrefix + " " + title : title,
+                  20,
+                ),
+              ],
+            ),
           ),
           actions: [
             Row(
@@ -107,7 +115,7 @@ class CustomAppBar extends StatelessWidget {
           flexibleSpace: FlexibleSpaceBar(
             // stretchModes: [StretchMode.blurBackground],
             collapseMode: CollapseMode.parallax,
-            
+
             background: Padding(
               padding: const EdgeInsets.only(
                 top: 90,
