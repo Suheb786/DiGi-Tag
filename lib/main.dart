@@ -17,6 +17,7 @@ void main() async {
   Get.put(HomeController());
   Get.put(LoginController());
   Get.put(ProfileController());
+  
   // Get.put<MyDrawerController>(MyDrawerController());
 
   // Get.put(QrScannerController()); //! QrScannerController was not working fine frome here it was calling the controller but when user went back and come again controller stopped ; so It has done to be called from QrScannerView() with Get.put()...

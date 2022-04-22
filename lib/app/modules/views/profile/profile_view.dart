@@ -18,10 +18,9 @@ import 'audit_off_widget.dart';
 import 'audit_on_widget.dart';
 
 class ProfileView extends GetView<ProfileController> {
-  // ProfileController profileController = Get.find<ProfileController>();
+  const ProfileView({Key? key}) : super(key: key);
 
-  // HomeController _controller = Get.find<HomeController>();
-
+  
   @override
   Widget build(BuildContext context) {
     controller.profileScrollController.addListener(
@@ -35,25 +34,6 @@ class ProfileView extends GetView<ProfileController> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         extendBody: true,
-
-        // appBar: MyAppBar(
-        //   MediaQuery.of(context).size.width,
-        //   1,
-        //   ctx: context,
-        //   // backButton: IconButton(
-        //   //   onPressed: () {
-        //   //     Get.offAll(
-        //   //       DrawerView(
-        //   //         screen: Get.find<HomeController>().getPreviousScreen(
-        //   //           currentScreen: Screen.profileView,
-        //   //         ),
-        //   //       ),
-        //   //     );
-        //   //   },
-        //   //   icon: const Icon(Icons.arrow_back),
-        //   // ),
-        // ),
-        // backgroundColor: const Color(0xff50e6da),
         body: Container(
           height: double.infinity,
           width: double.infinity,
@@ -68,17 +48,10 @@ class ProfileView extends GetView<ProfileController> {
                 ),
               ];
             },
-            // body: LayoutBuilder(
-            //   builder: (context, constraints) {
-            //     return NotificationListener<OverscrollIndicatorNotification>(
-            //       onNotification: (overScroll) {
-            //         overScroll.disallowIndicator();
-            //         return false;
-            //       },
             body: SafeArea(
               child: Column(
                 children: [
-                  // controller.openclosetype.value = "profile";
+                  
                   Obx(
                     () => AuditToggleButton(
                       value: controller.status.value,
@@ -96,7 +69,7 @@ class ProfileView extends GetView<ProfileController> {
                         return false;
                       },
                       child: CustomScrollView(
-                        // controller: controller.profileScrollController,
+                        
 
                         physics: BouncingScrollPhysics(),
                         slivers: [
@@ -116,9 +89,7 @@ class ProfileView extends GetView<ProfileController> {
                 ],
               ),
             ),
-            // );
-            //   },
-            // ),
+           
           ),
         ),
       ),

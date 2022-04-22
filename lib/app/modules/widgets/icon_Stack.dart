@@ -14,60 +14,58 @@ class IconStack extends StatelessWidget {
   final qrKey = GlobalKey(debugLabel: "QR");
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Align(
-        alignment: Alignment.bottomCenter,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            OverflowBox(
-              maxWidth: 536,
-              maxHeight: 536,
-              child: ClipOval(
-                child: Container(
-                  color: Color(0x0Dffffff),
-                ),
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          OverflowBox(
+            maxWidth: 536,
+            maxHeight: 536,
+            child: ClipOval(
+              child: Container(
+                color:const Color(0x0Dffffff),
               ),
             ),
-            OverflowBox(
-              maxHeight: 312,
-              maxWidth: 312,
-              child: ClipOval(
-                child: Container(
-                  color: Color(0x1Affffff),
-                ),
+          ),
+          OverflowBox(
+            maxHeight: 312,
+            maxWidth: 312,
+            child: ClipOval(
+              child: Container(
+                color: Color(0x1Affffff),
               ),
             ),
-            OverflowBox(
-              maxHeight: 244,
-              maxWidth: 244,
-              child: ClipOval(
-                child: Container(
-                  color: Color(0x1Affffff),
-                ),
+          ),
+          OverflowBox(
+            maxHeight: 244,
+            maxWidth: 244,
+            child: ClipOval(
+              child: Container(
+                color: Color(0x1Affffff),
               ),
             ),
-            OverflowBox(
-              maxHeight: 155,
-              maxWidth: 155,
-              child: ClipOval(
-                child: Container(
-                  color: Color(0x1Affffff),
-                ),
+          ),
+          OverflowBox(
+            maxHeight: 155,
+            maxWidth: 155,
+            child: ClipOval(
+              child: Container(
+                color: Color(0x1Affffff),
               ),
             ),
-            InkWell(
-              onTap: () {
-                Get.to(Routes.LOGIN);
-              },
-              child: OverflowBox(
-                maxWidth: 78,
-                maxHeight: 78,
-                child: ScanIcon(),
-              ),
-            )
-          ],
-        ),
+          ),
+          InkWell(
+            onTap: () {
+              Get.to(Routes.LOGIN);
+            },
+            child: OverflowBox(
+              maxWidth: 78,
+              maxHeight: 78,
+              child: ScanIcon(),
+            ),
+          )
+        ],
       ),
     );
   }

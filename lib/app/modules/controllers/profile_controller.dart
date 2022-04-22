@@ -52,6 +52,7 @@ class ProfileController extends GetxController {
     } else {
       status.value = false;
     }
+    update();
   }
 
   final count = 0.obs;

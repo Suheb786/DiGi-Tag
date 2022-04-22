@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
   DateTime? currentBackPressTime;
 
+  ScrollController homeScrollController = ScrollController();
+
   twiceBackToast() async {
     DateTime now = DateTime.now();
     if (currentBackPressTime == null ||

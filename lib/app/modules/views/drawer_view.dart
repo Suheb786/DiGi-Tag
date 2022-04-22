@@ -1,3 +1,4 @@
+import 'package:digitag/app/modules/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,6 @@ class DrawerView extends GetView<DrawerController> {
   // Widget drawermenu;
   @override
   Widget build(BuildContext context) {
-    
     return ZoomDrawer(
       // controller: controller.zoomDrawerController,
       angle: 0,
@@ -227,6 +227,7 @@ class MenuPage extends StatelessWidget {
               // ));
               break;
             case "Profile":
+              Get.find<ProfileController>().status.value = false;
               Get.toNamed(Routes.PROFILE);
               // Get.find<HomeController>().addPreviousScreen(Screen.profileView);
               // Get.offAll(DrawerView(

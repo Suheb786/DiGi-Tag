@@ -1,4 +1,5 @@
 //* ---Profile Stack Widget on Home Screen-- //
+import 'package:digitag/app/modules/controllers/profile_controller.dart';
 import 'package:digitag/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +18,7 @@ class ProfileStack extends StatelessWidget {
         // ));
 
         // Get.offAllNamed(Routes.DRAWER,arguments: 1);
-
+        Get.find<ProfileController>().status.value = false;
         Get.toNamed(Routes.PROFILE);
       },
       child: Stack(

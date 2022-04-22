@@ -7,10 +7,13 @@ import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 import '../controllers/profile_controller.dart';
 import '../widgets/appbar.dart';
+import '../widgets/audit_toggle_button.dart';
+import '../widgets/custom_appbar.dart';
 import '../widgets/decoration.dart';
 import '../widgets/icon_Stack.dart';
 import '../widgets/medical_Support_Icon.dart';
 import '../widgets/profile_Stack.dart';
+import 'profile/audit_off_widget.dart';
 import 'profile/audit_on_widget.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -22,6 +25,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     final responsive = MediaQuery.of(context).size;
     return WillPopScope(
+      //? Toast on exit.
       onWillPop: () {
         DateTime now = DateTime.now();
 
@@ -44,8 +48,6 @@ class HomeView extends GetView<HomeController> {
         return Future.value(true);
       },
       child: Scaffold(
-        appBar: MyAppBar(MediaQuery.of(context).size.width, 0,
-            ctx: context, onHomeView: true),
         backgroundColor: const Color(0xff50e6da),
         body: GestureDetector(
           onHorizontalDragUpdate: (details) {
@@ -55,57 +57,65 @@ class HomeView extends GetView<HomeController> {
               ZoomDrawer.of(context)!.close();
             }
           },
-          child: LayoutBuilder(
-            builder: (context, constraints) => Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: Decorations.grdntBG,
-              child: SafeArea(
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: Decorations.grdntBG,
+            child: NestedScrollView(
+              physics: NeverScrollableScrollPhysics(),
+              // controller: Get.find<ProfileController>().profileScrollController,
+              headerSliverBuilder: (context, bool innerBoxIsScrolled) {
+                return [
+                  CustomAppBar(
+                    deviceWidth: MediaQuery.of(context).size.width,
+                    ctx: context,
+                    onHomeView: true,
+                  ),
+                ];
+              },
+              body: SafeArea(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: responsive.height / 40,
-                    ),
-                    // CustomUserNameIcons(),
-                    const Spacer(),
-                    const MedicalSupportIcon(),
-                    const Spacer(),
-                    ProfileStack(),
-                    const SizedBox(
-                      height: 23,
-                    ),
-                    Obx(() => FlutterSwitch(
-                          value: profilecontroller.status.value,
-                          padding: 2,
+                    Obx(
+                      () => Visibility(
+                        visible: Get.find<ProfileController>().status.value,
+                        child: AuditToggleButton(
+                          value: Get.find<ProfileController>().status.value,
                           onToggle: (val) {
-                            if (profilecontroller.status.value == false) {
-                              profilecontroller.status.value = true;
-                            } else {
-                              profilecontroller.status.value = false;
-                            }
+                            Get.find<ProfileController>().audioSwitchCheck();
                           },
-                          valueFontSize: 9,
-                          showOnOff: true,
-                          inactiveText: "Audit On",
-                          activeText: "OFF",
-                          width: 75,
-                          height: 27,
-                          inactiveColor: const Color(0x80004E79),
-                          activeColor: const Color(0x80004E79),
-                          inactiveToggleColor: const Color(0x9942FFDD),
-                          inactiveToggleBorder: Border.all(
-                              width: 1, color: const Color(0x663347B4)),
-                        )),
-                    const SizedBox(
-                      height: 300,
+                        ),
+                      ),
                     ),
-                    Obx((() => profilecontroller.status.value
-                        ? Expanded(child: AuditOnWidget())
-                        : IconStack())),
-                    const SizedBox(
-                      height: 65,
-                    )
+                    Expanded(
+                      child:
+                          NotificationListener<OverscrollIndicatorNotification>(
+                        onNotification: (overScroll) {
+                          overScroll.disallowIndicator();
+                          // print();
+                          return false;
+                        },
+                        child: CustomScrollView(
+                          // controller: controller.homeScrollController,
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          slivers: [
+                            SliverFillRemaining(
+                              // fillOverscroll: true,
+                              hasScrollBody: false,
+                              child: Obx(
+                                () => Get.find<ProfileController>().status.value
+                                    ? AuditOnWidget()
+                                    : Padding(
+                                        padding: const EdgeInsets.only(top: 90),
+                                        child: IconStack(),
+                                      ), //!Expanded issue here
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
