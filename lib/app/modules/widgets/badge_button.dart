@@ -2,7 +2,8 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 
 import '../../Decoration/colors/app_colors.dart';
-import '../../Decoration/enums/voting.dart';
+
+import '../../enums/voting.dart';
 
 class BadgeButton extends StatelessWidget {
   final String value;

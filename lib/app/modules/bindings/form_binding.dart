@@ -5,8 +5,9 @@ import '../controllers/form_controller.dart';
 class FormBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<FormController>(
-      () => FormController(),
-    );
+    // Get.lazyPut<FormController>(
+    //   () => FormController(),
+    // );
+    Get.put(FormController());
   }
 }

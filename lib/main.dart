@@ -33,16 +33,3 @@ void main() async {
   );
 }
 
-// class MyDrawerController extends GetxController {
-//   final zoomDrawerController = ZoomDrawerController();
-
-//   int setScreen = 0;
-
-//   void toggleDrawer({required int screenNum}) {
-//     print("Toggle drawer");
-//     print(screenNum);
-//     setScreen = screenNum;
-//     update();
-//     zoomDrawerController.toggle?.call();
-//   }
-// }

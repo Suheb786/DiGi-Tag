@@ -1,4 +1,4 @@
-import 'package:digitag/app/Decoration/enums/voting.dart';
+
 import 'package:digitag/app/models/audit_card_model.dart';
 
 import 'package:digitag/app/modules/controllers/profile_controller.dart';
@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 
+import '../../../enums/voting.dart';
 import '../../widgets/audit_card.dart';
 import '../drawer_view.dart';
 

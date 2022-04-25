@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:badges/badges.dart';
 import 'package:get/get.dart';
-import '../../Decoration/enums/voting.dart';
+
+import '../../enums/voting.dart';
 import '../controllers/profile_controller.dart';
 
 class AuditToggleButton extends StatelessWidget {
