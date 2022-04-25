@@ -4,14 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MedicalSupportIcon extends StatelessWidget {
-  const MedicalSupportIcon({
+  Function()? ontap;
+  MedicalSupportIcon({
+    this.ontap,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: ontap,
       child: Container(
         height: 40,
         width: 80,
