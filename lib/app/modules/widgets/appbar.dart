@@ -4,19 +4,21 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 import '../../Decoration/text/text.dart';
 
-AppBar MyAppBar(
-  double deviceWidth,
-  int screen, {
+AppBar myAppBar(
+  double deviceWidth, {
+  required final String userName,
   bool? onHomeView = false,
   required BuildContext ctx,
 }) {
   return AppBar(
     toolbarHeight: 60,
-    title: Row(
-      children: [
-        SizedBox(width: deviceWidth / 40),
-        customText("Hi, Mohammad", 20),
-      ],
+    title: FittedBox(
+      child: Row(
+        children: [
+          SizedBox(width: deviceWidth / 40),
+          customText(userName, 20),
+        ],
+      ),
     ),
     actions: [
       Row(
@@ -71,7 +73,7 @@ AppBar MyAppBar(
       )
     ],
     elevation: 0,
-    backgroundColor: Color(0xff51E9DD),
+    backgroundColor: Colors.transparent,
     bottomOpacity: 0.0,
     //leading: Custom_UserName_Icons(),
   );

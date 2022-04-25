@@ -25,19 +25,6 @@ class QrStack extends StatelessWidget {
                 width: double.infinity,
                 decoration: const BoxDecoration(
                   color: Color(0x0dFFFFFF),
-                  // gradient: LinearGradient(
-                  //   colors: [Color(0x1AFFFFFF), Color(0x1Ac4c4c4)],
-                  //   begin: Alignment.topCenter,
-                  //   end: Alignment.bottomRight,
-                  //   // stops: [0.05, 0.74, 1.2],
-                  // ),
-                  // boxShadow: [
-                  //   BoxShadow(
-                  //     color: Color.fromRGBO(64, 61, 255, 0.2),
-                  //     offset: Offset(0, 4),
-                  //     spreadRadius: 20,
-                  //   ),
-                  // ],
                 ),
               ),
             ),
