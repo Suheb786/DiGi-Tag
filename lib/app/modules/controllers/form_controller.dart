@@ -27,10 +27,42 @@ class FormController extends GetxController {
   var vaccination = Vaccination.firstDose.obs;
 
   // Variables
-  DateTime? dob; //! Null if value is not picked
-  File? pickedImage; //! Null if image is not pucked
+  DateTime? dob; //* Null if value is not picked
+  File? pickedImage; //* Null if image is not pucked
 
-  // Top nav button press handler
+  //*RegExpressions // --------------->>>>>>>>
+  RegExp nameRex =
+      RegExp(r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$");
+  RegExp emailRex = RegExp(
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
+
+//* Form Validation ------------------->>>>>>>
+  String? emailvalidation(email) {
+    if (email!.isEmpty || email == null) {
+      return "Email Field cann't be Empty";
+    } else if (!emailRex.hasMatch(email)) {
+      return "Enter a valid Email";
+    }
+  }
+
+  String? fullnameValidation(name) {
+    if (name!.isEmpty || name == null)
+      return "Please Your Name ";
+    else if (!nameRex.hasMatch(name)) {
+      return "Please Enter Your Full name";
+    }
+  }
+
+  String? dobValidation(dob) {
+    if (dob!.isEmpty || dob == null) return "Select Your Date of Birth";
+  }
+
+  String? address(address) {
+    if (address!.isEmpty || dob == null)
+      return "Please Enter Your Home Adsress";
+  }
+
+  //* Top nav button press handler --------->>>>>>
   void buttonPressed({required FormButton formButton}) {
     switch (formButton) {
       case FormButton.personal:
@@ -45,7 +77,7 @@ class FormController extends GetxController {
     }
   }
 
-  // Bottom nav handlers
+  //* Bottom nav handlers ---------------->>>>>>>>>>
   void nextButton() {
     switch (activeButton.value) {
       case FormButton.personal:
@@ -202,7 +234,5 @@ class FormController extends GetxController {
 
 // Submit button handler
 // Vailidiation logic here
-  void onSubmit() {
-  }
+  void onSubmit() {}
 }
-
