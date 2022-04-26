@@ -23,8 +23,10 @@ class MedicalSupportView extends GetView<MedialsupportController> {
   @override
   Widget build(BuildContext context) {
     Size resposive = MediaQuery.of(context).size;
+    final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
         extendBodyBehindAppBar: true,
+        resizeToAvoidBottomInset: false,
         extendBody: true,
         body: Container(
           height: double.infinity,
@@ -59,85 +61,27 @@ class MedicalSupportView extends GetView<MedialsupportController> {
                     ),
                     child: SliderPin(resposive),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Container(
-                      width: resposive.width - 30,
-                      height: 90,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          border:
-                              Border.all(color: Color(0xffCDCDCD), width: 2)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 25.0),
-                            child: Text(
-                              "Push Medical Alert Notification ?",
-                              style: TextStyle(
-                                  color: Color(0xff48AE96),
-                                  fontFamily: "SofiaPro",
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsets.only(left: 25.0, right: 25, top: 8),
-                            child: Text(
-                              "Are you in need of medical assistance? If so, a notification will be sent to all Digi-Tag users with your location When you click send medical support. ",
-                              style: TextStyle(
-                                color: Color(0xff5B5B5B),
-                                fontFamily: "SofiaPro",
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15.0),
-                    child: const Divider(
-                      color: Color(0xffE6E6E6),
-                      thickness: 2,
-                    ),
-                  ),
-                  Container(
-                    height: 105,
-                    width: resposive.width - 30,
-                    decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                            colors: [
-                              Color(0xCCFFD7D0),
-                              Color(0xE6FBAC9F),
-                            ],
-                            end: Alignment.bottomRight,
-                            begin: Alignment.topLeft),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: Colors.white, width: 2),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Color(0x1A000000),
-                              offset: (Offset(0, 4)),
-                              blurRadius: 25),
-                        ]),
-                    child: Row(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                  if (!isKeyboard)
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Container(
+                        width: resposive.width - 30,
+                        height: 90,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            border:
+                                Border.all(color: Color(0xffCDCDCD), width: 2)),
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.only(left: 25.0),
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 25.0),
                               child: Text(
-                                "Emergency Alert",
+                                "Push Medical Alert Notification ?",
                                 style: TextStyle(
-                                    color: Color(0xffFF4141),
+                                    color: Color(0xff48AE96),
                                     fontFamily: "SofiaPro",
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700),
@@ -145,70 +89,137 @@ class MedicalSupportView extends GetView<MedialsupportController> {
                             ),
                             Padding(
                               padding: EdgeInsets.only(
-                                  left: 25.0, top: 8, right: 20),
-                              child: Container(
-                                width: resposive.width * 0.60,
-                                child: const Text(
-                                  "Emergency Alert does not ask any details Only a picture of an actually condition is required for an emergency alert to be sent immediately. ",
-                                  style: TextStyle(
-                                    color: Color(0xff5B5B5B),
-                                    fontFamily: "SofiaPro",
-                                    fontSize: 12,
-                                  ),
-                                  textAlign: TextAlign.justify,
+                                  left: 25.0, right: 25, top: 8),
+                              child: Text(
+                                "Are you in need of medical assistance? If so, a notification will be sent to all Digi-Tag users with your location When you click send medical support. ",
+                                style: TextStyle(
+                                  color: Color(0xff5B5B5B),
+                                  fontFamily: "SofiaPro",
+                                  fontSize: 12,
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            InkWell(
-                              onTap: () async {
-                                // Pick an image
-                                imagepath = await _picker.pickImage(
-                                    source: ImageSource.gallery);
-                                print(File(imagepath!.path));
-                              },
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(7),
-                                      border: Border.all(
-                                          color: Color(0xfff8C8C8C), width: 2)),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(3.0),
-                                    child: imagepath == null
-                                        ? Icon(
-                                            Icons.add_photo_alternate_rounded,
-                                            size: 35,
-                                            color: Color(0xff6E819F),
-                                          )
-                                        : GestureDetector(
-                                            onTap: () {
-                                              Container(
-                                                child: PhotoView(
-                                                  imageProvider: AssetImage(
-                                                      imagepath!.path),
-                                                ),
-                                              );
-                                              print("fdf");
-                                            },
-                                            child: Image.file(
-                                              File(imagepath!.path),
-                                              height: 30,
-                                              width: 30,
-                                            ),
-                                          ),
-                                  )),
-                            ),
-                            SendButton(color: Color(0xffFF6A6A)),
-                          ],
-                        )
-                      ],
+                      ),
                     ),
-                  ),
+                  if (!isKeyboard)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 15.0),
+                      child: const Divider(
+                        color: Color(0xffE6E6E6),
+                        thickness: 2,
+                      ),
+                    ),
+                  if (!isKeyboard)
+                    Container(
+                      height: 105,
+                      width: resposive.width - 30,
+                      decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                              colors: [
+                                Color(0xCCFFD7D0),
+                                Color(0xE6FBAC9F),
+                              ],
+                              end: Alignment.bottomRight,
+                              begin: Alignment.topLeft),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: Colors.white, width: 2),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Color(0x1A000000),
+                                offset: (Offset(0, 4)),
+                                blurRadius: 25),
+                          ]),
+                      child: Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(left: 25.0),
+                                child: Text(
+                                  "Emergency Alert",
+                                  style: TextStyle(
+                                      color: Color(0xffFF4141),
+                                      fontFamily: "SofiaPro",
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: 25.0, top: 8, right: 20),
+                                child: Container(
+                                  width: resposive.width * 0.60,
+                                  child: const Text(
+                                    "Emergency Alert does not ask any details Only a picture of an actually condition is required for an emergency alert to be sent immediately. ",
+                                    style: TextStyle(
+                                      color: Color(0xff5B5B5B),
+                                      fontFamily: "SofiaPro",
+                                      fontSize: 12,
+                                    ),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              InkWell(
+                                onTap: () async {
+                                  // Pick an image
+                                  imagepath = await _picker.pickImage(
+                                      source: ImageSource.gallery);
+                                  print(File(imagepath!.path));
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(7),
+                                        border: Border.all(
+                                            color: Color(0xfff8C8C8C),
+                                            width: 2)),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(3.0),
+                                      child: imagepath == null
+                                          ? Icon(
+                                              Icons.add_photo_alternate_rounded,
+                                              size: 35,
+                                              color: Color(0xff6E819F),
+                                            )
+                                          : GestureDetector(
+                                              onTap: () {
+                                                Container(
+                                                  child: PhotoView(
+                                                    imageProvider: AssetImage(
+                                                        imagepath!.path),
+                                                  ),
+                                                );
+                                                print("fdf");
+                                              },
+                                              child: Image.file(
+                                                File(imagepath!.path),
+                                                height: 30,
+                                                width: 30,
+                                              ),
+                                            ),
+                                    )),
+                              ),
+                              SendButton(
+                                  color: Color(0xffFF6A6A),
+                                  horizontalPadding: 15),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 30,
+                          )
+                        ],
+                      ),
+                    ),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(top: 30.0, bottom: 30),
@@ -222,31 +233,34 @@ class MedicalSupportView extends GetView<MedialsupportController> {
                         child: Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: 30, vertical: 30),
-                          child: SingleChildScrollView(
-                            physics: BouncingScrollPhysics(),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                const Text(
-                                  'General Alert',
-                                  style: TextStyle(
-                                      color: Color(0xff48AE96),
-                                      fontFamily: "SofiaPro",
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                Container(
-                                  width: resposive.width - 150,
-                                  child: medicalFormField(
-                                      hintText: "Title :",
-                                      validatior: (value) =>
-                                          controller.titleValidation(value!)),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10.0),
-                                  child: Container(
-                                    width: resposive.width - 50,
-                                    child: Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const Padding(
+                                    padding: const EdgeInsets.only(bottom: 8.0),
+                                    child: Text(
+                                      'General Alert',
+                                      style: TextStyle(
+                                          color: Color(0xff48AE96),
+                                          fontFamily: "SofiaPro",
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: resposive.width - 150,
+                                    child: medicalFormField(
+                                        hintText: "Title :",
+                                        validatior: (value) =>
+                                            controller.titleValidation(value!)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10.0),
+                                    child: Container(
+                                      width: resposive.width - 50,
                                       child: medicalFormField(
                                           validatior: (value) => controller
                                               .titleValidation(value!),
@@ -254,28 +268,31 @@ class MedicalSupportView extends GetView<MedialsupportController> {
                                           hintText: "Massage :"),
                                     ),
                                   ),
-                                ),
-                                Row(
-                                  children: [
-                                    genralImagerequired(),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: generalImageOptional(),
-                                    ),
-                                    SizedBox(
-                                      width: resposive.width / 5,
-                                    ),
-                                    SendButton(
-                                        color: Color(0xff48AE96),
-                                        horizontalPadding: 30,
-                                        verticalPadding: 10),
-                                  ],
-                                ),
+                                ],
+                              ),
+                              if (isKeyboard)
                                 SizedBox(
-                                  height: 30,
-                                )
-                              ],
-                            ),
+                                  height: resposive.height * 0.08,
+                                ),
+                              Row(
+                                children: [
+                                  genralImagerequired(),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: generalImageOptional(),
+                                  ),
+                                  SizedBox(
+                                    width: resposive.width / 5,
+                                  ),
+                                  Spacer(),
+                                  SendButton(
+                                      color: Color(0xff48AE96),
+                                      horizontalPadding: 30,
+                                      verticalPadding: 10),
+                                ],
+                              ),
+                              if (isKeyboard) Spacer()
+                            ],
                           ),
                         ),
                       ),
@@ -347,8 +364,9 @@ class MedicalSupportView extends GetView<MedialsupportController> {
                     },
                     child: Image.file(
                       File(genreralImageOptional!.path),
-                      height: 50,
-                      width: 50,
+                      fit: BoxFit.cover,
+                      height: 35,
+                      width: 35,
                     ),
                   ),
           )),
@@ -387,8 +405,9 @@ class MedicalSupportView extends GetView<MedialsupportController> {
                     },
                     child: Image.file(
                       File(genralImageRequired!.path),
-                      height: 50,
-                      width: 50,
+                      fit: BoxFit.cover,
+                      height: 35,
+                      width: 35,
                     ),
                   ),
           )),
