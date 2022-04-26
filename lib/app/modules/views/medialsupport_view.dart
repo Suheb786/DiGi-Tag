@@ -15,7 +15,7 @@ import '../widgets/medical_Support_Icon.dart';
 import '../widgets/slidableContainerDecoration.dart';
 import '../widgets/sliderPin.dart';
 
-class MedicalSupportView extends GetView<MedialsupportController> {
+class MedicalSupportView extends GetView<MedicalsupportController> {
   // MedialsupportController controller = Get.put(MedialsupportController());
   XFile? imagepath;
   final ImagePicker _picker = ImagePicker();
@@ -166,46 +166,70 @@ class MedicalSupportView extends GetView<MedialsupportController> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               InkWell(
-                                  onTap: () async {
-                                    // Pick an image
-                                    imagepath = await _picker.pickImage(
-                                        source: ImageSource.gallery);
-                                    print(File(imagepath!.path));
-                                  },
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
+                                // onTap: () async {
+                                //   // Pick an image
+                                //   imagepath = await _picker.pickImage(
+                                //       source: ImageSource.gallery);
+                                //   print(File(imagepath!.path));
+                                // },
+                                onTap: () => controller.picImageCamera(context),
+                                child: Container(
+                                  height: 55,
+                                  width: 55,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(7),
+                                      border: Border.all(
+                                          color: const Color(0xff8c8c8c),
+                                          width: 2)),
+
+                                  child: GetBuilder<MedicalsupportController>(
+                                    builder: (controller) {
+                                      if (controller.pickedImage == null) {
+                                        return const Icon(
+                                          Icons.add_photo_alternate_rounded,
+                                          size: 35,
+                                          color: Color(0xff6E819F),
+                                        );
+                                      } else {
+                                        return ClipRRect(
                                           borderRadius:
-                                              BorderRadius.circular(7),
-                                          border: Border.all(
-                                              color: Color(0xfff8C8C8C),
-                                              width: 2)),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(3.0),
-                                        child: imagepath == null
-                                            ? Icon(
-                                                Icons
-                                                    .add_photo_alternate_rounded,
-                                                size: 35,
-                                                color: Color(0xff6E819F),
-                                              )
-                                            : GestureDetector(
-                                                onTap: () {
-                                                  Container(
-                                                    child: PhotoView(
-                                                      imageProvider: AssetImage(
-                                                          imagepath!.path),
-                                                    ),
-                                                  );
-                                                  print("fdf");
-                                                },
-                                                child: Image.file(
-                                                  File(imagepath!.path),
-                                                  height: 30,
-                                                  width: 30,
-                                                ),
-                                              ),
-                                      ))),
+                                              BorderRadius.circular(5),
+                                          child: Image.file(
+                                            controller.pickedImage!,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        );
+                                      }
+                                    },
+                                  ),
+                                  // child: Padding(
+                                  //   padding: EdgeInsets.all(3.0),
+                                  //   child: imagepath == null
+                                  //       ? Icon(
+                                  //           Icons.add_photo_alternate_rounded,
+                                  //           size: 35,
+                                  //           color: Color(0xff6E819F),
+                                  //         )
+                                  //       : GestureDetector(
+                                  //           onTap: () {
+                                  //             Container(
+                                  //               child: PhotoView(
+                                  //                 imageProvider: AssetImage(
+                                  //                     imagepath!.path),
+                                  //               ),
+                                  //             );
+                                  //             print("fdf");
+                                  //           },
+                                  //           child: Image.file(
+                                  //             File(imagepath!.path),
+                                  //             height: 30,
+                                  //             width: 30,
+                                  //           ),
+                                  //         ),
+                                  // ),
+                                ),
+                              ),
                               SendButton(
                                   color: Color(0xffFF6A6A),
                                   horizontalPadding: 15),

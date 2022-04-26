@@ -7,6 +7,6 @@ class MedialsupportBinding extends Bindings {
   void dependencies() {
     // Get.lazyPut<MedialsupportController>(
     //   () => MedialsupportController(),
-    Get.put(MedialsupportController());
+    Get.put(MedicalsupportController());
   }
 }
