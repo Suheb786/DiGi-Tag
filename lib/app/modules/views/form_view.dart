@@ -1,5 +1,7 @@
 import 'package:digitag/app/enums/form_buttons.dart';
+import 'package:digitag/app/modules/widgets/academic_form_fields.dart';
 import 'package:digitag/app/modules/widgets/bit_text.dart';
+import 'package:digitag/app/modules/widgets/medical_form_fields.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,6 +11,9 @@ import '../controllers/form_controller.dart';
 
 import '../widgets/custom_form_button.dart';
 import '../widgets/custom_text_form_field.dart';
+import '../widgets/form_bottom_nev_button.dart';
+import '../widgets/form_submit_button.dart';
+import '../widgets/personal_form_fields.dart';
 
 class FormView extends GetView<FormController> {
   const FormView({Key? key}) : super(key: key);
@@ -107,97 +112,39 @@ class FormView extends GetView<FormController> {
                   Expanded(
                     child: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          top: screenHeight * 0.03,
-                          left: 25,
-                          right: 25,
-                        ),
-                        child: Stack(
-                          alignment: Alignment.topCenter,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(top: 40),
-                              padding: EdgeInsets.only(
-                                top: 60,
-                                left: 20,
-                                right: 20,
-                                bottom: 20,
-                              ),
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(
-                                  width: 2,
-                                  color: Color.fromRGBO(178, 194, 237, 1),
-                                ),
-                              ),
-                              child: Form(
-                                child: Column(
-                                  // mainAxisSize: MainAxisSize.max,
-                                  // mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    CustomTextformField(
-                                      labelText: "Full Name",
-                                      keyboardType: TextInputType.name,
-                                      textCapitalization:
-                                          TextCapitalization.words,
-                                    ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    CustomTextformField(
-                                      labelText: "Email",
-                                      keyboardType: TextInputType.emailAddress,
-                                      textCapitalization:
-                                          TextCapitalization.none,
-                                    ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    CustomTextformField(
-                                      onTap: () {},
-                                      labelText: "DOB",
-                                      keyboardType: TextInputType.none,
-                                      textCapitalization:
-                                          TextCapitalization.none,
-                                    ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    CustomTextformField(
-                                      labelText: "Address",
-                                      keyboardType: TextInputType.text,
-                                      textCapitalization:
-                                          TextCapitalization.sentences,
-                                      maxLines: 3,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: CircleAvatar(
-                                radius: 42,
-                                backgroundColor:
-                                    Color.fromRGBO(178, 194, 237, 1),
-                                child: CircleAvatar(
-                                  radius: 40.0,
-                                  backgroundColor: Colors.white,
-                                  child: Image.asset(
-                                    "assets/icons/Avatar.png",
-                                    height: 50,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      child: Obx(() {
+                        switch (controller.activeButton.value) {
+                          case FormButton.personal:
+                            return PersonalFormFields(
+                              screenHeight: screenHeight,
+                            );
+                          case FormButton.academic:
+                            return AcademicFormFields(
+                              screenHeight: screenHeight,
+                            );
+                          case FormButton.medical:
+                            return MedicalFormFields(
+                                screenHeight: screenHeight);
+                          default:
+                            return PersonalFormFields(
+                                screenHeight: screenHeight);
+                        }
+                      }),
                     ),
                   ),
+                  Obx(() {
+                    if (controller.activeButton.value == FormButton.personal ||
+                        controller.activeButton.value == FormButton.academic) {
+                      return FormBottomNavButton(
+                        onPressedBack: controller.previousButton,
+                        onPressedNext: controller.nextButton,
+                      );
+                    } else {
+                      return FormSubmitButton(
+                        onPressed: controller.onSubmit,
+                      );
+                    }
+                  }),
                 ],
               ),
             ),
