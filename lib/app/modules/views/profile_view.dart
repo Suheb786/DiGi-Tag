@@ -8,14 +8,14 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
-import '../../../Decoration/decoration.dart';
-import '../../../Decoration/text/text.dart';
-import '../../controllers/profile_controller.dart';
-import '../../widgets/appbar.dart';
-import '../../widgets/audit_toggle_button.dart';
-import '../../widgets/profile_Stack.dart';
-import 'audit_off_widget.dart';
-import 'audit_on_widget.dart';
+import '../../Decoration/decoration.dart';
+import '../../Decoration/text/text.dart';
+import '../controllers/profile_controller.dart';
+import '../widgets/appbar.dart';
+import '../widgets/audit_toggle_button.dart';
+import '../widgets/profile_Stack.dart';
+import '../widgets/audit_off_widget.dart';
+import '../widgets/audit_on_widget.dart';
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({Key? key}) : super(key: key);

@@ -12,6 +12,8 @@ import 'package:photo_view/photo_view.dart';
 import '../../Decoration/decoration.dart';
 import '../controllers/medialsupport_controller.dart';
 import '../widgets/medical_Support_Icon.dart';
+import '../widgets/slidableContainerDecoration.dart';
+import '../widgets/sliderPin.dart';
 
 class MedicalSupportView extends GetView<MedialsupportController> {
   // MedialsupportController controller = Get.put(MedialsupportController());
@@ -46,20 +48,14 @@ class MedicalSupportView extends GetView<MedialsupportController> {
             },
             body: SafeArea(
                 child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-              ),
+              decoration: SlidableDecoration(),
               child: Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(
                       top: 20.0,
                     ),
-                    child: SliderPin(resposive),
+                    child: SliderPin(),
                   ),
                   if (!isKeyboard)
                     Padding(
@@ -104,9 +100,9 @@ class MedicalSupportView extends GetView<MedialsupportController> {
                       ),
                     ),
                   if (!isKeyboard)
-                    Padding(
+                    const Padding(
                       padding: const EdgeInsets.only(bottom: 15.0),
-                      child: const Divider(
+                      child: Divider(
                         color: Color(0xffE6E6E6),
                         thickness: 2,
                       ),
@@ -170,45 +166,46 @@ class MedicalSupportView extends GetView<MedialsupportController> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               InkWell(
-                                onTap: () async {
-                                  // Pick an image
-                                  imagepath = await _picker.pickImage(
-                                      source: ImageSource.gallery);
-                                  print(File(imagepath!.path));
-                                },
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(7),
-                                        border: Border.all(
-                                            color: Color(0xfff8C8C8C),
-                                            width: 2)),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(3.0),
-                                      child: imagepath == null
-                                          ? Icon(
-                                              Icons.add_photo_alternate_rounded,
-                                              size: 35,
-                                              color: Color(0xff6E819F),
-                                            )
-                                          : GestureDetector(
-                                              onTap: () {
-                                                Container(
-                                                  child: PhotoView(
-                                                    imageProvider: AssetImage(
-                                                        imagepath!.path),
-                                                  ),
-                                                );
-                                                print("fdf");
-                                              },
-                                              child: Image.file(
-                                                File(imagepath!.path),
-                                                height: 30,
-                                                width: 30,
+                                  onTap: () async {
+                                    // Pick an image
+                                    imagepath = await _picker.pickImage(
+                                        source: ImageSource.gallery);
+                                    print(File(imagepath!.path));
+                                  },
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          border: Border.all(
+                                              color: Color(0xfff8C8C8C),
+                                              width: 2)),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(3.0),
+                                        child: imagepath == null
+                                            ? Icon(
+                                                Icons
+                                                    .add_photo_alternate_rounded,
+                                                size: 35,
+                                                color: Color(0xff6E819F),
+                                              )
+                                            : GestureDetector(
+                                                onTap: () {
+                                                  Container(
+                                                    child: PhotoView(
+                                                      imageProvider: AssetImage(
+                                                          imagepath!.path),
+                                                    ),
+                                                  );
+                                                  print("fdf");
+                                                },
+                                                child: Image.file(
+                                                  File(imagepath!.path),
+                                                  height: 30,
+                                                  width: 30,
+                                                ),
                                               ),
-                                            ),
-                                    )),
-                              ),
+                                      ))),
                               SendButton(
                                   color: Color(0xffFF6A6A),
                                   horizontalPadding: 15),
@@ -448,17 +445,6 @@ class MedicalSupportView extends GetView<MedialsupportController> {
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: Colors.red),
         ),
-      ),
-    );
-  }
-
-  Container SliderPin(Size resposive) {
-    return Container(
-      height: 5,
-      width: resposive.width - 300,
-      decoration: BoxDecoration(
-        color: Color(0x334F4F4F),
-        borderRadius: BorderRadius.circular(20),
       ),
     );
   }
