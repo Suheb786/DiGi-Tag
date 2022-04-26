@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../../Decoration/colors/originBg.dart';
-import 'profile/profile_view.dart';
+import 'profile_view.dart';
 
 class QrScannerView extends GetView<QrScannerController> {
   @override

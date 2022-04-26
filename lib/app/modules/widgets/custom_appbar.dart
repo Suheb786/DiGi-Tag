@@ -22,9 +22,11 @@ class CustomAppBar extends StatelessWidget {
   final Widget widget;
   double toolbarheight;
   double appbarHeight;
+  bool centerTitle;
   CustomAppBar({
     required this.deviceWidth,
     required this.title,
+    this.centerTitle = false,
     this.titlePrefix = "",
     this.onHomeView = false,
     this.appbarHeight = 250,
@@ -49,6 +51,7 @@ class CustomAppBar extends StatelessWidget {
           // snap: true,
           floating: true,
 
+          centerTitle: centerTitle,
           expandedHeight: onHomeView && !findProfileController.status.value
               ? screenHieght * 1
               : appbarHeight,
@@ -56,10 +59,11 @@ class CustomAppBar extends StatelessWidget {
 
           backgroundColor: Colors.transparent,
           // backgroundColor: const Color(0xff50e6da),
+
           title: FittedBox(
             child: Row(
               children: [
-                SizedBox(width: MediaQuery.of(context).size.width / 40),
+                //  SizedBox(width: MediaQuery.of(context).size.width / 40),
                 customText(
                   titlePrefix.isNotEmpty ? titlePrefix + " " + title : title,
                   20,
@@ -79,7 +83,9 @@ class CustomAppBar extends StatelessWidget {
                     )),
                 SizedBox(width: deviceWidth / 18),
                 InkWell(
-                    onTap: (() {}),
+                    onTap: (() {
+                      Get.toNamed(Routes.NOTIFICATION);
+                    }),
                     child: SvgPicture.asset(
                       'assets/icons/Bell.svg',
                       height: 19,

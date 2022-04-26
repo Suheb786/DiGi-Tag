@@ -13,8 +13,8 @@ import '../widgets/decoration.dart';
 import '../widgets/icon_Stack.dart';
 import '../widgets/medical_Support_Icon.dart';
 import '../widgets/profile_Stack.dart';
-import 'profile/audit_off_widget.dart';
-import 'profile/audit_on_widget.dart';
+import '../widgets/audit_off_widget.dart';
+import '../widgets/audit_on_widget.dart';
 
 class HomeView extends GetView<HomeController> {
   ProfileController profilecontroller = Get.find<ProfileController>();

@@ -12,6 +12,7 @@ abstract class Routes {
   static const QR_GENERATOR = _Paths.QR_GENERATOR;
   static const FORM = _Paths.FORM;
   static const MEDIALSUPPORT = _Paths.MEDIALSUPPORT;
+  static const NOTIFICATION = _Paths.NOTIFICATION;
 }
 
 abstract class _Paths {
@@ -25,4 +26,5 @@ abstract class _Paths {
   static const QR_GENERATOR = "/qr_generator";
   static const FORM = '/form';
   static const MEDIALSUPPORT = '/medialsupport';
+  static const NOTIFICATION = '/notification';
 }

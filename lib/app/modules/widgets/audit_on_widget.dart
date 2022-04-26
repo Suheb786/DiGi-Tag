@@ -1,16 +1,15 @@
-
 import 'package:digitag/app/models/audit_card_model.dart';
 
 import 'package:digitag/app/modules/controllers/profile_controller.dart';
-import 'package:digitag/app/modules/views/profile/audit_off_widget.dart';
+import 'package:digitag/app/modules/widgets/audit_off_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 
-import '../../../enums/voting.dart';
-import '../../widgets/audit_card.dart';
-import '../drawer_view.dart';
+import '../../enums/voting.dart';
+import 'audit_card.dart';
+import '../views/drawer_view.dart';
 
 class AuditOnWidget extends StatelessWidget {
   ProfileController profileController = Get.put(ProfileController());

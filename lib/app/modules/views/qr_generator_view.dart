@@ -14,12 +14,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:screenshot/screenshot.dart';
 
-import '../../../Decoration/decoration.dart';
-import '../../widgets/appbar.dart';
-import '../../widgets/audit_toggle_button.dart';
-import '../../widgets/custom_appbar.dart';
-import '../profile/audit_off_widget.dart';
-import '../profile/audit_on_widget.dart';
+import '../../Decoration/decoration.dart';
+import '../widgets/appbar.dart';
+import '../widgets/audit_toggle_button.dart';
+import '../widgets/custom_appbar.dart';
+import '../widgets/audit_off_widget.dart';
+import '../widgets/audit_on_widget.dart';
 
 class QrGeneratorView extends GetView<QrGeneratorController> {
   const QrGeneratorView({Key? key}) : super(key: key);
@@ -109,7 +109,7 @@ class QrGeneratorView extends GetView<QrGeneratorController> {
                                           .then((image) async {
                                         // ShowCapturedWidget(
                                         //     context, capturedImage!);
-                                         if (image != null) {
+                                        if (image != null) {
                                           final directory =
                                               await getApplicationDocumentsDirectory();
                                           final imagePath = await File(
