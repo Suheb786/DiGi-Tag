@@ -8,40 +8,52 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
 import '../../Decoration/text/text.dart';
+import '../../routes/app_pages.dart';
+import '../views/medialsupport_view.dart';
 
 class CustomAppBar extends StatelessWidget {
+  ProfileController findProfileController = Get.find<ProfileController>();
+
   final double deviceWidth;
   final bool onHomeView;
   final String title;
   final String titlePrefix;
   final BuildContext ctx;
-  const CustomAppBar({
+  final Widget widget;
+  double toolbarheight;
+  double appbarHeight;
+  CustomAppBar({
     required this.deviceWidth,
     required this.title,
     this.titlePrefix = "",
     this.onHomeView = false,
+    this.appbarHeight = 250,
+    this.toolbarheight = 60,
     required this.ctx,
     Key? key,
+    this.widget = const ProfileStack(),
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final double screenHieght = MediaQuery.of(context).size.width;
+
     return GetBuilder<ProfileController>(
       init: ProfileController(),
       // initState: (_) {},
       builder: (_) {
         return SliverAppBar(
           stretch: true,
+
           // pinned: true,
           // snap: true,
           floating: true,
-          expandedHeight:
-              onHomeView && !Get.find<ProfileController>().status.value
-                  ? screenHieght * 1
-                  : 240,
+
+          expandedHeight: onHomeView && !findProfileController.status.value
+              ? screenHieght * 1
+              : appbarHeight,
           toolbarHeight: 60,
-          // collapsedHeight: 60,
+
           backgroundColor: Colors.transparent,
           // backgroundColor: const Color(0xff50e6da),
           title: FittedBox(
@@ -76,21 +88,21 @@ class CustomAppBar extends StatelessWidget {
                 // onHomeView?InkWell(
                 //     onTap: (() {
                 //       // ZoomDrawer.of(context)!.toggle();
-                //       Get.find<MyDrawerController>().toggleDrawer(screenNum: screen);
+                //      findController.toggleDrawer(screenNum: screen);
                 //       // DrawerView(drawermenu: HomeView());
                 //       print("presseed");
                 //     }),
                 //     child: SvgPicture.asset(
                 //       'assets/icons/tabmenuicon.svg',
                 //       height: 19,
-                //     )):SizedBox.shrink(),
+                //     )):Size  // MedialsupportController controller = Get.put(MedialsupportController());dBox.shrink(),
 
                 Visibility(
                   visible: onHomeView,
                   child: InkWell(
                       onTap: (() {
                         // ZoomDrawer.of(context)!.toggle();
-                        // Get.find<MyDrawerController>()
+                        // findController
                         //     .toggleDrawer(screenNum: screen);
                         ZoomDrawer.of(ctx)!.toggle();
                         // DrawerView(drawermenu: HomeView());
@@ -121,31 +133,40 @@ class CustomAppBar extends StatelessWidget {
                 top: 90,
               ),
               child: Obx(() {
-                if (onHomeView && !Get.find<ProfileController>().status.value) {
+                if (onHomeView && !findProfileController.status.value) {
                   return FittedBox(
                     child: Column(
                       children: [
                         SizedBox(height: screenHieght * 0.05),
-                        MedicalSupportIcon(),
+                        MedicalSupportIcon(
+                          ontap: () {
+                            Get.toNamed(Routes.MEDIALSUPPORT);
+                          },
+                        ),
                         SizedBox(height: screenHieght * 0.08),
-                        ProfileStack(),
+                        widget,
                         SizedBox(height: screenHieght * 0.04),
                         Visibility(
-                          visible: !Get.find<ProfileController>().status.value,
+                          visible: !findProfileController.status.value,
                           child: AuditToggleButton(
-                            value: Get.find<ProfileController>().status.value,
+                            value: findProfileController.status.value,
                             onToggle: (val) {
-                              Get.find<ProfileController>().audioSwitchCheck();
+                              findProfileController.audioSwitchCheck();
                             },
                           ),
                         ),
                       ],
                     ),
                   );
-                } else if (Get.find<ProfileController>().status.value) {
+                } else if (findProfileController.status.value) {
                   return ProfileStack();
                 } else {
-                  return ProfileStack();
+                  return Column(
+                    children: [
+                      SizedBox(height: screenHieght * 0.05),
+                      widget,
+                    ],
+                  );
                 }
               }),
             ),

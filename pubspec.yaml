@@ -27,6 +27,7 @@ dependencies:
   matrix4_transform: ^2.0.1
   mobile_scanner: ^1.0.0
   path_provider: ^2.0.9
+  photo_view: ^0.13.0
   pinput: ^2.2.7
   qr_flutter: ^4.0.0
   screenshot: ^1.2.3

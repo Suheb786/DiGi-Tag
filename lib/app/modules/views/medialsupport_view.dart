@@ -1,0 +1,446 @@
+import 'dart:io';
+import 'dart:ui';
+
+import 'package:digitag/app/modules/widgets/custom_appbar.dart';
+import 'package:digitag/app/modules/widgets/textfield.dart';
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:photo_view/photo_view.dart';
+
+import '../../Decoration/decoration.dart';
+import '../controllers/medialsupport_controller.dart';
+import '../widgets/medical_Support_Icon.dart';
+
+class MedicalSupportView extends GetView<MedialsupportController> {
+  // MedialsupportController controller = Get.put(MedialsupportController());
+  XFile? imagepath;
+  final ImagePicker _picker = ImagePicker();
+  XFile? genreralImageOptional;
+  XFile? genralImageRequired;
+
+  @override
+  Widget build(BuildContext context) {
+    Size resposive = MediaQuery.of(context).size;
+    return Scaffold(
+        extendBodyBehindAppBar: true,
+        extendBody: true,
+        body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: Decorations.grdntBG,
+          child: NestedScrollView(
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) {
+              return [
+                CustomAppBar(
+                    deviceWidth: MediaQuery.of(context).size.width,
+                    title: "Mediacal Alert",
+                    widget: MedicalSupportIcon(),
+                    appbarHeight: 150,
+                    ctx: context)
+              ];
+            },
+            body: SafeArea(
+                child: Container(
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 20.0,
+                    ),
+                    child: SliderPin(resposive),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Container(
+                      width: resposive.width - 30,
+                      height: 90,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          border:
+                              Border.all(color: Color(0xffCDCDCD), width: 2)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 25.0),
+                            child: Text(
+                              "Push Medical Alert Notification ?",
+                              style: TextStyle(
+                                  color: Color(0xff48AE96),
+                                  fontFamily: "SofiaPro",
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsets.only(left: 25.0, right: 25, top: 8),
+                            child: Text(
+                              "Are you in need of medical assistance? If so, a notification will be sent to all Digi-Tag users with your location When you click send medical support. ",
+                              style: TextStyle(
+                                color: Color(0xff5B5B5B),
+                                fontFamily: "SofiaPro",
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 15.0),
+                    child: const Divider(
+                      color: Color(0xffE6E6E6),
+                      thickness: 2,
+                    ),
+                  ),
+                  Container(
+                    height: 105,
+                    width: resposive.width - 30,
+                    decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                            colors: [
+                              Color(0xCCFFD7D0),
+                              Color(0xE6FBAC9F),
+                            ],
+                            end: Alignment.bottomRight,
+                            begin: Alignment.topLeft),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.white, width: 2),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Color(0x1A000000),
+                              offset: (Offset(0, 4)),
+                              blurRadius: 25),
+                        ]),
+                    child: Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.only(left: 25.0),
+                              child: Text(
+                                "Emergency Alert",
+                                style: TextStyle(
+                                    color: Color(0xffFF4141),
+                                    fontFamily: "SofiaPro",
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, top: 8, right: 20),
+                              child: Container(
+                                width: resposive.width * 0.60,
+                                child: const Text(
+                                  "Emergency Alert does not ask any details Only a picture of an actually condition is required for an emergency alert to be sent immediately. ",
+                                  style: TextStyle(
+                                    color: Color(0xff5B5B5B),
+                                    fontFamily: "SofiaPro",
+                                    fontSize: 12,
+                                  ),
+                                  textAlign: TextAlign.justify,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            InkWell(
+                              onTap: () async {
+                                // Pick an image
+                                imagepath = await _picker.pickImage(
+                                    source: ImageSource.gallery);
+                                print(File(imagepath!.path));
+                              },
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(7),
+                                      border: Border.all(
+                                          color: Color(0xfff8C8C8C), width: 2)),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(3.0),
+                                    child: imagepath == null
+                                        ? Icon(
+                                            Icons.add_photo_alternate_rounded,
+                                            size: 35,
+                                            color: Color(0xff6E819F),
+                                          )
+                                        : GestureDetector(
+                                            onTap: () {
+                                              Container(
+                                                child: PhotoView(
+                                                  imageProvider: AssetImage(
+                                                      imagepath!.path),
+                                                ),
+                                              );
+                                              print("fdf");
+                                            },
+                                            child: Image.file(
+                                              File(imagepath!.path),
+                                              height: 30,
+                                              width: 30,
+                                            ),
+                                          ),
+                                  )),
+                            ),
+                            SendButton(color: Color(0xffFF6A6A)),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 30.0, bottom: 30),
+                      child: Container(
+                        width: resposive.width - 30,
+                        height: resposive.height * 0.35,
+                        decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Color(0xff48AE96), width: 2),
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 30),
+                          child: SingleChildScrollView(
+                            physics: BouncingScrollPhysics(),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                const Text(
+                                  'General Alert',
+                                  style: TextStyle(
+                                      color: Color(0xff48AE96),
+                                      fontFamily: "SofiaPro",
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                Container(
+                                  width: resposive.width - 150,
+                                  child: medicalFormField(
+                                      hintText: "Title :",
+                                      validatior: (value) =>
+                                          controller.titleValidation(value!)),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10.0),
+                                  child: Container(
+                                    width: resposive.width - 50,
+                                    child: Expanded(
+                                      child: medicalFormField(
+                                          validatior: (value) => controller
+                                              .titleValidation(value!),
+                                          maxLines: 6,
+                                          hintText: "Massage :"),
+                                    ),
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    genralImagerequired(),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: generalImageOptional(),
+                                    ),
+                                    SizedBox(
+                                      width: resposive.width / 5,
+                                    ),
+                                    SendButton(
+                                        color: Color(0xff48AE96),
+                                        horizontalPadding: 30,
+                                        verticalPadding: 10),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )),
+          ),
+        ));
+  }
+
+  InkWell SendButton(
+      {Function()? onTap,
+      required Color color,
+      double horizontalPadding = 12,
+      double verticalPadding = 8}) {
+    return InkWell(
+      onTap: () => onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: verticalPadding,
+            horizontal: horizontalPadding,
+          ),
+          child: Text(
+            "Send",
+            style: TextStyle(color: Colors.white, fontFamily: "SofiaPro"),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget generalImageOptional() {
+    return InkWell(
+      onTap: () async {
+        // Pick an image
+        genreralImageOptional =
+            await _picker.pickImage(source: ImageSource.gallery);
+        print(File(genreralImageOptional!.path));
+      },
+      child: Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(7),
+              border: Border.all(color: Color(0xfff8C8C8C), width: 1)),
+          child: Padding(
+            padding: EdgeInsets.all(3.0),
+            child: genreralImageOptional == null
+                ? Icon(
+                    Icons.add_photo_alternate_rounded,
+                    size: 35,
+                    color: Color(0xff6E819F),
+                  )
+                : GestureDetector(
+                    onTap: () {
+                      Container(
+                        child: PhotoView(
+                          imageProvider:
+                              AssetImage(genreralImageOptional!.path),
+                        ),
+                      );
+                      print("fdf");
+                    },
+                    child: Image.file(
+                      File(genreralImageOptional!.path),
+                      height: 50,
+                      width: 50,
+                    ),
+                  ),
+          )),
+    );
+  }
+
+  Widget genralImagerequired() {
+    return InkWell(
+      onTap: () async {
+        // Pick an image
+        genralImageRequired =
+            await _picker.pickImage(source: ImageSource.gallery);
+        print(File(genralImageRequired!.path));
+      },
+      child: Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(7),
+              border: Border.all(color: Color(0xfff8C8C8C), width: 1)),
+          child: Padding(
+            padding: EdgeInsets.all(3.0),
+            child: genralImageRequired == null
+                ? Icon(
+                    Icons.add_photo_alternate_rounded,
+                    size: 35,
+                    color: Color(0xff6E819F),
+                  )
+                : GestureDetector(
+                    onTap: () {
+                      Container(
+                        child: PhotoView(
+                          imageProvider: AssetImage(genralImageRequired!.path),
+                        ),
+                      );
+                      print("fdf");
+                    },
+                    child: Image.file(
+                      File(genralImageRequired!.path),
+                      height: 50,
+                      width: 50,
+                    ),
+                  ),
+          )),
+    );
+  }
+
+  TextFormField medicalFormField(
+      {required String? Function(String?) validatior,
+      int? maxLines,
+      String? hintText,
+      TextEditingController? ctrllr}) {
+    return TextFormField(
+      maxLines: maxLines,
+      controller: ctrllr,
+      validator: validatior,
+      style: TextStyle(
+          fontSize: 14, color: Color(0xff616161), fontFamily: "SofiaPro"),
+      decoration: InputDecoration(
+        hintText: hintText,
+        isDense: true,
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+              color: Color(0xffC5C5C5),
+            )),
+        contentPadding: EdgeInsets.all(15),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+              color: Color(0xffC5C5C5),
+            )),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+              color: Color(0xffC5C5C5),
+            )),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.red),
+        ),
+      ),
+    );
+  }
+
+  Container SliderPin(Size resposive) {
+    return Container(
+      height: 5,
+      width: resposive.width - 300,
+      decoration: BoxDecoration(
+        color: Color(0x334F4F4F),
+        borderRadius: BorderRadius.circular(20),
+      ),
+    );
+  }
+}

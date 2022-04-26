@@ -6,12 +6,13 @@ import 'package:get/get.dart';
 
 import '../../Decoration/decoration.dart';
 import '../controllers/form_controller.dart';
-import '../widgets/audit_toggle_button.dart';
-import '../widgets/custom_appbar.dart';
+
 import '../widgets/custom_form_button.dart';
 import '../widgets/custom_text_form_field.dart';
 
 class FormView extends GetView<FormController> {
+  const FormView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height -
