@@ -1,6 +1,7 @@
 import 'package:digitag/app/modules/views/home_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class OtpViewController extends GetxController {
   TextEditingController phonenocontroller = TextEditingController();
