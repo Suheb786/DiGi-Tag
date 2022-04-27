@@ -1,25 +1,18 @@
 import 'dart:io';
-import 'dart:typed_data';
 
-import 'package:digitag/app/Decoration/text/text.dart';
-import 'package:digitag/app/modules/controllers/profile_controller.dart';
-import 'package:digitag/app/modules/controllers/qr_generator_controller.dart';
-
-import 'package:digitag/app/modules/widgets/profile_Stack.dart';
-import 'package:digitag/app/modules/widgets/qr_stack.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../Decoration/decoration.dart';
+import '../../Decoration/text/text.dart';
+import '../controllers/profile_controller.dart';
+import '../controllers/qr_generator_controller.dart';
 import '../widgets/appbar.dart';
-import '../widgets/audit_toggle_button.dart';
-import '../widgets/custom_appbar.dart';
-import '../widgets/audit_off_widget.dart';
-import '../widgets/audit_on_widget.dart';
+import '../widgets/profile_Stack.dart';
+import '../widgets/qr_stack.dart';
 
 class QrGeneratorView extends GetView<QrGeneratorController> {
   const QrGeneratorView({Key? key}) : super(key: key);
@@ -160,19 +153,19 @@ class QrGeneratorView extends GetView<QrGeneratorController> {
   }
 }
 
-Future<dynamic> ShowCapturedWidget(
-    BuildContext context, Uint8List capturedImage) {
-  return showDialog(
-    useSafeArea: false,
-    context: context,
-    builder: (context) => Scaffold(
-      appBar: AppBar(
-        title: Text("Captured widget screenshot"),
-      ),
-      body: Center(
-          child: capturedImage != null
-              ? Image.memory(capturedImage)
-              : Container()),
-    ),
-  );
-}
+// Future<dynamic> ShowCapturedWidget(
+//     BuildContext context, Uint8List capturedImage) {
+//   return showDialog(
+//     useSafeArea: false,
+//     context: context,
+//     builder: (context) => Scaffold(
+//       appBar: AppBar(
+//         title: Text("Captured widget screenshot"),
+//       ),
+//       body: Center(
+//           child: capturedImage != null
+//               ? Image.memory(capturedImage)
+//               : Container()),
+//     ),
+//   );
+// }

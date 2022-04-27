@@ -7,7 +7,7 @@ import 'package:digitag/app/enums/vaccination.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../net/firestore.dart';
+import '../../services/database_service_controller.dart';
 
 class FormController extends GetxController {
   // Form controllers
@@ -86,7 +86,7 @@ class FormController extends GetxController {
     switch (activeButton.value) {
       case FormButton.personal:
         if (personalFormKey.currentState!.validate()) {
-          Database().addUsers(String, dynamic);
+          DatabaseServiceController().addUsers(String, dynamic);
           activeButton.value = FormButton.academic;
         } else {
           activeButton.value = FormButton.personal;
@@ -244,7 +244,5 @@ class FormController extends GetxController {
 
 // Submit button handler
 // Vailidiation logic here
-  void onSubmit() {
-    Database().addUsers(String, dynamic);
-  }
+  void onSubmit() {}
 }

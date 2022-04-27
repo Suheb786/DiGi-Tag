@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/login_controller.dart';
-import '../widgets/decoration.dart';
-
-import '../../../main.dart';
 import '../widgets/bit_text.dart';
 import '../widgets/decoration.dart';
-import '../controllers/login_controller.dart';
 import '../widgets/footerText.dart';
-
 import '../widgets/login_in_widgets.dart';
 import '../widgets/textfield.dart';
 
@@ -33,7 +28,7 @@ class LoginView extends GetView<LoginController> {
               child: Column(
                 children: [
                   SizedBox(height: 65),
-                  BigText("Log IN"),
+                  bigText("Log IN"),
                   SizedBox(height: responsive.height / 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
