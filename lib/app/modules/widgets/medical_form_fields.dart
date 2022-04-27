@@ -41,6 +41,7 @@ class MedicalFormFields extends GetView<FormController> {
           ),
         ),
         child: Form(
+          key: controller.medicalFormKey,
           child: Column(
             // mainAxisSize: MainAxisSize.max,
             // mainAxisAlignment: MainAxisAlignment.end,

@@ -29,6 +29,8 @@ class FormController extends GetxController {
   var vaccination = Vaccination.firstDose.obs;
 
   final personalFormKey = GlobalKey<FormState>();
+  final academicFormKey = GlobalKey<FormState>();
+  final medicalFormKey = GlobalKey<FormState>();
 
   // Variables
   DateTime? dob; //* Null if value is not picked
@@ -85,16 +87,22 @@ class FormController extends GetxController {
   void nextButton() {
     switch (activeButton.value) {
       case FormButton.personal:
-        if (personalFormKey.currentState!.validate()) {
-          DatabaseServiceController().addUsers(String, dynamic);
+        // if (personalFormKey.currentState!.validate()) {
+        //   DatabaseServiceController().addUsers(String, dynamic);
+        //   activeButton.value = FormButton.academic;
+        // } else {
+        //   activeButton.value = FormButton.personal;
+        // }
+        if (validiatePersonalForm()) {
           activeButton.value = FormButton.academic;
-        } else {
-          activeButton.value = FormButton.personal;
         }
 
         break;
       case FormButton.academic:
-        activeButton.value = FormButton.medical;
+        if (validiateAcademicForm()) {
+          activeButton.value = FormButton.medical;
+        }
+        // activeButton.value = FormButton.medical;
         break;
       case FormButton.medical:
         break;
@@ -214,7 +222,7 @@ class FormController extends GetxController {
         });
   }
 
-//* Pic image from gallery >>>>>>>>>>>>
+  //* Pic image from gallery >>>>>>>>>>>>
   void _openGallery(BuildContext context) async {
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
@@ -228,7 +236,7 @@ class FormController extends GetxController {
     update();
   }
 
-//* Pic image from camera >>>>>>>>>>>>
+  //* Pic image from camera >>>>>>>>>>>>
   void _openCamera(BuildContext context) async {
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.camera,
@@ -242,7 +250,45 @@ class FormController extends GetxController {
     update();
   }
 
+  //! Form Validiations :
+
+  bool validiatePersonalForm() {
+    if (personalFormKey.currentState!.validate()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool validiateAcademicForm() {
+    if (academicFormKey.currentState!.validate()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool validiateMedicalForm() {
+    if (medicalFormKey.currentState!.validate()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 // Submit button handler
 // Vailidiation logic here
-  void onSubmit() {}
+  void onSubmit() {
+    if (validiateMedicalForm() &&
+        validiateAcademicForm() &&
+        validiatePersonalForm()) {
+      print("Form is valid");
+      //! Make a map of all data here and upload to db
+    } else {
+      Get.snackbar(
+        "Validiation Faild",
+        "One or more fields are not valid",
+      );
+    }
+  }
 }

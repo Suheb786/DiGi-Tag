@@ -52,110 +52,107 @@ class FormView extends GetView<FormController> {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: Form(
-                key: controller.personalFormKey,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(screenHeight * 0.035),
-                      child: Container(
-                        height: 4,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          color: const Color(0xff4F4F4F).withOpacity(0.2),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: screenHeight * 0.08,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(screenHeight * 0.035),
+                    child: Container(
+                      height: 4,
+                      width: 100,
                       decoration: BoxDecoration(
-                        color: const Color(0xffCCE0FF).withOpacity(0.2),
-                      ),
-                      child: Obx(
-                        (() => Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Catagories(
-                                  labal: "Personal",
-                                  onPressed: () {
-                                    // if (controller.personalFormKey.currentState!
-                                    //     .validate())
-                                    controller.buttonPressed(
-                                      formButton: FormButton.personal,
-                                    );
-                                  },
-                                  color: controller.activeButton.value ==
-                                          FormButton.personal
-                                      ? const Color(0xff779FE5)
-                                      : const Color(0xffB2C2ED),
-                                ),
-                                Catagories(
-                                  labal: "Academic",
-                                  onPressed: () => controller.buttonPressed(
-                                    formButton: FormButton.academic,
-                                  ),
-                                  color: controller.activeButton.value ==
-                                          FormButton.academic
-                                      ? const Color(0xff779FE5)
-                                      : const Color(0xffB2C2ED),
-                                ),
-                                Catagories(
-                                  labal: "Medical",
-                                  onPressed: () => controller.buttonPressed(
-                                    formButton: FormButton.medical,
-                                  ),
-                                  color: controller.activeButton.value ==
-                                          FormButton.medical
-                                      ? const Color(0xff779FE5)
-                                      : const Color(0xffB2C2ED),
-                                ),
-                              ],
-                            )),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        color: const Color(0xff4F4F4F).withOpacity(0.2),
                       ),
                     ),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
-                        child: Obx(() {
-                          switch (controller.activeButton.value) {
-                            case FormButton.personal:
-                              return PersonalFormFields(
-                                screenHeight: screenHeight,
-                              );
-                            case FormButton.academic:
-                              return AcademicFormFields(
-                                screenHeight: screenHeight,
-                              );
-                            case FormButton.medical:
-                              return MedicalFormFields(
-                                  screenHeight: screenHeight);
-                            default:
-                              return PersonalFormFields(
-                                  screenHeight: screenHeight);
-                          }
-                        }),
-                      ),
+                  ),
+                  Container(
+                    height: screenHeight * 0.08,
+                    decoration: BoxDecoration(
+                      color: const Color(0xffCCE0FF).withOpacity(0.2),
                     ),
-                    Obx(() {
-                      if (controller.activeButton.value ==
-                              FormButton.personal ||
-                          controller.activeButton.value ==
-                              FormButton.academic) {
-                        return FormBottomNavButton(
-                          onPressedBack: controller.previousButton,
-                          onPressedNext: controller.nextButton,
-                        );
-                      } else {
-                        return FormSubmitButton(
-                          onPressed: controller.onSubmit,
-                        );
-                      }
-                    }),
-                  ],
-                ),
+                    child: Obx(
+                      (() => Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Catagories(
+                                labal: "Personal",
+                                onPressed: () {
+                                  // if (controller.personalFormKey.currentState!
+                                  //     .validate())
+                                  controller.buttonPressed(
+                                    formButton: FormButton.personal,
+                                  );
+                                },
+                                color: controller.activeButton.value ==
+                                        FormButton.personal
+                                    ? const Color(0xff779FE5)
+                                    : const Color(0xffB2C2ED),
+                              ),
+                              Catagories(
+                                labal: "Academic",
+                                onPressed: () => controller.buttonPressed(
+                                  formButton: FormButton.academic,
+                                ),
+                                color: controller.activeButton.value ==
+                                        FormButton.academic
+                                    ? const Color(0xff779FE5)
+                                    : const Color(0xffB2C2ED),
+                              ),
+                              Catagories(
+                                labal: "Medical",
+                                onPressed: () => controller.buttonPressed(
+                                  formButton: FormButton.medical,
+                                ),
+                                color: controller.activeButton.value ==
+                                        FormButton.medical
+                                    ? const Color(0xff779FE5)
+                                    : const Color(0xffB2C2ED),
+                              ),
+                            ],
+                          )),
+                    ),
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Obx(() {
+                        switch (controller.activeButton.value) {
+                          case FormButton.personal:
+                            return PersonalFormFields(
+                              screenHeight: screenHeight,
+                            );
+                          case FormButton.academic:
+                            return AcademicFormFields(
+                              screenHeight: screenHeight,
+                            );
+                          case FormButton.medical:
+                            return MedicalFormFields(
+                                screenHeight: screenHeight);
+                          default:
+                            return PersonalFormFields(
+                                screenHeight: screenHeight);
+                        }
+                      }),
+                    ),
+                  ),
+                  Obx(() {
+                    if (controller.activeButton.value ==
+                            FormButton.personal ||
+                        controller.activeButton.value ==
+                            FormButton.academic) {
+                      return FormBottomNavButton(
+                        onPressedBack: controller.previousButton,
+                        onPressedNext: controller.nextButton,
+                      );
+                    } else {
+                      return FormSubmitButton(
+                        onPressed: controller.onSubmit,
+                      );
+                    }
+                  }),
+                ],
               ),
             ),
           ),

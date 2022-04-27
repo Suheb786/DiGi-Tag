@@ -40,6 +40,7 @@ class AcademicFormFields extends GetView<FormController> {
           ),
         ),
         child: Form(
+          key: controller.academicFormKey,
           child: Column(
             // mainAxisSize: MainAxisSize.max,
             // mainAxisAlignment: MainAxisAlignment.end,

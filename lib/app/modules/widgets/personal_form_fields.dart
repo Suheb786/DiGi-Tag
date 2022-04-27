@@ -41,6 +41,7 @@ class PersonalFormFields extends GetView<FormController> {
               ),
             ),
             child: Form(
+              key: controller.personalFormKey,
               child: Column(
                 // mainAxisSize: MainAxisSize.max,
                 // mainAxisAlignment: MainAxisAlignment.end,
