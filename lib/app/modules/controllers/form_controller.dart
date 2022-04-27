@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../services/database_service_controller.dart';
 
 class FormController extends GetxController {
-  // Form controllers
+  //* Form controllers >>>>>>>>>>>
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController addressController = TextEditingController();
@@ -23,18 +23,33 @@ class FormController extends GetxController {
   TextEditingController bloodGroupcontroller = TextEditingController();
   TextEditingController allergyController = TextEditingController();
 
-  // Observable variables
+  //* Observable variables >>>>>>>>>>>>
   var activeButton = FormButton.personal.obs;
   var studentType = StudentType.hosteler.obs;
   var vaccination = Vaccination.firstDose.obs;
+  var currentSelectedCourse = "".obs;
 
+  //* FormKeys ------>>>>>>>>>
   final personalFormKey = GlobalKey<FormState>();
   final academicFormKey = GlobalKey<FormState>();
   final medicalFormKey = GlobalKey<FormState>();
 
-  // Variables
+  //* Variables >>>>>>>>>
   DateTime? dob; //* Null if value is not picked
   File? pickedImage; //* Null if image is not pucked
+
+  //* Lists ----------->>>>>>>>>>>
+  List<String> courseDropDownList = [
+    "B.Tech",
+    "Diploma",
+    "B.Pharma",
+    "D.Pharma",
+    "B.A.",
+    "M.A.",
+    "B.Com.",
+    "MBA",
+    "Media",
+  ];
 
   //*RegExpressions // --------------->>>>>>>>
   RegExp nameRex =
@@ -42,7 +57,7 @@ class FormController extends GetxController {
   RegExp emailRex = RegExp(
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
 
-//* Form Validation ------------------->>>>>>>
+//* Form Validation methods ------------------->>>>>>>
   String? emailvalidation(email) {
     if (email!.isEmpty || email == null) {
       return "Email Field cann't be Empty";

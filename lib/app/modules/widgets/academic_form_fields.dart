@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/form_controller.dart';
+import 'custom_dropdown_text_form_field.dart';
 import 'custom_radio_button.dart';
 import 'custom_text_form_field.dart';
 
@@ -49,7 +50,6 @@ class AcademicFormFields extends GetView<FormController> {
                 () => Row(
                   children: [
                     CustomRadioButton(
-
                       title: "Hosteler",
                       groupValue: controller.studentType.value,
                       value: StudentType.hosteler,
@@ -71,12 +71,29 @@ class AcademicFormFields extends GetView<FormController> {
               const SizedBox(
                 height: 15,
               ),
-              CustomTextformField(
-                controller:controller.courseController,
-                labelText: "Cource",
-                keyboardType: TextInputType.text,
-                textCapitalization: TextCapitalization.characters,
+              // CustomTextformField(
+              //   controller:controller.courseController,
+              //   labelText: "Cource",
+              //   keyboardType: TextInputType.text,
+              //   textCapitalization: TextCapitalization.characters,
+              // ),
+
+              Obx(
+                () => CustomDropdownTextFormField(
+                  dropDownListOfItems: controller.courseDropDownList,
+                  onChanged: (newValue) {
+                    controller.currentSelectedCourse.value = newValue ?? "";
+                  },
+                  hintText: "Course",
+                  isEmpty: controller.currentSelectedCourse.value.isEmpty
+                      ? true
+                      : false,
+                  value: controller.currentSelectedCourse.value.isEmpty
+                      ? null
+                      : controller.currentSelectedCourse.value,
+                ),
               ),
+
               const SizedBox(
                 height: 15,
               ),
