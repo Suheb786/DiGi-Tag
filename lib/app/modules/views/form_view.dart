@@ -38,7 +38,7 @@ class FormView extends GetView<FormController> {
                   backgroundColor: Colors.transparent,
                   expandedHeight: screenHeight * 0.2,
                   flexibleSpace: FlexibleSpaceBar(
-                    background: Center(child: BigText("DiGi-Tag")),
+                    background: Center(child: bigText("DiGi-Tag")),
                   ),
                 ),
               ];

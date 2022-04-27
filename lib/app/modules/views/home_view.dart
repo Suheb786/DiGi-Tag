@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
 import '../controllers/profile_controller.dart';
-import '../widgets/appbar.dart';
+import '../widgets/audit_on_widget.dart';
 import '../widgets/audit_toggle_button.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/decoration.dart';
 import '../widgets/icon_Stack.dart';
-import '../widgets/medical_Support_Icon.dart';
-import '../widgets/profile_Stack.dart';
-import '../widgets/audit_off_widget.dart';
-import '../widgets/audit_on_widget.dart';
 
 class HomeView extends GetView<HomeController> {
   ProfileController profilecontroller = Get.find<ProfileController>();
@@ -23,11 +18,13 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final responsive = MediaQuery.of(context).size;
+    // final responsive = MediaQuery.of(context).size;
     return WillPopScope(
       //? Toast on exit.
       onWillPop: () {
         DateTime now = DateTime.now();
+
+        // Get.find<ProfileController>().onBack();
 
         if (profilecontroller.status.value == true) {
           profilecontroller.status.value = false;
@@ -62,7 +59,7 @@ class HomeView extends GetView<HomeController> {
             width: double.infinity,
             decoration: Decorations.grdntBG,
             child: NestedScrollView(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               // controller: Get.find<ProfileController>().profileScrollController,
               headerSliverBuilder: (context, bool innerBoxIsScrolled) {
                 return [
@@ -98,7 +95,7 @@ class HomeView extends GetView<HomeController> {
                         },
                         child: CustomScrollView(
                           // controller: controller.homeScrollController,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           slivers: [
                             SliverFillRemaining(

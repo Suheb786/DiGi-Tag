@@ -1,6 +1,7 @@
-import 'package:digitag/app/modules/views/home_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+
+import '../views/home_view.dart';
 
 class OtpViewController extends GetxController {
   TextEditingController phonenocontroller = TextEditingController();
@@ -12,24 +13,16 @@ class OtpViewController extends GetxController {
     }
   }
 
-  phonecheck() {
+  void phonecheck() {
     if (phonekey.currentState!.validate()) {
       Get.off(() => HomeView());
+      //* Impliment otp logic
     }
   }
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
+ void startCountDown(){
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
+   
+ }
+  
 }

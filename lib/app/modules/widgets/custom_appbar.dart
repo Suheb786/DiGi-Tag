@@ -1,7 +1,3 @@
-import 'package:digitag/app/modules/controllers/profile_controller.dart';
-import 'package:digitag/app/modules/widgets/audit_toggle_button.dart';
-import 'package:digitag/app/modules/widgets/medical_Support_Icon.dart';
-import 'package:digitag/app/modules/widgets/profile_Stack.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -9,7 +5,10 @@ import 'package:get/get.dart';
 
 import '../../Decoration/text/text.dart';
 import '../../routes/app_pages.dart';
-import '../views/medialsupport_view.dart';
+import '../controllers/profile_controller.dart';
+import 'audit_toggle_button.dart';
+import 'medical_Support_Icon.dart';
+import 'profile_Stack.dart';
 
 class CustomAppBar extends StatelessWidget {
   ProfileController findProfileController = Get.find<ProfileController>();
@@ -41,7 +40,7 @@ class CustomAppBar extends StatelessWidget {
     final double screenHieght = MediaQuery.of(context).size.width;
 
     return GetBuilder<ProfileController>(
-      init: ProfileController(),
+      // init: ProfileController(),
       // initState: (_) {},
       builder: (_) {
         return SliverAppBar(

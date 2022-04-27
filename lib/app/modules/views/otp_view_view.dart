@@ -1,18 +1,17 @@
-import 'package:digitag/app/modules/widgets/bit_text.dart';
-import 'package:digitag/app/modules/widgets/footerText.dart';
-import 'package:digitag/app/modules/widgets/icon_Stack.dart';
-import 'package:digitag/app/modules/widgets/login_in_widgets.dart';
-import 'package:digitag/app/modules/widgets/otpField.dart';
-import 'package:digitag/app/modules/widgets/textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:get/get.dart';
 
 import '../../Decoration/decoration.dart';
 import '../controllers/otp_view_controller.dart';
+import '../widgets/bit_text.dart';
+import '../widgets/footerText.dart';
+import '../widgets/login_in_widgets.dart';
+import '../widgets/otpField.dart';
+import '../widgets/textfield.dart';
 
 class OtpViewView extends GetView<OtpViewController> {
+  const OtpViewView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final responsive = MediaQuery.of(context).size;
@@ -28,7 +27,7 @@ class OtpViewView extends GetView<OtpViewController> {
             child: Column(
               children: [
                 SizedBox(height: responsive.height / 10),
-                BigText("DiGi-Tag"),
+                bigText("DiGi-Tag"),
                 SizedBox(height: responsive.height / 30),
                 const Text(
                   "Enter a Phone No. we will send you an OTP",
@@ -57,14 +56,14 @@ class OtpViewView extends GetView<OtpViewController> {
                 SizedBox(height: responsive.height / 30),
                 OTPField(),
                 SizedBox(height: responsive.height / 30),
-                Resend_OTP_Text(),
+                resendOTPText(),
                 SignUpRoundButton(
                   extraBigCircle: Container(height: 0),
                   widget: InkWell(
                       onTap: () {
                         controller.phonecheck();
                       },
-                      child: GetINicon()),
+                      child: getINicon()),
                 ),
                 FooterText(),
               ],
@@ -75,7 +74,7 @@ class OtpViewView extends GetView<OtpViewController> {
     );
   }
 
-  RichText Resend_OTP_Text() {
+  RichText resendOTPText() {
     return RichText(
       text: const TextSpan(
         children: [
@@ -103,7 +102,7 @@ class OtpViewView extends GetView<OtpViewController> {
     );
   }
 
-  OverflowBox GetINicon() {
+  OverflowBox getINicon() {
     return OverflowBox(
       maxHeight: 68,
       minHeight: 68,
