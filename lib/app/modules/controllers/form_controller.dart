@@ -7,6 +7,8 @@ import 'package:digitag/app/enums/vaccination.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../net/firestore.dart';
+
 class FormController extends GetxController {
   // Form controllers
   TextEditingController nameController = TextEditingController();
@@ -25,6 +27,8 @@ class FormController extends GetxController {
   var activeButton = FormButton.personal.obs;
   var studentType = StudentType.hosteler.obs;
   var vaccination = Vaccination.firstDose.obs;
+
+  final personalFormKey = GlobalKey<FormState>();
 
   // Variables
   DateTime? dob; //* Null if value is not picked
@@ -57,7 +61,7 @@ class FormController extends GetxController {
     if (dob!.isEmpty || dob == null) return "Select Your Date of Birth";
   }
 
-  String? address(address) {
+  String? addressValidation(address) {
     if (address!.isEmpty || dob == null)
       return "Please Enter Your Home Adsress";
   }
@@ -81,7 +85,13 @@ class FormController extends GetxController {
   void nextButton() {
     switch (activeButton.value) {
       case FormButton.personal:
-        activeButton.value = FormButton.academic;
+        if (personalFormKey.currentState!.validate()) {
+          Database().addUsers(String, dynamic);
+          activeButton.value = FormButton.academic;
+        } else {
+          activeButton.value = FormButton.personal;
+        }
+
         break;
       case FormButton.academic:
         activeButton.value = FormButton.medical;
@@ -234,5 +244,7 @@ class FormController extends GetxController {
 
 // Submit button handler
 // Vailidiation logic here
-  void onSubmit() {}
+  void onSubmit() {
+    Database().addUsers(String, dynamic);
+  }
 }

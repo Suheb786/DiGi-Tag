@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CustomFormButton extends StatelessWidget {
+class Catagories extends StatelessWidget {
   final void Function()? onPressed;
   final String labal;
   final Color color;
-  const CustomFormButton({
+  const Catagories({
     Key? key,
     required this.onPressed,
     required this.labal,

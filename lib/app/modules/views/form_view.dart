@@ -7,10 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../Decoration/decoration.dart';
+import '../../net/firestore.dart';
 import '../controllers/form_controller.dart';
 
 import '../widgets/custom_form_button.dart';
-import '../widgets/custom_text_form_field.dart';
+
 import '../widgets/form_bottom_nev_button.dart';
 import '../widgets/form_submit_button.dart';
 import '../widgets/personal_form_fields.dart';
@@ -51,101 +52,110 @@ class FormView extends GetView<FormController> {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(screenHeight * 0.035),
-                    child: Container(
-                      height: 4,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
+              child: Form(
+                key: controller.personalFormKey,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(screenHeight * 0.035),
+                      child: Container(
+                        height: 4,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                          color: const Color(0xff4F4F4F).withOpacity(0.2),
                         ),
-                        color: const Color(0xff4F4F4F).withOpacity(0.2),
                       ),
                     ),
-                  ),
-                  Container(
-                    height: screenHeight * 0.08,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffCCE0FF).withOpacity(0.2),
-                    ),
-                    child: Obx(
-                      (() => Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              CustomFormButton(
-                                labal: "Personal",
-                                onPressed: () => controller.buttonPressed(
-                                  formButton: FormButton.personal,
+                    Container(
+                      height: screenHeight * 0.08,
+                      decoration: BoxDecoration(
+                        color: const Color(0xffCCE0FF).withOpacity(0.2),
+                      ),
+                      child: Obx(
+                        (() => Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Catagories(
+                                  labal: "Personal",
+                                  onPressed: () {
+                                    // if (controller.personalFormKey.currentState!
+                                    //     .validate())
+                                    controller.buttonPressed(
+                                      formButton: FormButton.personal,
+                                    );
+                                  },
+                                  color: controller.activeButton.value ==
+                                          FormButton.personal
+                                      ? const Color(0xff779FE5)
+                                      : const Color(0xffB2C2ED),
                                 ),
-                                color: controller.activeButton.value ==
-                                        FormButton.personal
-                                    ? const Color(0xff779FE5)
-                                    : const Color(0xffB2C2ED),
-                              ),
-                              CustomFormButton(
-                                labal: "Academic",
-                                onPressed: () => controller.buttonPressed(
-                                  formButton: FormButton.academic,
+                                Catagories(
+                                  labal: "Academic",
+                                  onPressed: () => controller.buttonPressed(
+                                    formButton: FormButton.academic,
+                                  ),
+                                  color: controller.activeButton.value ==
+                                          FormButton.academic
+                                      ? const Color(0xff779FE5)
+                                      : const Color(0xffB2C2ED),
                                 ),
-                                color: controller.activeButton.value ==
-                                        FormButton.academic
-                                    ? const Color(0xff779FE5)
-                                    : const Color(0xffB2C2ED),
-                              ),
-                              CustomFormButton(
-                                labal: "Medical",
-                                onPressed: () => controller.buttonPressed(
-                                  formButton: FormButton.medical,
+                                Catagories(
+                                  labal: "Medical",
+                                  onPressed: () => controller.buttonPressed(
+                                    formButton: FormButton.medical,
+                                  ),
+                                  color: controller.activeButton.value ==
+                                          FormButton.medical
+                                      ? const Color(0xff779FE5)
+                                      : const Color(0xffB2C2ED),
                                 ),
-                                color: controller.activeButton.value ==
-                                        FormButton.medical
-                                    ? const Color(0xff779FE5)
-                                    : const Color(0xffB2C2ED),
-                              ),
-                            ],
-                          )),
+                              ],
+                            )),
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(),
-                      child: Obx(() {
-                        switch (controller.activeButton.value) {
-                          case FormButton.personal:
-                            return PersonalFormFields(
-                              screenHeight: screenHeight,
-                            );
-                          case FormButton.academic:
-                            return AcademicFormFields(
-                              screenHeight: screenHeight,
-                            );
-                          case FormButton.medical:
-                            return MedicalFormFields(
-                                screenHeight: screenHeight);
-                          default:
-                            return PersonalFormFields(
-                                screenHeight: screenHeight);
-                        }
-                      }),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        child: Obx(() {
+                          switch (controller.activeButton.value) {
+                            case FormButton.personal:
+                              return PersonalFormFields(
+                                screenHeight: screenHeight,
+                              );
+                            case FormButton.academic:
+                              return AcademicFormFields(
+                                screenHeight: screenHeight,
+                              );
+                            case FormButton.medical:
+                              return MedicalFormFields(
+                                  screenHeight: screenHeight);
+                            default:
+                              return PersonalFormFields(
+                                  screenHeight: screenHeight);
+                          }
+                        }),
+                      ),
                     ),
-                  ),
-                  Obx(() {
-                    if (controller.activeButton.value == FormButton.personal ||
-                        controller.activeButton.value == FormButton.academic) {
-                      return FormBottomNavButton(
-                        onPressedBack: controller.previousButton,
-                        onPressedNext: controller.nextButton,
-                      );
-                    } else {
-                      return FormSubmitButton(
-                        onPressed: controller.onSubmit,
-                      );
-                    }
-                  }),
-                ],
+                    Obx(() {
+                      if (controller.activeButton.value ==
+                              FormButton.personal ||
+                          controller.activeButton.value ==
+                              FormButton.academic) {
+                        return FormBottomNavButton(
+                          onPressedBack: controller.previousButton,
+                          onPressedNext: controller.nextButton,
+                        );
+                      } else {
+                        return FormSubmitButton(
+                          onPressed: controller.onSubmit,
+                        );
+                      }
+                    }),
+                  ],
+                ),
               ),
             ),
           ),

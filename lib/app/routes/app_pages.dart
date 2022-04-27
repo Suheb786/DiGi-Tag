@@ -29,7 +29,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.OTP_VIEW;
+  static const INITIAL = Routes.FORM;
 
   static final routes = [
     GetPage(
