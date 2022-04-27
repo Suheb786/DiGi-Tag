@@ -1,4 +1,0 @@
-enum Voting {
-  up,
-  down,
-}

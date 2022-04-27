@@ -1,8 +1,7 @@
-import 'package:digitag/app/enums/student_type.dart';
-import 'package:digitag/app/enums/vaccination.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'enums.dart';
 import '../views/Form/form_controller.dart';
 import 'custom_radio_button.dart';
 import 'custom_text_form_field.dart';

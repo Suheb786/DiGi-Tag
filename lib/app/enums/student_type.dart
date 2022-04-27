@@ -1,4 +1,0 @@
-enum StudentType{
-  hosteler,
-  dayScholor,
-}
