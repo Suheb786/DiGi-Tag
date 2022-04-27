@@ -1,4 +1,4 @@
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 import 'package:screenshot/screenshot.dart';
 
 class QrGeneratorController extends GetxController {

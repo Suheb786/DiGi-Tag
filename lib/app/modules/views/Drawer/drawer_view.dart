@@ -1,11 +1,11 @@
-import 'package:digitag/app/modules/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
-import '../../routes/app_pages.dart';
-import 'home_view.dart';
-import 'login_view.dart';
+import '../../../routes/app_pages.dart';
+import '../Home/home_view.dart';
+import '../Login/login_view.dart';
+import '../Profile/profile_controller.dart';
 
 class DrawerView extends GetView<DrawerController> {
   // int? screen;

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../controllers/drawer_controller.dart';
+import 'drawer_controller.dart';
 
 class DrawerBinding extends Bindings {
   @override

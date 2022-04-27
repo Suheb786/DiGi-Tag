@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../views/home_view.dart';
+import '../Home/home_view.dart';
 
 class OtpViewController extends GetxController {
   TextEditingController phonenocontroller = TextEditingController();
@@ -21,9 +21,5 @@ class OtpViewController extends GetxController {
     }
   }
 
- void startCountDown(){
-
-   
- }
-  
+  void startCountDown() {}
 }

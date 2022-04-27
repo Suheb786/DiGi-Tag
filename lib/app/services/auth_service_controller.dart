@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
-import '../modules/controllers/otp_view_controller.dart';
+import '../modules/views/OTP/otp_view_controller.dart';
 import '../routes/app_pages.dart';
 
 class AuthServiceController extends GetxController {

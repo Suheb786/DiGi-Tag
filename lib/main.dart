@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'app/Theme/theme.dart';
-import 'app/modules/controllers/home_controller.dart';
-import 'app/modules/controllers/login_controller.dart';
-import 'app/modules/controllers/profile_controller.dart';
+
+import 'app/modules/views/Home/home_controller.dart';
+import 'app/modules/views/Login/login_controller.dart';
+import 'app/modules/views/Profile/profile_controller.dart';
 import 'app/routes/app_pages.dart';
 
 void main() async {

@@ -2,7 +2,7 @@ import 'package:digitag/app/enums/student_type.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/form_controller.dart';
+import '../views/Form/form_controller.dart';
 import 'custom_radio_button.dart';
 import 'custom_text_form_field.dart';
 
@@ -49,7 +49,6 @@ class AcademicFormFields extends GetView<FormController> {
                 () => Row(
                   children: [
                     CustomRadioButton(
-
                       title: "Hosteler",
                       groupValue: controller.studentType.value,
                       value: StudentType.hosteler,
@@ -72,7 +71,7 @@ class AcademicFormFields extends GetView<FormController> {
                 height: 15,
               ),
               CustomTextformField(
-                controller:controller.courseController,
+                controller: controller.courseController,
                 labelText: "Cource",
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.characters,

@@ -1,6 +1,5 @@
-import 'package:digitag/app/modules/controllers/qr_generator_controller.dart';
+import 'package:digitag/app/modules/views/QrGenerator/qr_generator_controller.dart';
 import 'package:get/get.dart';
-import 'package:get/get_instance/get_instance.dart';
 
 class QrGeneratorBinding extends Bindings {
   @override
@@ -8,5 +7,4 @@ class QrGeneratorBinding extends Bindings {
     // TODO: implement dependencies
     Get.put(QrGeneratorController());
   }
-
 }

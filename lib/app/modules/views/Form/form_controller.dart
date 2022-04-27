@@ -7,8 +7,6 @@ import 'package:digitag/app/enums/vaccination.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../services/database_service_controller.dart';
-
 class FormController extends GetxController {
   // Form controllers
   TextEditingController nameController = TextEditingController();
@@ -66,6 +64,20 @@ class FormController extends GetxController {
   String? addressValidation(address) {
     if (address!.isEmpty || dob == null)
       return "Please Enter Your Home Adsress";
+  }
+
+  String? rollNo(rollNo) {
+    if (rollNo!.toString().isEmpty ||
+        rollNo == null && rollNo.toString().length <= 10) {
+      return "Please Enter a Valid Roll No.";
+    }
+  }
+
+  String? enrollNo(enrollNo) {
+    if (enrollNo!.toString().isEmpty ||
+        enrollNo == null && enrollNo.toString().length <= 10) {
+      return "Please Enter a Valid Enrollment No.";
+    }
   }
 
   //* Top nav button press handler --------->>>>>>
@@ -283,6 +295,7 @@ class FormController extends GetxController {
         validiateAcademicForm() &&
         validiatePersonalForm()) {
       print("Form is valid");
+
       //! Make a map of all data here and upload to db
     } else {
       Get.snackbar(

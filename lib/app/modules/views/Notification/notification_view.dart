@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../Decoration/decoration.dart';
-import '../controllers/notification_controller.dart';
-import '../widgets/custom_appbar.dart';
-import '../widgets/notification_ListView_Widgets.dart';
+import '../../../Decoration/decoration.dart';
+
+import '../../widgets/custom_appbar.dart';
+import '../../widgets/notification_ListView_Widgets.dart';
+import 'notification_controller.dart';
 
 class NotificationView extends GetView<NotificationController> {
   @override

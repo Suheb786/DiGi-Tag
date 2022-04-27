@@ -1,5 +1,5 @@
-import 'package:digitag/app/modules/controllers/qr_scanner_controller.dart';
-import 'package:digitag/app/modules/views/drawer_view.dart';
+import 'package:digitag/app/modules/views/Drawer/drawer_view.dart';
+import 'package:digitag/app/modules/views/QrScanner/qr_scanner_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
@@ -8,8 +8,7 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:mobile_scanner/mobile_scanner.dart';
 
-import '../../Decoration/colors/originBg.dart';
-import 'profile_view.dart';
+import '../Profile/profile_view.dart';
 
 class QrScannerView extends GetView<QrScannerController> {
   @override

@@ -3,13 +3,13 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
-import '../controllers/home_controller.dart';
-import '../controllers/profile_controller.dart';
-import '../widgets/audit_on_widget.dart';
-import '../widgets/audit_toggle_button.dart';
-import '../widgets/custom_appbar.dart';
-import '../widgets/decoration.dart';
-import '../widgets/icon_Stack.dart';
+import '../../../Decoration/decoration.dart';
+import '../../widgets/audit_on_widget.dart';
+import '../../widgets/audit_toggle_button.dart';
+import '../../widgets/custom_appbar.dart';
+import '../../widgets/icon_Stack.dart';
+import '../Profile/profile_controller.dart';
+import 'home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   ProfileController profilecontroller = Get.find<ProfileController>();

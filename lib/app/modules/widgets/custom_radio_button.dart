@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/form_controller.dart';
+import '../views/Form/form_controller.dart';
 
 class CustomRadioButton extends GetView<FormController> {
   final dynamic value;

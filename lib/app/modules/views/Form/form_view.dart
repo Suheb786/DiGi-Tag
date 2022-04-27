@@ -6,15 +6,13 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../Decoration/decoration.dart';
+import '../../../Decoration/decoration.dart';
+import '../../widgets/custom_form_button.dart';
+import '../../widgets/form_bottom_nev_button.dart';
+import '../../widgets/form_submit_button.dart';
+import '../../widgets/personal_form_fields.dart';
 
-import '../controllers/form_controller.dart';
-
-import '../widgets/custom_form_button.dart';
-
-import '../widgets/form_bottom_nev_button.dart';
-import '../widgets/form_submit_button.dart';
-import '../widgets/personal_form_fields.dart';
+import 'form_controller.dart';
 
 class FormView extends GetView<FormController> {
   const FormView({Key? key}) : super(key: key);
@@ -138,10 +136,8 @@ class FormView extends GetView<FormController> {
                     ),
                   ),
                   Obx(() {
-                    if (controller.activeButton.value ==
-                            FormButton.personal ||
-                        controller.activeButton.value ==
-                            FormButton.academic) {
+                    if (controller.activeButton.value == FormButton.personal ||
+                        controller.activeButton.value == FormButton.academic) {
                       return FormBottomNavButton(
                         onPressedBack: controller.previousButton,
                         onPressedNext: controller.nextButton,

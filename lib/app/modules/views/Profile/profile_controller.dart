@@ -1,4 +1,4 @@
-import 'package:digitag/app/modules/views/drawer_view.dart';
+import 'package:digitag/app/modules/views/Drawer/drawer_view.dart';
 import 'package:digitag/app/routes/app_pages.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';

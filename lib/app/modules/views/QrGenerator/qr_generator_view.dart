@@ -1,18 +1,19 @@
 import 'dart:io';
 
+import 'package:digitag/app/modules/views/QrGenerator/qr_generator_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../Decoration/decoration.dart';
-import '../../Decoration/text/text.dart';
-import '../controllers/profile_controller.dart';
-import '../controllers/qr_generator_controller.dart';
-import '../widgets/appbar.dart';
-import '../widgets/profile_Stack.dart';
-import '../widgets/qr_stack.dart';
+import '../../../Decoration/decoration.dart';
+import '../../../Decoration/text/text.dart';
+
+import '../../widgets/appbar.dart';
+import '../../widgets/profile_Stack.dart';
+import '../../widgets/qr_stack.dart';
+import '../Profile/profile_controller.dart';
 
 class QrGeneratorView extends GetView<QrGeneratorController> {
   const QrGeneratorView({Key? key}) : super(key: key);
@@ -60,7 +61,7 @@ class QrGeneratorView extends GetView<QrGeneratorController> {
                               child: Center(
                                   child: customText("Mohammad Suheb", 20))),
                         ),
-                        const Expanded(
+                        Expanded(
                           flex: 3,
                           child: QrStack(
                             uid: 'JIT185451003',

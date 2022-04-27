@@ -6,7 +6,7 @@ import 'package:badges/badges.dart';
 import 'package:get/get.dart';
 
 import '../../enums/voting.dart';
-import '../controllers/profile_controller.dart';
+import '../views/Profile/profile_controller.dart';
 
 class AuditToggleButton extends StatelessWidget {
   final bool value;

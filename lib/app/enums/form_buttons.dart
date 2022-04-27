@@ -3,7 +3,3 @@ enum FormButton {
   academic,
   medical,
 }
-
-// enum Database {
-//   addusers,
-// }

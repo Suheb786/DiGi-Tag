@@ -1,8 +1,10 @@
 //* ---Profile Stack Widget on Home Screen-- //
-import 'package:digitag/app/modules/controllers/profile_controller.dart';
+
 import 'package:digitag/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../views/Profile/profile_controller.dart';
 
 class ProfileStack extends StatelessWidget {
   const ProfileStack({

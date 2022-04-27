@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/login_controller.dart';
-import '../widgets/bit_text.dart';
-import '../widgets/decoration.dart';
-import '../widgets/footerText.dart';
-import '../widgets/login_in_widgets.dart';
-import '../widgets/textfield.dart';
+import '../../../Decoration/decoration.dart';
+import '../../widgets/bit_text.dart';
+import '../../widgets/footerText.dart';
+import '../../widgets/login_in_widgets.dart';
+import '../../widgets/textfield.dart';
+
+import 'login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   @override

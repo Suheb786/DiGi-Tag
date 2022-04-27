@@ -1,6 +1,7 @@
+import 'package:digitag/app/modules/views/Profile/profile_controller.dart';
 import 'package:digitag/app/modules/widgets/custom_appbar.dart';
 
-import 'package:digitag/app/modules/views/drawer_view.dart';
+import 'package:digitag/app/modules/views/Drawer/drawer_view.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,14 +9,11 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
-import '../../Decoration/decoration.dart';
-import '../../Decoration/text/text.dart';
-import '../controllers/profile_controller.dart';
-import '../widgets/appbar.dart';
-import '../widgets/audit_toggle_button.dart';
-import '../widgets/profile_Stack.dart';
-import '../widgets/audit_off_widget.dart';
-import '../widgets/audit_on_widget.dart';
+import '../../../Decoration/decoration.dart';
+
+import '../../widgets/audit_off_widget.dart';
+import '../../widgets/audit_on_widget.dart';
+import '../../widgets/audit_toggle_button.dart';
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({Key? key}) : super(key: key);

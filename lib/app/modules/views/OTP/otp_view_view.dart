@@ -1,13 +1,14 @@
+import 'package:digitag/app/modules/widgets/login_in_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../Decoration/decoration.dart';
-import '../controllers/otp_view_controller.dart';
-import '../widgets/bit_text.dart';
-import '../widgets/footerText.dart';
-import '../widgets/login_in_widgets.dart';
-import '../widgets/otpField.dart';
-import '../widgets/textfield.dart';
+import '../../../Decoration/decoration.dart';
+
+import '../../widgets/bit_text.dart';
+import '../../widgets/footerText.dart';
+import '../../widgets/otpField.dart';
+import '../../widgets/textfield.dart';
+import 'otp_view_controller.dart';
 
 class OtpViewView extends GetView<OtpViewController> {
   const OtpViewView({Key? key}) : super(key: key);

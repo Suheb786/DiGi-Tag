@@ -1,12 +1,13 @@
 //?-----------------LOGIN SCREEN -------------------------//
 //* User Id Text Field//
 
-import 'package:digitag/app/modules/controllers/login_controller.dart';
-import 'package:digitag/app/modules/views/drawer_view.dart';
+import 'package:digitag/app/modules/views/Drawer/drawer_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../views/Login/login_controller.dart';
 
 //* ---Signin Icon -- //
 class SigninIcon extends StatelessWidget {

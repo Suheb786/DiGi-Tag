@@ -9,11 +9,11 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:photo_view/photo_view.dart';
 
-import '../../Decoration/decoration.dart';
-import '../controllers/medialsupport_controller.dart';
-import '../widgets/medical_Support_Icon.dart';
-import '../widgets/slidableContainerDecoration.dart';
-import '../widgets/sliderPin.dart';
+import '../../../Decoration/decoration.dart';
+import '../../widgets/medical_Support_Icon.dart';
+import '../../widgets/slidableContainerDecoration.dart';
+import '../../widgets/sliderPin.dart';
+import 'medialsupport_controller.dart';
 
 class MedicalSupportView extends GetView<MedicalsupportController> {
   // MedialsupportController controller = Get.put(MedialsupportController());
