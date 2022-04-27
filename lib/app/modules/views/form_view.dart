@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../Decoration/decoration.dart';
-import '../../net/firestore.dart';
+
 import '../controllers/form_controller.dart';
 
 import '../widgets/custom_form_button.dart';

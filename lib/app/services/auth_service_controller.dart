@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../modules/controllers/otp_view_controller.dart';
 import '../routes/app_pages.dart';
 
-class AuthController extends GetxController {
+class AuthServiceController extends GetxController {
   final FirebaseAuth _authInstence = FirebaseAuth.instance;
 
   String get getUid => _authInstence.currentUser!.uid;
@@ -84,10 +84,7 @@ class AuthController extends GetxController {
       FocusScope.of(ctx).unfocus();
       isLoadig.value = false;
       debugPrint("Submit OTP exception : $e");
-      // customBar(
-      //   message: 'Invalid OTP please recheck',
-      //   title: 'Error',
-      //   duration: 2,
+      // customBar(  runApp(
       // );
       Fluttertoast.showToast(msg: "Invalid OTP please recheck");
       // Get.snackbar("Error", e.message.toString());
