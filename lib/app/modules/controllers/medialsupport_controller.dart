@@ -8,8 +8,9 @@ class MedicalsupportController extends GetxController {
   TextEditingController title = TextEditingController();
 
   //TODO: Implement MedialsupportController
+  File? pickGeneralImage;
   File? pickedImage;
-  final ImagePicker picker = ImagePicker();
+  // final ImagePicker picker = ImagePicker();
 
   String? titleValidation(String value) {
     if (value.isEmpty) {
@@ -17,7 +18,7 @@ class MedicalsupportController extends GetxController {
     }
   }
 
-  void picImageCamera(BuildContext context) async {
+  void openEmergencyCamera(BuildContext context) async {
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.camera,
     );
@@ -26,6 +27,18 @@ class MedicalsupportController extends GetxController {
       pickedImage = File(pickedFile.path);
     } else {
       pickedImage = null;
+    }
+    update();
+  }
+
+  void openGeneralCamera() async {
+    var pickedGeneralFile =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+
+    if (pickedGeneralFile != null) {
+      pickGeneralImage = File(pickedGeneralFile.path);
+    } else {
+      pickGeneralImage = null;
     }
     update();
   }

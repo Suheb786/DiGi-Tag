@@ -17,10 +17,6 @@ void main() async {
   Get.put(HomeController());
   Get.put(LoginController());
   Get.put(ProfileController());
-
-  // Get.put<MyDrawerController>(MyDrawerController());
-
-  // Get.put(QrScannerController());
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
