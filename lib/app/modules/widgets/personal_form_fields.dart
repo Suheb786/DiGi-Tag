@@ -50,6 +50,7 @@ class PersonalFormFields extends GetView<FormController> {
                     labelText: "Full Name",
                     keyboardType: TextInputType.name,
                     textCapitalization: TextCapitalization.words,
+                    validator: (name) => controller.fullnameValidation(name),
                   ),
                   const SizedBox(
                     height: 15,
@@ -59,6 +60,7 @@ class PersonalFormFields extends GetView<FormController> {
                     labelText: "Email",
                     keyboardType: TextInputType.emailAddress,
                     textCapitalization: TextCapitalization.none,
+                    validator: (email) => controller.emailvalidation(email),
                   ),
                   const SizedBox(
                     height: 15,
@@ -69,6 +71,7 @@ class PersonalFormFields extends GetView<FormController> {
                     keyboardType: TextInputType.none,
                     textCapitalization: TextCapitalization.none,
                     controller: controller.dobController,
+                    validator: (dob) => controller.dobValidation(dob),
                   ),
                   const SizedBox(
                     height: 15,
@@ -79,6 +82,8 @@ class PersonalFormFields extends GetView<FormController> {
                     keyboardType: TextInputType.text,
                     textCapitalization: TextCapitalization.sentences,
                     maxLines: 3,
+                    validator: (address) =>
+                        controller.addressValidation(address),
                   ),
                 ],
               ),
@@ -94,7 +99,6 @@ class PersonalFormFields extends GetView<FormController> {
                 radius: 42,
                 backgroundColor: const Color.fromRGBO(178, 194, 237, 1),
                 child: CircleAvatar(
-                  
                   radius: 40.0,
                   backgroundColor: Colors.white,
                   child: GetBuilder<FormController>(

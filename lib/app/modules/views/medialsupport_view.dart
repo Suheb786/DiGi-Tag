@@ -172,7 +172,8 @@ class MedicalSupportView extends GetView<MedicalsupportController> {
                                 //       source: ImageSource.gallery);
                                 //   print(File(imagepath!.path));
                                 // },
-                                onTap: () => controller.picImageCamera(context),
+                                onTap: () =>
+                                    controller.openEmergencyCamera(context),
                                 child: Container(
                                   height: 55,
                                   width: 55,
@@ -354,42 +355,44 @@ class MedicalSupportView extends GetView<MedicalsupportController> {
 
   Widget generalImageOptional() {
     return InkWell(
-      onTap: () async {
+      onTap: () {
         // Pick an image
-        genreralImageOptional =
-            await _picker.pickImage(source: ImageSource.gallery);
-        print(File(genreralImageOptional!.path));
+        controller.openGeneralCamera();
       },
       child: Container(
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(7),
               border: Border.all(color: Color(0xfff8C8C8C), width: 1)),
-          child: Padding(
-            padding: EdgeInsets.all(3.0),
-            child: genreralImageOptional == null
-                ? Icon(
-                    Icons.add_photo_alternate_rounded,
-                    size: 35,
-                    color: Color(0xff6E819F),
-                  )
-                : GestureDetector(
-                    onTap: () {
-                      Container(
-                        child: PhotoView(
-                          imageProvider:
-                              AssetImage(genreralImageOptional!.path),
-                        ),
-                      );
-                      print("fdf");
-                    },
-                    child: Image.file(
-                      File(genreralImageOptional!.path),
-                      fit: BoxFit.cover,
-                      height: 35,
-                      width: 35,
-                    ),
+          child: GetBuilder<MedicalsupportController>(
+            builder: (controller) {
+              if (controller.pickGeneralImage == null) {
+                return Icon(
+                  Icons.add_photo_alternate_rounded,
+                  size: 40,
+                  color: Color(0xff6E819F),
+                );
+              } else {}
+              return Padding(
+                padding: EdgeInsets.all(3.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Container(
+                      child: PhotoView(
+                        imageProvider: AssetImage(genreralImageOptional!.path),
+                      ),
+                    );
+                    print("fdf");
+                  },
+                  child: Image.file(
+                    File(genreralImageOptional!.path),
+                    fit: BoxFit.cover,
+                    height: 35,
+                    width: 35,
                   ),
+                ),
+              );
+            },
           )),
     );
   }
@@ -397,40 +400,33 @@ class MedicalSupportView extends GetView<MedicalsupportController> {
   Widget genralImagerequired() {
     return InkWell(
       onTap: () async {
-        // Pick an image
-        genralImageRequired =
-            await _picker.pickImage(source: ImageSource.gallery);
-        print(File(genralImageRequired!.path));
+        controller.openGeneralCamera();
       },
       child: Container(
+          height: 40,
+          width: 40,
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(7),
               border: Border.all(color: Color(0xfff8C8C8C), width: 1)),
-          child: Padding(
-            padding: EdgeInsets.all(3.0),
-            child: genralImageRequired == null
-                ? Icon(
-                    Icons.add_photo_alternate_rounded,
-                    size: 35,
-                    color: Color(0xff6E819F),
-                  )
-                : GestureDetector(
-                    onTap: () {
-                      Container(
-                        child: PhotoView(
-                          imageProvider: AssetImage(genralImageRequired!.path),
-                        ),
-                      );
-                      print("fdf");
-                    },
-                    child: Image.file(
-                      File(genralImageRequired!.path),
-                      fit: BoxFit.cover,
-                      height: 35,
-                      width: 35,
-                    ),
+          child: GetBuilder<MedicalsupportController>(
+            builder: (controller) {
+              if (controller.pickGeneralImage == null) {
+                return const Icon(
+                  Icons.add_photo_alternate_rounded,
+                  size: 40,
+                  color: Color(0xff6E819F),
+                );
+              } else {
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(5),
+                  child: Image.file(
+                    controller.pickGeneralImage!,
+                    fit: BoxFit.fill,
                   ),
+                );
+              }
+            },
           )),
     );
   }

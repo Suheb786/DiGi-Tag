@@ -15,8 +15,6 @@ void main() async {
   Get.put(HomeController());
   Get.put(LoginController());
   Get.put(ProfileController());
-
-  
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
