@@ -24,7 +24,7 @@ class CustomDropdownTextFormField extends StatelessWidget {
         return InputDecorator(
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(
-              vertical: 16,
+              vertical: 14,
               horizontal: 20,
             ),
             isDense: true,

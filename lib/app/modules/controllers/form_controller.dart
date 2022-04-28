@@ -15,7 +15,6 @@ class FormController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController dobController = TextEditingController();
-  TextEditingController courseController = TextEditingController();
   TextEditingController branchController = TextEditingController();
   TextEditingController semesterController = TextEditingController();
   TextEditingController rollNoController = TextEditingController();
