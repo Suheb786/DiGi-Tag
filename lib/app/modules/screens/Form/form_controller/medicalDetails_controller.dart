@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../widgets/enums.dart';
 
 class MedicalDetailsController extends GetxController {
-  FormController formController = Get.find<FormController>();
+  // FormController formController = Get.find<FormController>();
 
   //* FormKeys ------>>>>>>>>>
 

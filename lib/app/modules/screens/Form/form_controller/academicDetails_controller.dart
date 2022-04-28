@@ -11,74 +11,11 @@ class AcademicDetailsController extends GetxController {
   var studentType = StudentType.hosteler.obs;
   var vaccination = Vaccination.firstDose.obs;
 
-  var currentSelectedCourse = "".obs;
-  var currentSelectedBranch = "".obs;
-  var currentSelectedSemester = "".obs;
+ 
 
-  final academicFormKey = GlobalKey<FormState>();
+  
 
-//* Course Dropdown Lists ----------->>>>>>>>>>>
-  List<String> courseList = [
-    "B.Tech",
-    "Diploma",
-    "B.Pharma",
-    "D.Pharma",
-    "B.A.",
-    "M.A.",
-    "B.Com.",
-    "MBA",
-    "Media",
-  ];
 
-//* Branch Dropdown Lists ----------->>>>>>>>>>>
-  List<String> branchList = [
-    "CSE",
-    "ME",
-    "CE",
-    "EE",
-    "AI",
-  ];
-
-//* Semester Dropdown Lists ----------->>>>>>>>>>>
-  List<String> semesterList = [
-    "1st",
-    "2nd",
-    "3rd",
-    "4th",
-    "5th",
-    "6th",
-    "7th",
-    "8th",
-  ];
-  validateDropDownFields() {
-    if (currentSelectedBranch.value.isEmpty ||
-        currentSelectedCourse.value.isEmpty ||
-        currentSelectedSemester.value.isEmpty) {
-      Get.snackbar(
-        "",
-        "",
-        backgroundColor: Colors.red,
-        borderRadius: 5,
-        colorText: Colors.white,
-        dismissDirection: DismissDirection.horizontal,
-        icon: const Icon(
-          Icons.error,
-          color: Colors.white,
-        ),
-        titleText: Text(
-          "Empty Fields",
-          style: GoogleFonts.montserrat(
-              fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        messageText: Text(
-          "Selection of Course, Branch, Semester are required",
-          style: GoogleFonts.montserrat(color: Colors.white),
-        ),
-      );
-    } else {
-      activeButton.value = FormButton.medical;
-    }
-  }
 
   //* Academic Details Form Validation methods ------------------->>>>>>>
 
@@ -96,11 +33,5 @@ class AcademicDetailsController extends GetxController {
     }
   }
 
-  bool checkAcademicDetails() {
-    if (academicFormKey.currentState!.validate()) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+ 
 }

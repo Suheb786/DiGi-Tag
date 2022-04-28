@@ -10,12 +10,12 @@ import 'custom_text_form_field.dart';
 
 class PersonalFormFields extends GetView<PersonalDetailsController> {
   FormController formController = Get.find<FormController>();
-  MedicalDetailsController medicalDetailsController =
-      Get.find<MedicalDetailsController>();
-  AcademicDetailsController academicDetailsController =
-      Get.find<AcademicDetailsController>();
-  PersonalDetailsController personalDetailsController =
-      Get.find<PersonalDetailsController>();
+  // MedicalDetailsController medicalDetailsController =
+  //     Get.find<MedicalDetailsController>();
+  // AcademicDetailsController academicDetailsController =
+  //     Get.find<AcademicDetailsController>();
+  // PersonalDetailsController personalDetailsController =
+  //     Get.find<PersonalDetailsController>();
   PersonalFormFields({
     Key? key,
     required this.screenHeight,
@@ -52,7 +52,7 @@ class PersonalFormFields extends GetView<PersonalDetailsController> {
               ),
             ),
             child: Form(
-              key: personalDetailsController.personalFormKey,
+              key: formController.personalFormKey,
               child: Column(
                 // mainAxisSize: MainAxisSize.max,
                 // mainAxisAlignment: MainAxisAlignment.end,
@@ -63,7 +63,7 @@ class PersonalFormFields extends GetView<PersonalDetailsController> {
                     keyboardType: TextInputType.name,
                     textCapitalization: TextCapitalization.words,
                     validator: (name) =>
-                        personalDetailsController.fullnameValidation(name),
+                        formController.fullnameValidation(name),
                   ),
                   const SizedBox(
                     height: 15,
@@ -74,20 +74,20 @@ class PersonalFormFields extends GetView<PersonalDetailsController> {
                     keyboardType: TextInputType.emailAddress,
                     textCapitalization: TextCapitalization.none,
                     validator: (email) =>
-                        personalDetailsController.emailvalidation(email),
+                        formController.emailvalidation(email),
                   ),
                   const SizedBox(
                     height: 15,
                   ),
                   CustomTextformField(
-                    onTap: () => personalDetailsController.dobDatePicker(
+                    onTap: () => formController.dobDatePicker(
                         context: context),
                     labelText: "DOB",
                     keyboardType: TextInputType.none,
                     textCapitalization: TextCapitalization.none,
                     controller: formController.dobController,
                     validator: (dob) =>
-                        personalDetailsController.dobValidation(dob),
+                        formController.dobValidation(dob),
                   ),
                   const SizedBox(
                     height: 15,
@@ -99,7 +99,7 @@ class PersonalFormFields extends GetView<PersonalDetailsController> {
                     textCapitalization: TextCapitalization.sentences,
                     maxLines: 3,
                     validator: (address) =>
-                        personalDetailsController.addressValidation(address),
+                        formController.addressValidation(address),
                   ),
                 ],
               ),
@@ -109,7 +109,7 @@ class PersonalFormFields extends GetView<PersonalDetailsController> {
             alignment: Alignment.topCenter,
             child: GestureDetector(
               onTap: () async {
-                await personalDetailsController.picImage(context);
+                await formController.picImage(context);
               },
               child: CircleAvatar(
                 radius: 42,
@@ -119,7 +119,7 @@ class PersonalFormFields extends GetView<PersonalDetailsController> {
                   backgroundColor: Colors.white,
                   child: GetBuilder<FormController>(
                     builder: (controller) {
-                      if (personalDetailsController.pickedImage == null) {
+                      if (formController.pickedImage == null) {
                         return Image.asset(
                           "assets/icons/Avatar.png",
                           height: 50,
@@ -131,7 +131,7 @@ class PersonalFormFields extends GetView<PersonalDetailsController> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(50),
                             child: Image.file(
-                              personalDetailsController.pickedImage!,
+                              formController.pickedImage!,
                               fit: BoxFit.cover,
                             ),
                           ),

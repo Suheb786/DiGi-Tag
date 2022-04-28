@@ -12,12 +12,12 @@ import 'custom_text_form_field.dart';
 
 class AcademicFormFields extends GetView<AcademicDetailsController> {
   FormController formController = Get.find<FormController>();
-  MedicalDetailsController medicalDetailsController =
-      Get.find<MedicalDetailsController>();
-  AcademicDetailsController academicDetailsController =
-      Get.find<AcademicDetailsController>();
-  PersonalDetailsController personalDetailsController =
-      Get.find<PersonalDetailsController>();
+  // MedicalDetailsController medicalDetailsController =
+  //     Get.find<MedicalDetailsController>();
+  // AcademicDetailsController academicDetailsController =
+  //     Get.find<AcademicDetailsController>();
+  // PersonalDetailsController personalDetailsController =
+  //     Get.find<PersonalDetailsController>();
   AcademicFormFields({
     Key? key,
     required this.screenHeight,
@@ -51,7 +51,7 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
           ),
         ),
         child: Form(
-          key: controller.academicFormKey,
+          key: formController.academicFormKey,
           child: Column(
             // mainAxisSize: MainAxisSize.max,
             // mainAxisAlignment: MainAxisAlignment.end,
@@ -90,17 +90,17 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
 
               Obx(
                 () => CustomDropdownTextFormField(
-                  dropDownListOfItems: academicDetailsController.courseList,
+                  dropDownListOfItems: formController.courseList,
                   onChanged: (newValue) {
-                    controller.currentSelectedCourse.value = newValue ?? "";
+                    formController.currentSelectedCourse.value = newValue ?? "";
                   },
                   hintText: "Course",
-                  isEmpty: controller.currentSelectedCourse.value.isEmpty
+                  isEmpty: formController.currentSelectedCourse.value.isEmpty
                       ? true
                       : false,
-                  value: controller.currentSelectedCourse.value.isEmpty
+                  value: formController.currentSelectedCourse.value.isEmpty
                       ? null
-                      : controller.currentSelectedCourse.value,
+                      : formController.currentSelectedCourse.value,
                 ),
               ),
 
@@ -109,17 +109,17 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
               ),
               Obx(
                 () => CustomDropdownTextFormField(
-                  dropDownListOfItems: academicDetailsController.branchList,
+                  dropDownListOfItems: formController.branchList,
                   onChanged: (newValue) {
-                    controller.currentSelectedBranch.value = newValue ?? "";
+                    formController.currentSelectedBranch.value = newValue ?? "";
                   },
                   hintText: "Branch",
-                  isEmpty: controller.currentSelectedBranch.value.isEmpty
+                  isEmpty: formController.currentSelectedBranch.value.isEmpty
                       ? true
                       : false,
-                  value: controller.currentSelectedBranch.value.isEmpty
+                  value: formController.currentSelectedBranch.value.isEmpty
                       ? null
-                      : controller.currentSelectedBranch.value,
+                      : formController.currentSelectedBranch.value,
                 ),
               ),
               const SizedBox(
@@ -127,17 +127,17 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
               ),
               Obx(
                 () => CustomDropdownTextFormField(
-                  dropDownListOfItems: academicDetailsController.semesterList,
+                  dropDownListOfItems: formController.semesterList,
                   onChanged: (newValue) {
-                    controller.currentSelectedSemester.value = newValue ?? "";
+                    formController.currentSelectedSemester.value = newValue ?? "";
                   },
                   hintText: "Semester",
-                  isEmpty: controller.currentSelectedSemester.value.isEmpty
+                  isEmpty: formController.currentSelectedSemester.value.isEmpty
                       ? true
                       : false,
-                  value: controller.currentSelectedSemester.value.isEmpty
+                  value: formController.currentSelectedSemester.value.isEmpty
                       ? null
-                      : controller.currentSelectedSemester.value,
+                      : formController.currentSelectedSemester.value,
                 ),
               ),
               const SizedBox(
