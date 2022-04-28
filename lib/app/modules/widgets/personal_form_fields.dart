@@ -1,7 +1,7 @@
+import 'package:digitag/app/modules/screens/Form/form_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 
-import '../views/Form/form_controller.dart';
 import 'custom_text_form_field.dart';
 
 class PersonalFormFields extends GetView<FormController> {

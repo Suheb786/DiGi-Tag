@@ -1,9 +1,8 @@
-
+import 'package:digitag/app/modules/widgets/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../Decoration/colors/app_colors.dart';
-import '../../enums/voting.dart';
 
 class AuditCardWidget extends StatelessWidget {
   final String message;

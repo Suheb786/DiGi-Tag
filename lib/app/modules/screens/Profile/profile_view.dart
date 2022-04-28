@@ -1,7 +1,6 @@
-import 'package:digitag/app/modules/views/Profile/profile_controller.dart';
-import 'package:digitag/app/modules/widgets/custom_appbar.dart';
+import 'package:digitag/app/modules/screens/Profile/profile_controller.dart';
 
-import 'package:digitag/app/modules/views/Drawer/drawer_view.dart';
+import 'package:digitag/app/modules/widgets/custom_appbar.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

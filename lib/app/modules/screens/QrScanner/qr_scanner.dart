@@ -1,5 +1,6 @@
-import 'package:digitag/app/modules/views/Drawer/drawer_view.dart';
-import 'package:digitag/app/modules/views/QrScanner/qr_scanner_controller.dart';
+import 'package:digitag/app/modules/screens/Drawer/drawer_view.dart';
+import 'package:digitag/app/modules/screens/QrScanner/qr_scanner_controller.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';

@@ -1,25 +1,24 @@
+import 'package:digitag/app/modules/screens/Drawer/drawer_binding.dart';
+import 'package:digitag/app/modules/screens/Drawer/drawer_view.dart';
+import 'package:digitag/app/modules/screens/Form/form_binding.dart';
+import 'package:digitag/app/modules/screens/Form/form_view.dart';
+import 'package:digitag/app/modules/screens/Home/home_binding.dart';
+import 'package:digitag/app/modules/screens/Home/home_view.dart';
+import 'package:digitag/app/modules/screens/Login/login_binding.dart';
+import 'package:digitag/app/modules/screens/Login/login_view.dart';
+import 'package:digitag/app/modules/screens/MedicalSupport/medialsupport_binding.dart';
+import 'package:digitag/app/modules/screens/MedicalSupport/medialsupport_view.dart';
+import 'package:digitag/app/modules/screens/Notification/notification_binding.dart';
+import 'package:digitag/app/modules/screens/Notification/notification_view.dart';
+import 'package:digitag/app/modules/screens/OTP/otp_view_binding.dart';
+import 'package:digitag/app/modules/screens/OTP/otp_view_view.dart';
+import 'package:digitag/app/modules/screens/Profile/profile_binding.dart';
+import 'package:digitag/app/modules/screens/Profile/profile_view.dart';
+import 'package:digitag/app/modules/screens/QrGenerator/qr_generator_binding.dart';
+import 'package:digitag/app/modules/screens/QrGenerator/qr_generator_view.dart';
+import 'package:digitag/app/modules/screens/QrScanner/qr_scanner.dart';
+import 'package:digitag/app/modules/screens/QrScanner/qr_scanner_binding.dart';
 import 'package:get/get.dart';
-
-import '../modules/views/Drawer/drawer_binding.dart';
-import '../modules/views/Drawer/drawer_view.dart';
-import '../modules/views/Form/form_binding.dart';
-import '../modules/views/Form/form_view.dart';
-import '../modules/views/Home/home_binding.dart';
-import '../modules/views/Home/home_view.dart';
-import '../modules/views/Login/login_binding.dart';
-import '../modules/views/Login/login_view.dart';
-import '../modules/views/MedicalSupport/medialsupport_binding.dart';
-import '../modules/views/MedicalSupport/medialsupport_view.dart';
-import '../modules/views/Notification/notification_binding.dart';
-import '../modules/views/Notification/notification_view.dart';
-import '../modules/views/OTP/otp_view_binding.dart';
-import '../modules/views/OTP/otp_view_view.dart';
-import '../modules/views/Profile/profile_binding.dart';
-import '../modules/views/Profile/profile_view.dart';
-import '../modules/views/QrGenerator/qr_generator_binding.dart';
-import '../modules/views/QrGenerator/qr_generator_view.dart';
-import '../modules/views/QrScanner/qr_scanner.dart';
-import '../modules/views/QrScanner/qr_scanner_binding.dart';
 
 part 'app_routes.dart';
 

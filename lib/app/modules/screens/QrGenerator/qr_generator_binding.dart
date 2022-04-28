@@ -1,4 +1,4 @@
-import 'package:digitag/app/modules/views/QrGenerator/qr_generator_controller.dart';
+import 'package:digitag/app/modules/screens/QrGenerator/qr_generator_controller.dart';
 import 'package:get/get.dart';
 
 class QrGeneratorBinding extends Bindings {

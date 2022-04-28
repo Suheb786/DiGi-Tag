@@ -1,9 +1,8 @@
 //* ---Scanner Icon Widget on Home Screen-- //
 
+import 'package:digitag/app/modules/screens/QrScanner/qr_scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../views/QrScanner/qr_scanner.dart';
 
 class ScanIcon extends StatelessWidget {
   ScanIcon({

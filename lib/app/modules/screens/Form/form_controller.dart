@@ -1,9 +1,8 @@
 import 'dart:io';
 
+import 'package:digitag/app/modules/widgets/enums.dart';
 import 'package:flutter/material.dart';
-import 'package:digitag/app/enums/form_buttons.dart';
-import 'package:digitag/app/enums/student_type.dart';
-import 'package:digitag/app/enums/vaccination.dart';
+
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 

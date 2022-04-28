@@ -1,4 +1,3 @@
-import 'package:digitag/app/enums/form_buttons.dart';
 import 'package:digitag/app/modules/widgets/academic_form_fields.dart';
 import 'package:digitag/app/modules/widgets/bit_text.dart';
 import 'package:digitag/app/modules/widgets/medical_form_fields.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../Decoration/decoration.dart';
+import '../../widgets/enums.dart';
 import '../../widgets/custom_form_button.dart';
 import '../../widgets/form_bottom_nev_button.dart';
 import '../../widgets/form_submit_button.dart';
