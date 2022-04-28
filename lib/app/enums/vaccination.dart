@@ -1,4 +1,0 @@
-enum Vaccination {
-  firstDose,
-  secondDose,
-}

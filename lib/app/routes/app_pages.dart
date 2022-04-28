@@ -1,25 +1,24 @@
+import 'package:digitag/app/modules/screens/Drawer/drawer_binding.dart';
+import 'package:digitag/app/modules/screens/Drawer/drawer_view.dart';
+import 'package:digitag/app/modules/screens/Form/form_binding.dart';
+import 'package:digitag/app/modules/screens/Form/form_view.dart';
+import 'package:digitag/app/modules/screens/Home/home_binding.dart';
+import 'package:digitag/app/modules/screens/Home/home_view.dart';
+import 'package:digitag/app/modules/screens/Login/login_binding.dart';
+import 'package:digitag/app/modules/screens/Login/login_view.dart';
+import 'package:digitag/app/modules/screens/MedicalSupport/medialsupport_binding.dart';
+import 'package:digitag/app/modules/screens/MedicalSupport/medialsupport_view.dart';
+import 'package:digitag/app/modules/screens/Notification/notification_binding.dart';
+import 'package:digitag/app/modules/screens/Notification/notification_view.dart';
+import 'package:digitag/app/modules/screens/OTP/otp_view_binding.dart';
+import 'package:digitag/app/modules/screens/OTP/otp_view_view.dart';
+import 'package:digitag/app/modules/screens/Profile/profile_binding.dart';
+import 'package:digitag/app/modules/screens/Profile/profile_view.dart';
+import 'package:digitag/app/modules/screens/QrGenerator/qr_generator_binding.dart';
+import 'package:digitag/app/modules/screens/QrGenerator/qr_generator_view.dart';
+import 'package:digitag/app/modules/screens/QrScanner/qr_scanner.dart';
+import 'package:digitag/app/modules/screens/QrScanner/qr_scanner_binding.dart';
 import 'package:get/get.dart';
-
-import '../modules/bindings/drawer_binding.dart';
-import '../modules/bindings/form_binding.dart';
-import '../modules/bindings/home_binding.dart';
-import '../modules/bindings/login_binding.dart';
-import '../modules/bindings/medialsupport_binding.dart';
-import '../modules/bindings/notification_binding.dart';
-import '../modules/bindings/otp_view_binding.dart';
-import '../modules/bindings/profile_binding.dart';
-import '../modules/bindings/qr_generator_binding.dart';
-import '../modules/bindings/qr_scanner_binding.dart';
-import '../modules/views/drawer_view.dart';
-import '../modules/views/form_view.dart';
-import '../modules/views/home_view.dart';
-import '../modules/views/login_view.dart';
-import '../modules/views/medialsupport_view.dart';
-import '../modules/views/notification_view.dart';
-import '../modules/views/otp_view_view.dart';
-import '../modules/views/profile_view.dart';
-import '../modules/views/qr_generator_view.dart';
-import '../modules/views/qr_scanner.dart';
 
 part 'app_routes.dart';
 

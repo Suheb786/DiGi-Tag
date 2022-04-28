@@ -1,5 +1,4 @@
-
-import '../enums/voting.dart';
+import '../modules/widgets/enums.dart';
 
 class AuditCard {
   final String message;

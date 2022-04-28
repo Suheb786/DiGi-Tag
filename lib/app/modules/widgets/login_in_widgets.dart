@@ -1,8 +1,9 @@
 //?-----------------LOGIN SCREEN -------------------------//
 //* User Id Text Field//
 
-import 'package:digitag/app/modules/controllers/login_controller.dart';
-import 'package:digitag/app/modules/views/drawer_view.dart';
+import 'package:digitag/app/modules/screens/Drawer/drawer_view.dart';
+import 'package:digitag/app/modules/screens/Login/login_controller.dart';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

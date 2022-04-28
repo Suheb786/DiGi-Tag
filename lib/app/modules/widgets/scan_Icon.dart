@@ -1,5 +1,6 @@
 //* ---Scanner Icon Widget on Home Screen-- //
-import 'package:digitag/app/modules/views/qr_scanner.dart';
+
+import 'package:digitag/app/modules/screens/QrScanner/qr_scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

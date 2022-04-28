@@ -1,10 +1,10 @@
+import 'package:digitag/app/modules/screens/OTP/otp_view_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
-import '../modules/controllers/otp_view_controller.dart';
 import '../routes/app_pages.dart';
 
 class AuthServiceController extends GetxController {

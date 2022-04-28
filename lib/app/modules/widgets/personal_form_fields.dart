@@ -1,4 +1,4 @@
-import 'package:digitag/app/modules/controllers/form_controller.dart';
+import 'package:digitag/app/modules/screens/Form/form_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 

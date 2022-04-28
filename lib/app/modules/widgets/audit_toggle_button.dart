@@ -1,12 +1,12 @@
 import 'package:digitag/app/Decoration/colors/app_colors.dart';
+import 'package:digitag/app/modules/screens/Profile/profile_controller.dart';
 import 'package:digitag/app/modules/widgets/badge_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:badges/badges.dart';
 import 'package:get/get.dart';
 
-import '../../enums/voting.dart';
-import '../controllers/profile_controller.dart';
+import 'enums.dart';
 
 class AuditToggleButton extends StatelessWidget {
   final bool value;

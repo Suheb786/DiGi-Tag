@@ -1,9 +1,8 @@
+import 'package:digitag/app/modules/screens/Login/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../controllers/login_controller.dart';
 
 LoginController loginController = Get.find<LoginController>();
 

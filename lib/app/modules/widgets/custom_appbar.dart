@@ -1,3 +1,4 @@
+import 'package:digitag/app/modules/screens/Profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -5,7 +6,7 @@ import 'package:get/get.dart';
 
 import '../../Decoration/text/text.dart';
 import '../../routes/app_pages.dart';
-import '../controllers/profile_controller.dart';
+
 import 'audit_toggle_button.dart';
 import 'medical_Support_Icon.dart';
 import 'profile_Stack.dart';

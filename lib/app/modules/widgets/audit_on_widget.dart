@@ -1,9 +1,8 @@
+import 'package:digitag/app/modules/widgets/enums.dart';
 import 'package:flutter/material.dart';
 
-import '../../enums/voting.dart';
 import '../../models/audit_card_model.dart';
 import 'audit_card.dart';
-
 
 class AuditOnWidget extends StatelessWidget {
   // ProfileController profileController = Get.put(ProfileController());
