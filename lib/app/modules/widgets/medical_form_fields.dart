@@ -1,23 +1,13 @@
-import 'package:digitag/app/modules/screens/Form/form_controller/academicDetails_controller.dart';
-import 'package:digitag/app/modules/screens/Form/form_controller/form_controller.dart';
+import 'package:digitag/app/modules/screens/Form/form_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../screens/Form/form_controller/medicalDetails_controller.dart';
-import '../screens/Form/form_controller/personalDetails_controller.dart';
 import 'enums.dart';
 
 import 'custom_radio_button.dart';
 import 'custom_text_form_field.dart';
 
 class MedicalFormFields extends GetView<FormController> {
-  FormController formController = Get.find<FormController>();
-  MedicalDetailsController medicalDetailsController =
-      Get.find<MedicalDetailsController>();
-  AcademicDetailsController academicDetailsController =
-      Get.find<AcademicDetailsController>();
-  PersonalDetailsController personalDetailsController =
-      Get.find<PersonalDetailsController>();
   MedicalFormFields({
     Key? key,
     required this.screenHeight,
@@ -51,7 +41,7 @@ class MedicalFormFields extends GetView<FormController> {
           ),
         ),
         child: Form(
-          key: medicalDetailsController.medicalFormKey,
+          key: controller.medicalFormKey,
           child: Column(
             // mainAxisSize: MainAxisSize.max,
             // mainAxisAlignment: MainAxisAlignment.end,

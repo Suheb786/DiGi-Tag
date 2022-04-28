@@ -1,23 +1,14 @@
-import 'package:digitag/app/modules/screens/Form/form_controller/form_controller.dart';
-import 'package:digitag/app/modules/screens/Form/form_controller/personalDetails_controller.dart';
+import 'package:digitag/app/modules/screens/Form/form_controller.dart';
+
 import 'package:digitag/app/modules/widgets/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../screens/Form/form_controller/academicDetails_controller.dart';
-import '../screens/Form/form_controller/medicalDetails_controller.dart';
 import 'custom_dropdown_text_form_field.dart';
 import 'custom_radio_button.dart';
 import 'custom_text_form_field.dart';
 
-class AcademicFormFields extends GetView<AcademicDetailsController> {
-  FormController formController = Get.find<FormController>();
-  MedicalDetailsController medicalDetailsController =
-      Get.find<MedicalDetailsController>();
-  AcademicDetailsController academicDetailsController =
-      Get.find<AcademicDetailsController>();
-  PersonalDetailsController personalDetailsController =
-      Get.find<PersonalDetailsController>();
+class AcademicFormFields extends GetView<FormController> {
   AcademicFormFields({
     Key? key,
     required this.screenHeight,
@@ -90,7 +81,7 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
 
               Obx(
                 () => CustomDropdownTextFormField(
-                  dropDownListOfItems: academicDetailsController.courseList,
+                  dropDownListOfItems: controller.courseList,
                   onChanged: (newValue) {
                     controller.currentSelectedCourse.value = newValue ?? "";
                   },
@@ -109,7 +100,7 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
               ),
               Obx(
                 () => CustomDropdownTextFormField(
-                  dropDownListOfItems: academicDetailsController.branchList,
+                  dropDownListOfItems: controller.branchList,
                   onChanged: (newValue) {
                     controller.currentSelectedBranch.value = newValue ?? "";
                   },
@@ -127,7 +118,7 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
               ),
               Obx(
                 () => CustomDropdownTextFormField(
-                  dropDownListOfItems: academicDetailsController.semesterList,
+                  dropDownListOfItems: controller.semesterList,
                   onChanged: (newValue) {
                     controller.currentSelectedSemester.value = newValue ?? "";
                   },
@@ -145,7 +136,7 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
               ),
               CustomTextformField(
                 validator: (p0) => controller.validateRollNo(p0),
-                controller: formController.rollNoController,
+                controller: controller.rollNoController,
                 labelText: "Roll no.",
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.characters,
@@ -155,7 +146,7 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
               ),
               CustomTextformField(
                 validator: (p0) => controller.validateEnrollNo(p0),
-                controller: formController.enrollmentNoController,
+                controller: controller.enrollmentNoController,
                 labelText: "Enrollment No.",
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.characters,

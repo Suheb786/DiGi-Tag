@@ -1,5 +1,5 @@
-import 'package:digitag/app/modules/screens/Form/form_controller/form_controller.dart';
-import 'package:digitag/app/modules/screens/Form/form_controller/personalDetails_controller.dart';
+import 'package:digitag/app/modules/screens/Form/form_controller.dart';
+
 import 'package:digitag/app/modules/screens/Home/home_controller.dart';
 import 'package:digitag/app/modules/screens/Login/login_controller.dart';
 import 'package:digitag/app/modules/screens/Profile/profile_controller.dart';
@@ -19,6 +19,7 @@ void main() async {
   Get.put(HomeController());
   Get.put(LoginController());
   Get.put(ProfileController());
+  Get.put(FormController());
 
   runApp(
     GetMaterialApp(
