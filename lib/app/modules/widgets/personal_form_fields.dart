@@ -1,11 +1,22 @@
-import 'package:digitag/app/modules/screens/Form/form_controller.dart';
+import 'package:digitag/app/modules/screens/Form/form_controller/form_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
+import '../screens/Form/form_controller/academicDetails_controller.dart';
+import '../screens/Form/form_controller/medicalDetails_controller.dart';
+import '../screens/Form/form_controller/personalDetails_controller.dart';
 import 'custom_text_form_field.dart';
 
-class PersonalFormFields extends GetView<FormController> {
-  const PersonalFormFields({
+class PersonalFormFields extends GetView<PersonalDetailsController> {
+  FormController formController = Get.find<FormController>();
+  MedicalDetailsController medicalDetailsController =
+      Get.find<MedicalDetailsController>();
+  AcademicDetailsController academicDetailsController =
+      Get.find<AcademicDetailsController>();
+  PersonalDetailsController personalDetailsController =
+      Get.find<PersonalDetailsController>();
+  PersonalFormFields({
     Key? key,
     required this.screenHeight,
   }) : super(key: key);
@@ -41,50 +52,54 @@ class PersonalFormFields extends GetView<FormController> {
               ),
             ),
             child: Form(
-              key: controller.personalFormKey,
+              key: personalDetailsController.personalFormKey,
               child: Column(
                 // mainAxisSize: MainAxisSize.max,
                 // mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   CustomTextformField(
-                    controller: controller.nameController,
+                    controller: formController.nameController,
                     labelText: "Full Name",
                     keyboardType: TextInputType.name,
                     textCapitalization: TextCapitalization.words,
-                    validator: (name) => controller.fullnameValidation(name),
+                    validator: (name) =>
+                        personalDetailsController.fullnameValidation(name),
                   ),
                   const SizedBox(
                     height: 15,
                   ),
                   CustomTextformField(
-                    controller: controller.emailController,
+                    controller: formController.emailController,
                     labelText: "Email",
                     keyboardType: TextInputType.emailAddress,
                     textCapitalization: TextCapitalization.none,
-                    validator: (email) => controller.emailvalidation(email),
+                    validator: (email) =>
+                        personalDetailsController.emailvalidation(email),
                   ),
                   const SizedBox(
                     height: 15,
                   ),
                   CustomTextformField(
-                    onTap: () => controller.dobDatePicker(context: context),
+                    onTap: () => personalDetailsController.dobDatePicker(
+                        context: context),
                     labelText: "DOB",
                     keyboardType: TextInputType.none,
                     textCapitalization: TextCapitalization.none,
-                    controller: controller.dobController,
-                    validator: (dob) => controller.dobValidation(dob),
+                    controller: formController.dobController,
+                    validator: (dob) =>
+                        personalDetailsController.dobValidation(dob),
                   ),
                   const SizedBox(
                     height: 15,
                   ),
                   CustomTextformField(
-                    controller: controller.addressController,
+                    controller: formController.addressController,
                     labelText: "Address",
                     keyboardType: TextInputType.text,
                     textCapitalization: TextCapitalization.sentences,
                     maxLines: 3,
                     validator: (address) =>
-                        controller.addressValidation(address),
+                        personalDetailsController.addressValidation(address),
                   ),
                 ],
               ),
@@ -94,7 +109,7 @@ class PersonalFormFields extends GetView<FormController> {
             alignment: Alignment.topCenter,
             child: GestureDetector(
               onTap: () async {
-                await controller.picImage(context);
+                await personalDetailsController.picImage(context);
               },
               child: CircleAvatar(
                 radius: 42,
@@ -104,7 +119,7 @@ class PersonalFormFields extends GetView<FormController> {
                   backgroundColor: Colors.white,
                   child: GetBuilder<FormController>(
                     builder: (controller) {
-                      if (controller.pickedImage == null) {
+                      if (personalDetailsController.pickedImage == null) {
                         return Image.asset(
                           "assets/icons/Avatar.png",
                           height: 50,
@@ -116,7 +131,7 @@ class PersonalFormFields extends GetView<FormController> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(50),
                             child: Image.file(
-                              controller.pickedImage!,
+                              personalDetailsController.pickedImage!,
                               fit: BoxFit.cover,
                             ),
                           ),

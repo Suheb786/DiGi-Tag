@@ -1,4 +1,4 @@
-import 'package:digitag/app/modules/screens/Form/form_controller.dart';
+import 'package:digitag/app/modules/screens/Form/form_controller/form_controller.dart';
 import 'package:get/get.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';

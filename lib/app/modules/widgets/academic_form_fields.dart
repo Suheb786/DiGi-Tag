@@ -1,15 +1,24 @@
-import 'package:digitag/app/modules/screens/Form/form_controller.dart';
+import 'package:digitag/app/modules/screens/Form/form_controller/form_controller.dart';
+import 'package:digitag/app/modules/screens/Form/form_controller/personalDetails_controller.dart';
 import 'package:digitag/app/modules/widgets/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
+import '../screens/Form/form_controller/academicDetails_controller.dart';
+import '../screens/Form/form_controller/medicalDetails_controller.dart';
 import 'custom_dropdown_text_form_field.dart';
 import 'custom_radio_button.dart';
 import 'custom_text_form_field.dart';
 
-class AcademicFormFields extends GetView<FormController> {
-  const AcademicFormFields({
+class AcademicFormFields extends GetView<AcademicDetailsController> {
+  FormController formController = Get.find<FormController>();
+  MedicalDetailsController medicalDetailsController =
+      Get.find<MedicalDetailsController>();
+  AcademicDetailsController academicDetailsController =
+      Get.find<AcademicDetailsController>();
+  PersonalDetailsController personalDetailsController =
+      Get.find<PersonalDetailsController>();
+  AcademicFormFields({
     Key? key,
     required this.screenHeight,
   }) : super(key: key);
@@ -81,7 +90,7 @@ class AcademicFormFields extends GetView<FormController> {
 
               Obx(
                 () => CustomDropdownTextFormField(
-                  dropDownListOfItems: controller.courseDropDownList,
+                  dropDownListOfItems: academicDetailsController.courseList,
                   onChanged: (newValue) {
                     controller.currentSelectedCourse.value = newValue ?? "";
                   },
@@ -98,25 +107,45 @@ class AcademicFormFields extends GetView<FormController> {
               const SizedBox(
                 height: 15,
               ),
-              CustomTextformField(
-                controller: controller.branchController,
-                labelText: "Branch",
-                keyboardType: TextInputType.text,
-                textCapitalization: TextCapitalization.characters,
+              Obx(
+                () => CustomDropdownTextFormField(
+                  dropDownListOfItems: academicDetailsController.branchList,
+                  onChanged: (newValue) {
+                    controller.currentSelectedBranch.value = newValue ?? "";
+                  },
+                  hintText: "Branch",
+                  isEmpty: controller.currentSelectedBranch.value.isEmpty
+                      ? true
+                      : false,
+                  value: controller.currentSelectedBranch.value.isEmpty
+                      ? null
+                      : controller.currentSelectedBranch.value,
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Obx(
+                () => CustomDropdownTextFormField(
+                  dropDownListOfItems: academicDetailsController.semesterList,
+                  onChanged: (newValue) {
+                    controller.currentSelectedSemester.value = newValue ?? "";
+                  },
+                  hintText: "Semester",
+                  isEmpty: controller.currentSelectedSemester.value.isEmpty
+                      ? true
+                      : false,
+                  value: controller.currentSelectedSemester.value.isEmpty
+                      ? null
+                      : controller.currentSelectedSemester.value,
+                ),
               ),
               const SizedBox(
                 height: 15,
               ),
               CustomTextformField(
-                controller: controller.semesterController,
-                labelText: "Semester",
-                keyboardType: TextInputType.number,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              CustomTextformField(
-                controller: controller.rollNoController,
+                validator: (p0) => controller.validateRollNo(p0),
+                controller: formController.rollNoController,
                 labelText: "Roll no.",
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.characters,
@@ -125,7 +154,8 @@ class AcademicFormFields extends GetView<FormController> {
                 height: 15,
               ),
               CustomTextformField(
-                controller: controller.enrollmentNoController,
+                validator: (p0) => controller.validateEnrollNo(p0),
+                controller: formController.enrollmentNoController,
                 labelText: "Enrollment No.",
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.characters,

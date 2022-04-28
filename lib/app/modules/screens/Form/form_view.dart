@@ -1,3 +1,4 @@
+import 'package:digitag/app/modules/screens/Form/form_controller/personalDetails_controller.dart';
 import 'package:digitag/app/modules/widgets/academic_form_fields.dart';
 import 'package:digitag/app/modules/widgets/bit_text.dart';
 import 'package:digitag/app/modules/widgets/medical_form_fields.dart';
@@ -12,7 +13,7 @@ import '../../widgets/form_bottom_nev_button.dart';
 import '../../widgets/form_submit_button.dart';
 import '../../widgets/personal_form_fields.dart';
 
-import 'form_controller.dart';
+import 'form_controller/form_controller.dart';
 
 class FormView extends GetView<FormController> {
   const FormView({Key? key}) : super(key: key);
