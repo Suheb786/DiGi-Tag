@@ -1,9 +1,7 @@
 import 'package:digitag/app/modules/screens/Form/form_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'enums.dart';
-
 import 'custom_radio_button.dart';
 import 'custom_text_form_field.dart';
 
@@ -72,10 +70,13 @@ class MedicalFormFields extends GetView<FormController> {
                 height: 15,
               ),
               CustomTextformField(
+                validator: (blood) => controller.bloodGroup(blood),
+                autoValid: AutovalidateMode.onUserInteraction,
                 controller: controller.bloodGroupcontroller,
                 labelText: "Blood group type",
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.characters,
+                maxLength: 3,
               ),
               const SizedBox(
                 height: 15,

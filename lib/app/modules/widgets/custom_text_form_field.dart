@@ -8,8 +8,12 @@ class CustomTextformField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   void Function()? onTap;
+  AutovalidateMode? autoValid;
+  int? maxLength;
   CustomTextformField({
     this.maxLines = 1,
+    this.maxLength,
+    this.autoValid,
     this.textCapitalization = TextCapitalization.sentences,
     this.keyboardType,
     this.validator,
@@ -25,6 +29,8 @@ class CustomTextformField extends StatelessWidget {
       maxLines: maxLines,
       textCapitalization: textCapitalization,
       onTap: onTap,
+      maxLength: maxLength,
+      autovalidateMode: autoValid,
       keyboardType: keyboardType,
       validator: validator,
       controller: controller,
@@ -37,6 +43,7 @@ class CustomTextformField extends StatelessWidget {
         color: const Color(0xff28407D).withOpacity(0.8),
       ),
       decoration: InputDecoration(
+        counterText: "",
         contentPadding: const EdgeInsets.symmetric(
           vertical: 16,
           horizontal: 20,

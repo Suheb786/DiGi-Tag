@@ -55,6 +55,8 @@ class AcademicFormFields extends GetView<FormController> {
                       groupValue: controller.studentType.value,
                       value: StudentType.hosteler,
                       onChanged: (val) {
+                        controller.studentcheck();
+
                         controller.studentType.value = val as StudentType;
                       },
                     ),

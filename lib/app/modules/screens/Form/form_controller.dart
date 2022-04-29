@@ -1,27 +1,19 @@
 import 'dart:io';
 
 import 'package:digitag/app/modules/widgets/enums.dart';
+import 'package:digitag/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 class FormController extends GetxController {
-//* Finding Controllers ---------------------------------------->>>>>>>>
-  // PersonalDetailsController personalDetailsController =
-  //     Get.find<PersonalDetailsController>();
-  // MedicalDetailsController medicalDetailsController =
-  //     Get.find<MedicalDetailsController>();
-  // AcademicDetailsController academicDetailsController =
-  //     Get.find<AcademicDetailsController>();
-
   //* Form controllers------------------------------------------>>>>>>>>>>>
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController dobController = TextEditingController();
-  TextEditingController branchController = TextEditingController();
-  TextEditingController semesterController = TextEditingController();
+
   TextEditingController rollNoController = TextEditingController();
   TextEditingController enrollmentNoController = TextEditingController();
   TextEditingController bloodGroupcontroller = TextEditingController();
@@ -47,6 +39,14 @@ class FormController extends GetxController {
     }
   }
 
+  studentcheck() {
+    if (studentType.value == StudentType.hosteler) {
+      studentType.value = StudentType.dayScholor;
+    } else {
+      studentType.value = StudentType.hosteler;
+    }
+  }
+
   //* Bottom Navigation handlers ---------------->>>>>>>>>>
   void nextButton() {
     switch (activeButton.value) {
@@ -57,8 +57,9 @@ class FormController extends GetxController {
 
         break;
       case FormButton.academic:
-        if (academicFormKey.currentState!.validate() &&
-            validateDropDownFields()) {}
+        if (checkAcademicDetails()) {
+          activeButton.value = FormButton.medical;
+        }
         break;
       case FormButton.medical:
         break;
@@ -74,19 +75,6 @@ class FormController extends GetxController {
         break;
       case FormButton.medical:
         break;
-    }
-  }
-
-  void onSubmit() {
-    if (checkAcademicDetails() && checkPersonalDetails()) {
-      print("Form is valid");
-
-      //! Make a map of all data here and upload to db
-    } else {
-      Get.snackbar(
-        "Validiation Faild",
-        "One or more fields are not valid",
-      );
     }
   }
 
@@ -137,37 +125,43 @@ class FormController extends GetxController {
     if (currentSelectedBranch.value.isEmpty ||
         currentSelectedCourse.value.isEmpty ||
         currentSelectedSemester.value.isEmpty) {
-      Get.snackbar(
-        "",
-        "",
-        backgroundColor: Colors.red,
-        borderRadius: 5,
-        colorText: Colors.white,
-        dismissDirection: DismissDirection.horizontal,
-        icon: const Icon(
-          Icons.error,
-          color: Colors.white,
-        ),
-        titleText: Text(
-          "Empty Fields",
-          style: GoogleFonts.montserrat(
-              fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        messageText: Text(
-          "Selection of Course, Branch, Semester are required",
-          style: GoogleFonts.montserrat(color: Colors.white),
-        ),
+      showSnackbar(
+        "Empty Fields",
+        "Selection of Course, Branch, Semester are required",
       );
     } else {
       activeButton.value = FormButton.medical;
     }
   }
 
+  SnackbarController showSnackbar(text, massage) {
+    return Get.snackbar(
+      "",
+      "",
+      backgroundColor: Colors.red,
+      borderRadius: 5,
+      colorText: Colors.white,
+      dismissDirection: DismissDirection.horizontal,
+      icon: const Icon(
+        Icons.error,
+        color: Colors.white,
+      ),
+      titleText: Text(
+        text,
+        style: GoogleFonts.montserrat(
+            fontWeight: FontWeight.bold, color: Colors.white),
+      ),
+      messageText: Text(
+        massage,
+        style: GoogleFonts.montserrat(color: Colors.white),
+      ),
+    );
+  }
+
   //* Academic Details Form Validation methods ------------------->>>>>>>
 
   String? validateRollNo(rollNo) {
-    if (rollNo!.toString().isEmpty ||
-        rollNo == null && rollNo.toString().length <= 10) {
+    if (rollNo!.toString().isEmpty || rollNo.toString().length <= 10) {
       return "Please Enter a Valid Roll No.";
     }
   }
@@ -193,12 +187,6 @@ class FormController extends GetxController {
 
   DateTime? dob; // Null if value is not picked
   File? pickedImage; // Null if image is not pucked
-
-  //*RegExpressions // --------------->>>>>>>>
-  RegExp nameRex =
-      RegExp(r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$");
-  RegExp emailRex = RegExp(
-      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
 
   //* Personal Details Form Validation methods ------------------->>>>>>>
   String? emailvalidation(email) {
@@ -226,13 +214,37 @@ class FormController extends GetxController {
     if (address!.isEmpty || address == null)
       return "Please Enter Your Home Adsress";
   }
+//* MedicalDetail Validation ------------>>>>>>>
+
+  String? bloodGroup(blood) {
+    if (!bloodGroupRex.hasMatch(blood) || blood == null) {
+      return "Enter a valid Blood Type";
+    }
+  }
+
   //*Form Check---------->>>>>>>
 
+  checkPickedImage() {
+    if (pickedImage != null) {
+      return true;
+    } else
+      showSnackbar("Profile Pic not added",
+          "You have to upload a profile pic that will be visible on your public profile");
+  }
+
   bool checkPersonalDetails() {
-    if (personalFormKey.currentState!.validate()) {
+    if (checkPickedImage() && personalFormKey.currentState!.validate()) {
       return true;
     } else {
       return false;
+    }
+  }
+
+  checkSubmitButton() {
+    if (medicalFormKey.currentState!.validate()) {
+      // addUsers();
+
+      // Get.offAllNamed(Routes.DRAWER);
     }
   }
 
@@ -364,4 +376,11 @@ class FormController extends GetxController {
           );
         });
   }
+
+  //*RegExpressions // --------------->>>>>>>>
+  RegExp bloodGroupRex = RegExp(r"^(A|B|AB|O)[+-]?$");
+  RegExp nameRex =
+      RegExp(r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$");
+  RegExp emailRex = RegExp(
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
 }

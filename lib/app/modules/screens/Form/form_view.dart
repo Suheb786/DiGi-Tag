@@ -77,11 +77,15 @@ class FormView extends GetView<FormController> {
                               Catagories(
                                 labal: "Personal",
                                 onPressed: () {
-                                  // if (controller.personalFormKey.currentState!
-                                  //     .validate())
-                                  controller.buttonPressed(
-                                    formButton: FormButton.personal,
-                                  );
+                                  if (controller.activeButton.value ==
+                                      FormButton.medical) {
+                                    controller.buttonPressed(
+                                        formButton: FormButton.personal);
+                                  } else if (controller.activeButton.value ==
+                                      FormButton.academic) {
+                                    controller.buttonPressed(
+                                        formButton: FormButton.personal);
+                                  }
                                 },
                                 color: controller.activeButton.value ==
                                         FormButton.personal
@@ -90,9 +94,13 @@ class FormView extends GetView<FormController> {
                               ),
                               Catagories(
                                 labal: "Academic",
-                                onPressed: () => controller.buttonPressed(
-                                  formButton: FormButton.academic,
-                                ),
+                                onPressed: () {
+                                  // if (controller.activeButton.value ==
+                                  //     FormButton.medical) {
+                                  //   controller.buttonPressed(
+                                  //       formButton: FormButton.academic);
+                                  // }
+                                },
                                 color: controller.activeButton.value ==
                                         FormButton.academic
                                     ? const Color(0xff779FE5)
@@ -100,9 +108,7 @@ class FormView extends GetView<FormController> {
                               ),
                               Catagories(
                                 labal: "Medical",
-                                onPressed: () => controller.buttonPressed(
-                                  formButton: FormButton.medical,
-                                ),
+                                onPressed: () {},
                                 color: controller.activeButton.value ==
                                         FormButton.medical
                                     ? const Color(0xff779FE5)
@@ -144,7 +150,7 @@ class FormView extends GetView<FormController> {
                       );
                     } else {
                       return FormSubmitButton(
-                        onPressed: controller.onSubmit,
+                        onPressed: controller.checkSubmitButton,
                       );
                     }
                   }),
