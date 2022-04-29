@@ -52,7 +52,12 @@ class MedicalFormFields extends GetView<FormController> {
                       groupValue: controller.vaccination.value,
                       value: Vaccination.firstDose,
                       onChanged: (val) {
-                        controller.vaccination.value = val as Vaccination;
+                        if (controller.vaccination.value ==
+                            Vaccination.firstDose) {
+                          controller.vaccination.value = Vaccination.firstDose;
+                        } else {
+                          controller.vaccination.value = Vaccination.secondDose;
+                        }
                       },
                     ),
                     CustomRadioButton(

@@ -95,11 +95,17 @@ class FormView extends GetView<FormController> {
                               Catagories(
                                 labal: "Academic",
                                 onPressed: () {
-                                  // if (controller.activeButton.value ==
-                                  //     FormButton.medical) {
-                                  //   controller.buttonPressed(
-                                  //       formButton: FormButton.academic);
-                                  // }
+                                  if (controller.activeButton.value ==
+                                      FormButton.medical) {
+                                    controller.buttonPressed(
+                                        formButton: FormButton.academic);
+                                  }
+                                  if (controller.activeButton.value ==
+                                      FormButton.personal) {
+                                    controller.showSnackbar(
+                                        "Validation isn't completed",
+                                        "Academic Details will show when you complete Personal Details");
+                                  }
                                 },
                                 color: controller.activeButton.value ==
                                         FormButton.academic
@@ -108,7 +114,20 @@ class FormView extends GetView<FormController> {
                               ),
                               Catagories(
                                 labal: "Medical",
-                                onPressed: () {},
+                                onPressed: () {
+                                  if (controller.activeButton.value ==
+                                      FormButton.academic) {
+                                    controller.showSnackbar(
+                                        "Validation isn't completed",
+                                        "Medical Form will show when you complete Academic Details");
+                                  }
+                                  if (controller.activeButton.value ==
+                                      FormButton.personal) {
+                                    controller.showSnackbar(
+                                        "Validation isn't completed",
+                                        "Medical Form will show when you complete Academic Details");
+                                  }
+                                },
                                 color: controller.activeButton.value ==
                                         FormButton.medical
                                     ? const Color(0xff779FE5)

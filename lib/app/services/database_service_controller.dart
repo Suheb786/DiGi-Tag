@@ -8,10 +8,10 @@
 // class DatabaseServiceController extends GetxController {
 //   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  // Future addUsers(Map<String, dynamic> userData) async {
-  //   final users = firestore.collection('users');
-  //   users.add(addUser);
-  // }
+//   Future addUsers(Map<String, dynamic> userData) async {
+//     final users = firestore.collection('users');
+//     users.add(addUser);
+//   }
 
 //   // Future<void> addUser(var users) {
 //   //   return users

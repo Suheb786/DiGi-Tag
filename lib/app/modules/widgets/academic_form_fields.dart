@@ -55,9 +55,15 @@ class AcademicFormFields extends GetView<FormController> {
                       groupValue: controller.studentType.value,
                       value: StudentType.hosteler,
                       onChanged: (val) {
-                        controller.studentcheck();
+                        if (controller.studentType.value ==
+                            StudentType.hosteler) {
+                          StudentType.hosteler;
+                        } else {
+                          StudentType.dayScholor;
+                        }
+                        // controller.studentcheck();
 
-                        controller.studentType.value = val as StudentType;
+                        // controller.studentType.value = val as StudentType;
                       },
                     ),
                     CustomRadioButton(

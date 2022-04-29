@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:digitag/app/modules/widgets/enums.dart';
 import 'package:digitag/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -40,11 +41,17 @@ class FormController extends GetxController {
   }
 
   studentcheck() {
-    if (studentType.value == StudentType.hosteler) {
-      studentType.value = StudentType.dayScholor;
+    if (StudentType != null) {
+      StudentType.hosteler;
     } else {
-      studentType.value = StudentType.hosteler;
+      StudentType.dayScholor;
     }
+
+    // if (studentType.value == StudentType.hosteler) {
+    //   studentType.value = StudentType.hosteler;
+    // } else {
+    //   studentType.value = StudentType.hosteler;
+    // }
   }
 
   //* Bottom Navigation handlers ---------------->>>>>>>>>>
@@ -242,10 +249,31 @@ class FormController extends GetxController {
 
   checkSubmitButton() {
     if (medicalFormKey.currentState!.validate()) {
-      // addUsers();
-
-      // Get.offAllNamed(Routes.DRAWER);
+      Map<String, dynamic> addUser = {
+        'full_name': nameController.text,
+        'email': emailController.text,
+        'dob': dobController.text,
+        'address': addressController.text,
+        'course': currentSelectedCourse.value.toString(),
+        'branch': currentSelectedBranch.value.toString(),
+        'semester': currentSelectedSemester.value.toString(),
+        'roll_no': rollNoController.text,
+        'enrollment_no': enrollmentNoController.text,
+        'blood_group': bloodGroupcontroller.text,
+        'alergy': allergyController.text,
+        'student_type':
+            studentType.value.toString(), //! not correctly writing data
+        //TODO : vacination data entry in firebase ...
+      };
+      addUsers(addUser);
     }
+  }
+
+  Future addUsers(Map<String, dynamic> userData) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    final users = firestore.collection('users');
+
+    await users.add(userData);
   }
 
   //* Pic image from camera >>>>>>>>>>>>
