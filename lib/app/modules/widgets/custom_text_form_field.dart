@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextformField extends StatelessWidget {
   final String? labelText;
@@ -39,7 +40,7 @@ class CustomTextformField extends StatelessWidget {
       cursorColor: const Color(0xff28407D),
       style: TextStyle(
         fontFamily: "SofiaPro",
-        fontSize: 16,
+        fontSize: 14,
         color: const Color(0xff28407D).withOpacity(0.8),
       ),
       decoration: InputDecoration(
@@ -47,6 +48,13 @@ class CustomTextformField extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(
           vertical: 16,
           horizontal: 20,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(7.0),
+          borderSide: const BorderSide(
+            color: Color(0xffB2C2ED),
+            width: 2,
+          ),
         ),
         isDense: true,
         labelText: labelText,
@@ -79,6 +87,8 @@ class CustomTextformField extends StatelessWidget {
             width: 2,
           ),
         ),
+        errorStyle: GoogleFonts.montserrat(
+            fontSize: 10, color: Colors.white.withOpacity(0.75)),
       ),
     );
   }

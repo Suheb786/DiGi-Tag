@@ -40,18 +40,20 @@ class FormController extends GetxController {
     }
   }
 
-  studentcheck() {
-    if (StudentType != null) {
-      StudentType.hosteler;
+  String studentcheck() {
+    if (studentType.value == StudentType.hosteler) {
+      return "Hostelers";
     } else {
-      StudentType.dayScholor;
+      return "DayScholar";
     }
+  }
 
-    // if (studentType.value == StudentType.hosteler) {
-    //   studentType.value = StudentType.hosteler;
-    // } else {
-    //   studentType.value = StudentType.hosteler;
-    // }
+  String vaccinationcheck() {
+    if (vaccination == Vaccination.firstDose) {
+      return "Partially Vaccinated";
+    } else {
+      return "Fully Vaccinated";
+    }
   }
 
   //* Bottom Navigation handlers ---------------->>>>>>>>>>
@@ -168,7 +170,7 @@ class FormController extends GetxController {
   //* Academic Details Form Validation methods ------------------->>>>>>>
 
   String? validateRollNo(rollNo) {
-    if (rollNo!.toString().isEmpty || rollNo.toString().length <= 10) {
+    if (rollNo!.toString().isEmpty || rollNo.toString().length < 11) {
       return "Please Enter a Valid Roll No.";
     }
   }
@@ -247,7 +249,15 @@ class FormController extends GetxController {
     }
   }
 
+  Future addUsers(Map<String, dynamic> userData) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    final users = firestore.collection('users');
+
+    await users.add(userData);
+  }
+
   checkSubmitButton() {
+    studentcheck();
     if (medicalFormKey.currentState!.validate()) {
       Map<String, dynamic> addUser = {
         'full_name': nameController.text,
@@ -261,19 +271,11 @@ class FormController extends GetxController {
         'enrollment_no': enrollmentNoController.text,
         'blood_group': bloodGroupcontroller.text,
         'alergy': allergyController.text,
-        'student_type':
-            studentType.value.toString(), //! not correctly writing data
-        //TODO : vacination data entry in firebase ...
+        'student_type': studentcheck(),
+        'vacination': vaccinationcheck()
       };
       addUsers(addUser);
     }
-  }
-
-  Future addUsers(Map<String, dynamic> userData) async {
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
-    final users = firestore.collection('users');
-
-    await users.add(userData);
   }
 
   //* Pic image from camera >>>>>>>>>>>>

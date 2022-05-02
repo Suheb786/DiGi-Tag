@@ -100,7 +100,15 @@ class FormView extends GetView<FormController> {
                                     controller.buttonPressed(
                                         formButton: FormButton.academic);
                                   }
-                                  if (controller.activeButton.value ==
+                                  if (controller.personalFormKey.currentState!
+                                      .validate()) {
+                                    controller.activeButton.value =
+                                        FormButton.academic;
+                                  } else if (controller.activeButton.value ==
+                                      FormButton.medical) {
+                                    controller.buttonPressed(
+                                        formButton: FormButton.academic);
+                                  } else if (controller.activeButton.value ==
                                       FormButton.personal) {
                                     controller.showSnackbar(
                                         "Validation isn't completed",
@@ -115,13 +123,16 @@ class FormView extends GetView<FormController> {
                               Catagories(
                                 labal: "Medical",
                                 onPressed: () {
-                                  if (controller.activeButton.value ==
+                                  if (controller.academicFormKey.currentState!
+                                      .validate()) {
+                                    controller.activeButton.value =
+                                        FormButton.medical;
+                                  } else if (controller.activeButton.value ==
                                       FormButton.academic) {
                                     controller.showSnackbar(
                                         "Validation isn't completed",
                                         "Medical Form will show when you complete Academic Details");
-                                  }
-                                  if (controller.activeButton.value ==
+                                  } else if (controller.activeButton.value ==
                                       FormButton.personal) {
                                     controller.showSnackbar(
                                         "Validation isn't completed",
