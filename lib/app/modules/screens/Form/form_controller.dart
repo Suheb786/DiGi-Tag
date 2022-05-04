@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:digitag/app/modules/widgets/enums.dart';
 import 'package:digitag/app/routes/app_pages.dart';
+import 'package:digitag/app/services/auth_service_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,6 +15,7 @@ class FormController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController dobController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
 
   TextEditingController rollNoController = TextEditingController();
   TextEditingController enrollmentNoController = TextEditingController();
@@ -112,23 +114,24 @@ class FormController extends GetxController {
 
 //* Branch Dropdown Lists ----------->>>>>>>>>>>
   List<String> branchList = [
-    "CSE",
-    "ME",
-    "CE",
-    "EE",
-    "AI",
+    "Computer Science Engineering",
+    "Mechanical Engineering",
+    "Civil Engineering",
+    "Electrical Engineering",
+    "Artificial Intelligence Engineering",
   ];
+  String? cityValidation(city) {
+    if (city.toString().isEmpty) {
+      return "Enter Your City Name";
+    }
+  }
 
 //* Semester Dropdown Lists ----------->>>>>>>>>>>
   List<String> semesterList = [
-    "1st",
-    "2nd",
-    "3rd",
-    "4th",
-    "5th",
-    "6th",
-    "7th",
-    "8th",
+    "1*",
+    "2*",
+    "3*",
+    "4*",
   ];
   validateDropDownFields() {
     if (currentSelectedBranch.value.isEmpty ||
@@ -170,7 +173,7 @@ class FormController extends GetxController {
   //* Academic Details Form Validation methods ------------------->>>>>>>
 
   String? validateRollNo(rollNo) {
-    if (rollNo!.toString().isEmpty || rollNo.toString().length < 11) {
+    if (rollNo.toString().length < 9) {
       return "Please Enter a Valid Roll No.";
     }
   }
@@ -246,35 +249,6 @@ class FormController extends GetxController {
       return true;
     } else {
       return false;
-    }
-  }
-
-  Future addUsers(Map<String, dynamic> userData) async {
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
-    final users = firestore.collection('users');
-
-    await users.add(userData);
-  }
-
-  checkSubmitButton() {
-    studentcheck();
-    if (medicalFormKey.currentState!.validate()) {
-      Map<String, dynamic> addUser = {
-        'full_name': nameController.text,
-        'email': emailController.text,
-        'dob': dobController.text,
-        'address': addressController.text,
-        'course': currentSelectedCourse.value.toString(),
-        'branch': currentSelectedBranch.value.toString(),
-        'semester': currentSelectedSemester.value.toString(),
-        'roll_no': rollNoController.text,
-        'enrollment_no': enrollmentNoController.text,
-        'blood_group': bloodGroupcontroller.text,
-        'alergy': allergyController.text,
-        'student_type': studentcheck(),
-        'vacination': vaccinationcheck()
-      };
-      addUsers(addUser);
     }
   }
 
@@ -413,4 +387,44 @@ class FormController extends GetxController {
       RegExp(r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$");
   RegExp emailRex = RegExp(
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
+
+//!-------------------------- Firebase work ----------------------->>>//
+  Future addUsers(Map<String, dynamic> userData) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    // final users = await firestore
+    //     .collection('users')
+    //     .doc(Get.find<AuthServiceController>().getUid)
+    //     .set(userData);
+
+    final users = await firestore.collection('users').add(userData);
+  }
+
+//*-- databse writing ---->>
+  checkSubmitButton() {
+    studentcheck();
+    if (medicalFormKey.currentState!.validate()) {
+      Map<String, dynamic> addUser = {
+        'full_name': nameController.text,
+        'email': emailController.text,
+        'dob': dobController.text,
+        'city': cityController.text,
+        'address': addressController.text,
+        'course': currentSelectedCourse.value.toString(),
+        'branch': currentSelectedBranch.value.toString(),
+        'semester': currentSelectedSemester.value.toString(),
+        'roll_no': rollNoController.text,
+        'enrollment_no': enrollmentNoController.text,
+        'blood_group': bloodGroupcontroller.text,
+        'alergy': allergyController.text,
+        'student_type': studentcheck(),
+        'vacination': vaccinationcheck()
+      };
+      addUsers(addUser);
+    }
+  }
+
+//*-------- Databse read --------->>>>
+
+  // final Stream<QuerySnapshot> users =
+  //     FirebaseFirestore.instance.collection('users').snapshots();
 }

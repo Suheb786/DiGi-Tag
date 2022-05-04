@@ -124,7 +124,7 @@ class AcademicFormFields extends GetView<FormController> {
                   onChanged: (newValue) {
                     controller.currentSelectedSemester.value = newValue ?? "";
                   },
-                  hintText: "Semester",
+                  hintText: "Year",
                   isEmpty: controller.currentSelectedSemester.value.isEmpty
                       ? true
                       : false,

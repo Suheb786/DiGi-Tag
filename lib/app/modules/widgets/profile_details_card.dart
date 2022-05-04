@@ -83,6 +83,7 @@ class ProfileDetailsCard extends StatelessWidget {
                 FittedBox(
                   child: Text(
                     bottomTitle,
+                    //  overflow: TextOverflow,
                     style: const TextStyle(
                       fontFamily: "Sofia",
                       fontSize: 12,

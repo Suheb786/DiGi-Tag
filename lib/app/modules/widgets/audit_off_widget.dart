@@ -1,11 +1,13 @@
 import 'package:digitag/app/modules/screens/Profile/profile_controller.dart';
 import 'package:digitag/app/modules/widgets/socialMediaButton.dart';
+import 'package:digitag/app/services/auth_service_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'profile_details_card.dart';
 
 class AuditOffWidget extends StatelessWidget {
+  ProfileController profileController = Get.find<ProfileController>();
   AuditOffWidget({
     Key? key,
   }) : super(key: key);
@@ -41,15 +43,16 @@ class AuditOffWidget extends StatelessWidget {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       ProfileDetailsCard(
                         assetImagePath:
                             "assets/icons/profile_icons/courseIcon.jpg",
                         shadowColor: Color(0xffFF4FF8),
                         mainTitleColor: Color(0xffD25099),
                         mainTitle: "Course",
-                        middleTitle: "B.Tech 4*",
-                        bottomTitle: "Computer Science",
+                        middleTitle:
+                            "${profileController.userData!["course"]} ${profileController.userData!["semester"]}",
+                        bottomTitle: profileController.userData!['branch'],
                       ),
                       ProfileDetailsCard(
                         assetImagePath:
@@ -57,22 +60,25 @@ class AuditOffWidget extends StatelessWidget {
                         shadowColor: Color(0xffFFB274),
                         mainTitleColor: Color(0xffF28412),
                         mainTitle: "Roll no.",
-                        middleTitle: "1854510012",
+                        middleTitle: profileController.userData!['roll_no'],
                         bottomTitle: "E.No : 185451049580",
                       ),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       ProfileDetailsCard(
                         assetImagePath:
                             "assets/icons/profile_icons/contactIcon.jpg",
                         shadowColor: Color(0xffFC8787),
                         mainTitleColor: Color(0xffE93434),
                         mainTitle: "Contact",
-                        middleTitle: "suheb.cse@gmail.com",
-                        bottomTitle: "8381824339",
+                        middleTitle: profileController.userData!['email'],
+                        bottomTitle: Get.find<AuthServiceController>()
+                            .getPhoneNumber
+                            .toString(),
+                        //  bottomTitle: "8381824339" //Todo add phone no,
                       ),
                       ProfileDetailsCard(
                         assetImagePath:
@@ -80,20 +86,20 @@ class AuditOffWidget extends StatelessWidget {
                         shadowColor: Color(0xff51FF77),
                         mainTitleColor: Color(0xff52BB13),
                         mainTitle: "Medical",
-                        middleTitle: "Blood Group A+",
-                        bottomTitle: "Vacinated",
+                        middleTitle:
+                            "Blood Group ${profileController.userData!['blood_group']}",
+                        bottomTitle: profileController.userData!["vacination"],
                       ),
                     ],
                   ),
-                  const ProfileDetailsCard(
-                    assetImagePath:
-                        "assets/icons/profile_icons/addressIcon.jpg",
-                    shadowColor: Color(0xff93FFA4),
-                    mainTitleColor: Color(0xff29BC9E),
-                    mainTitle: "Address",
-                    middleTitle: "Gorakhpur",
-                    bottomTitle: "Dakhir Tola Ward no.9 Bansgaon",
-                  ),
+                  ProfileDetailsCard(
+                      assetImagePath:
+                          "assets/icons/profile_icons/addressIcon.jpg",
+                      shadowColor: Color(0xff93FFA4),
+                      mainTitleColor: Color(0xff29BC9E),
+                      mainTitle: "Address",
+                      middleTitle: profileController.userData!['city'],
+                      bottomTitle: profileController.userData!["address"]),
                 ],
               ),
             ),

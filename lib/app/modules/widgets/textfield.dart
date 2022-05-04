@@ -1,4 +1,6 @@
 import 'package:digitag/app/modules/screens/Login/login_controller.dart';
+import 'package:digitag/app/modules/screens/OTP/otp_view_controller.dart';
+import 'package:digitag/app/services/auth_service_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +15,7 @@ TextFormField CustomField({
 }) {
   return TextFormField(
     autovalidateMode: AutovalidateMode.onUserInteraction,
-    maxLength: 10,
+    // maxLength: 10,
     controller: controller,
     validator: validator,
     style: const TextStyle(
@@ -23,6 +25,19 @@ TextFormField CustomField({
         fontSize: 14,
         fontWeight: FontWeight.bold),
     decoration: InputDecoration(
+        suffixIcon: TextButton(
+          child: Text("Send OTP",
+              style: TextStyle(
+                  fontFamily: "SofiaPro",
+                  color: Colors.teal[600],
+                  fontWeight: FontWeight.w400)),
+          //   style: ,
+          onPressed: () {
+            Get.find<AuthServiceController>().phoneLogIn(
+                "+91 ${Get.find<OtpViewController>().phonenocontroller.text}");
+            // print(Get.find<OtpViewController>().phonenocontroller.text);
+          },
+        ),
         counterText: "",
         // isDense: true,
         filled: true,

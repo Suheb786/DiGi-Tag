@@ -68,7 +68,7 @@ class CustomDropdownTextFormField extends StatelessWidget {
               // ),
               style: TextStyle(
                 color: Color(0xff28407D).withOpacity(0.8),
-                fontSize: 16,
+                fontSize: 14,
                 fontFamily: "SofiaPro",
               ),
               value: value,

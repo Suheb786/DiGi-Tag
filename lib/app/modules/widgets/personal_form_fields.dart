@@ -79,6 +79,15 @@ class PersonalFormFields extends GetView<FormController> {
                     height: 15,
                   ),
                   CustomTextformField(
+                    controller: controller.cityController,
+                    labelText: "City",
+                    textCapitalization: TextCapitalization.words,
+                    validator: (city) => controller.cityValidation(city),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  CustomTextformField(
                     controller: controller.addressController,
                     labelText: "Address",
                     keyboardType: TextInputType.text,
