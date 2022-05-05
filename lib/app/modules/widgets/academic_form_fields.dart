@@ -1,24 +1,14 @@
-import 'package:digitag/app/modules/screens/Form/form_controller/form_controller.dart';
-import 'package:digitag/app/modules/screens/Form/form_controller/personalDetails_controller.dart';
-import 'package:digitag/app/modules/widgets/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../screens/Form/form_controller/academicDetails_controller.dart';
-import '../screens/Form/form_controller/medicalDetails_controller.dart';
+import '../screens/Form/form_controller.dart';
 import 'custom_dropdown_text_form_field.dart';
 import 'custom_radio_button.dart';
 import 'custom_text_form_field.dart';
+import 'enums.dart';
 
-class AcademicFormFields extends GetView<AcademicDetailsController> {
-  FormController formController = Get.find<FormController>();
-  // MedicalDetailsController medicalDetailsController =
-  //     Get.find<MedicalDetailsController>();
-  // AcademicDetailsController academicDetailsController =
-  //     Get.find<AcademicDetailsController>();
-  // PersonalDetailsController personalDetailsController =
-  //     Get.find<PersonalDetailsController>();
-  AcademicFormFields({
+class AcademicFormFields extends GetView<FormController> {
+  const AcademicFormFields({
     Key? key,
     required this.screenHeight,
   }) : super(key: key);
@@ -51,7 +41,7 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
           ),
         ),
         child: Form(
-          key: formController.academicFormKey,
+          key: controller.academicFormKey,
           child: Column(
             // mainAxisSize: MainAxisSize.max,
             // mainAxisAlignment: MainAxisAlignment.end,
@@ -64,6 +54,8 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
                       groupValue: controller.studentType.value,
                       value: StudentType.hosteler,
                       onChanged: (val) {
+                        controller.studentcheck();
+
                         controller.studentType.value = val as StudentType;
                       },
                     ),
@@ -90,17 +82,17 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
 
               Obx(
                 () => CustomDropdownTextFormField(
-                  dropDownListOfItems: formController.courseList,
+                  dropDownListOfItems: controller.courseList,
                   onChanged: (newValue) {
-                    formController.currentSelectedCourse.value = newValue ?? "";
+                    controller.currentSelectedCourse.value = newValue ?? "";
                   },
                   hintText: "Course",
-                  isEmpty: formController.currentSelectedCourse.value.isEmpty
+                  isEmpty: controller.currentSelectedCourse.value.isEmpty
                       ? true
                       : false,
-                  value: formController.currentSelectedCourse.value.isEmpty
+                  value: controller.currentSelectedCourse.value.isEmpty
                       ? null
-                      : formController.currentSelectedCourse.value,
+                      : controller.currentSelectedCourse.value,
                 ),
               ),
 
@@ -109,17 +101,17 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
               ),
               Obx(
                 () => CustomDropdownTextFormField(
-                  dropDownListOfItems: formController.branchList,
+                  dropDownListOfItems: controller.branchList,
                   onChanged: (newValue) {
-                    formController.currentSelectedBranch.value = newValue ?? "";
+                    controller.currentSelectedBranch.value = newValue ?? "";
                   },
                   hintText: "Branch",
-                  isEmpty: formController.currentSelectedBranch.value.isEmpty
+                  isEmpty: controller.currentSelectedBranch.value.isEmpty
                       ? true
                       : false,
-                  value: formController.currentSelectedBranch.value.isEmpty
+                  value: controller.currentSelectedBranch.value.isEmpty
                       ? null
-                      : formController.currentSelectedBranch.value,
+                      : controller.currentSelectedBranch.value,
                 ),
               ),
               const SizedBox(
@@ -127,17 +119,17 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
               ),
               Obx(
                 () => CustomDropdownTextFormField(
-                  dropDownListOfItems: formController.semesterList,
+                  dropDownListOfItems: controller.semesterList,
                   onChanged: (newValue) {
-                    formController.currentSelectedSemester.value = newValue ?? "";
+                    controller.currentSelectedSemester.value = newValue ?? "";
                   },
-                  hintText: "Semester",
-                  isEmpty: formController.currentSelectedSemester.value.isEmpty
+                  hintText: "Year",
+                  isEmpty: controller.currentSelectedSemester.value.isEmpty
                       ? true
                       : false,
-                  value: formController.currentSelectedSemester.value.isEmpty
+                  value: controller.currentSelectedSemester.value.isEmpty
                       ? null
-                      : formController.currentSelectedSemester.value,
+                      : controller.currentSelectedSemester.value,
                 ),
               ),
               const SizedBox(
@@ -145,7 +137,7 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
               ),
               CustomTextformField(
                 validator: (p0) => controller.validateRollNo(p0),
-                controller: formController.rollNoController,
+                controller: controller.rollNoController,
                 labelText: "Roll no.",
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.characters,
@@ -155,7 +147,7 @@ class AcademicFormFields extends GetView<AcademicDetailsController> {
               ),
               CustomTextformField(
                 validator: (p0) => controller.validateEnrollNo(p0),
-                controller: formController.enrollmentNoController,
+                controller: controller.enrollmentNoController,
                 labelText: "Enrollment No.",
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.characters,

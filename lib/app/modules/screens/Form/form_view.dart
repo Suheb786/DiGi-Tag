@@ -1,4 +1,3 @@
-import 'package:digitag/app/modules/screens/Form/form_controller/personalDetails_controller.dart';
 import 'package:digitag/app/modules/widgets/academic_form_fields.dart';
 import 'package:digitag/app/modules/widgets/bit_text.dart';
 import 'package:digitag/app/modules/widgets/medical_form_fields.dart';
@@ -13,7 +12,7 @@ import '../../widgets/form_bottom_nev_button.dart';
 import '../../widgets/form_submit_button.dart';
 import '../../widgets/personal_form_fields.dart';
 
-import 'form_controller/form_controller.dart';
+import 'form_controller.dart';
 
 class FormView extends GetView<FormController> {
   const FormView({Key? key}) : super(key: key);
@@ -78,11 +77,15 @@ class FormView extends GetView<FormController> {
                               Catagories(
                                 labal: "Personal",
                                 onPressed: () {
-                                  // if (controller.personalFormKey.currentState!
-                                  //     .validate())
-                                  controller.buttonPressed(
-                                    formButton: FormButton.personal,
-                                  );
+                                  if (controller.activeButton.value ==
+                                      FormButton.medical) {
+                                    controller.buttonPressed(
+                                        formButton: FormButton.personal);
+                                  } else if (controller.activeButton.value ==
+                                      FormButton.academic) {
+                                    controller.buttonPressed(
+                                        formButton: FormButton.personal);
+                                  }
                                 },
                                 color: controller.activeButton.value ==
                                         FormButton.personal
@@ -91,9 +94,27 @@ class FormView extends GetView<FormController> {
                               ),
                               Catagories(
                                 labal: "Academic",
-                                onPressed: () => controller.buttonPressed(
-                                  formButton: FormButton.academic,
-                                ),
+                                onPressed: () {
+                                  if (controller.activeButton.value ==
+                                      FormButton.medical) {
+                                    controller.buttonPressed(
+                                        formButton: FormButton.academic);
+                                  }
+                                  if (controller.personalFormKey.currentState!
+                                      .validate()) {
+                                    controller.activeButton.value =
+                                        FormButton.academic;
+                                  } else if (controller.activeButton.value ==
+                                      FormButton.medical) {
+                                    controller.buttonPressed(
+                                        formButton: FormButton.academic);
+                                  } else if (controller.activeButton.value ==
+                                      FormButton.personal) {
+                                    controller.showSnackbar(
+                                        "Validation isn't completed",
+                                        "Academic Details will show when you complete Personal Details");
+                                  }
+                                },
                                 color: controller.activeButton.value ==
                                         FormButton.academic
                                     ? const Color(0xff779FE5)
@@ -101,9 +122,23 @@ class FormView extends GetView<FormController> {
                               ),
                               Catagories(
                                 labal: "Medical",
-                                onPressed: () => controller.buttonPressed(
-                                  formButton: FormButton.medical,
-                                ),
+                                onPressed: () {
+                                  if (controller.academicFormKey.currentState!
+                                      .validate()) {
+                                    controller.activeButton.value =
+                                        FormButton.medical;
+                                  } else if (controller.activeButton.value ==
+                                      FormButton.academic) {
+                                    controller.showSnackbar(
+                                        "Validation isn't completed",
+                                        "Medical Form will show when you complete Academic Details");
+                                  } else if (controller.activeButton.value ==
+                                      FormButton.personal) {
+                                    controller.showSnackbar(
+                                        "Validation isn't completed",
+                                        "Medical Form will show when you complete Academic Details");
+                                  }
+                                },
                                 color: controller.activeButton.value ==
                                         FormButton.medical
                                     ? const Color(0xff779FE5)
@@ -145,7 +180,7 @@ class FormView extends GetView<FormController> {
                       );
                     } else {
                       return FormSubmitButton(
-                        onPressed: controller.onSubmit,
+                        onPressed: controller.checkSubmitButton,
                       );
                     }
                   }),

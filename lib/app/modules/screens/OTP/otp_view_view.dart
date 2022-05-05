@@ -51,7 +51,7 @@ class OtpViewView extends GetView<OtpViewController> {
                     child: CustomField(
                         validator: (phone) => controller.validphone(phone),
                         hint: 'Enter Your Phone No.',
-                        controller: loginController.uidController),
+                        controller: controller.phonenocontroller),
                   ),
                 ),
                 SizedBox(height: responsive.height / 30),

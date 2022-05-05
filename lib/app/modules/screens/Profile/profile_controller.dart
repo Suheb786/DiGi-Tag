@@ -1,7 +1,8 @@
-import 'package:digitag/app/routes/app_pages.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
+
+import '../../../routes/app_pages.dart';
+import '../../../services/database_service_controller.dart';
 
 class ProfileController extends GetxController {
   var status = false.obs;
@@ -10,6 +11,17 @@ class ProfileController extends GetxController {
 
   ScrollController profileScrollController = ScrollController();
   var scrollOffset = 0.0.obs;
+
+  Map<String, dynamic>? userData = {};
+
+  @override
+  void onInit() async {
+    profileScrollController.addListener(() => updatePadding());
+    userData = await Get.find<DatabaseServiceController>()
+        .getProfile(uid: "mI1ejboWToUzc1XJ4KSc");
+    super.onInit();
+    print(userData);
+  }
 
   void updatePadding() {
     // print(profileScrollController.offset);
@@ -56,11 +68,6 @@ class ProfileController extends GetxController {
 
   final count = 0.obs;
   @override
-  void onInit() {
-    profileScrollController.addListener(() => updatePadding());
-    super.onInit();
-  }
-
   @override
   void onReady() {
     super.onReady();

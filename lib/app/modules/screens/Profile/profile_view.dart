@@ -39,7 +39,9 @@ class ProfileView extends GetView<ProfileController> {
             headerSliverBuilder: (context, bool innerBoxIsScrolled) {
               return [
                 CustomAppBar(
-                  title: "Hi, Mohammad",
+                  // title:
+                  //     "Hi, ${controller.userData!["full_name"].toString().split(" ")[0]} ",
+                  title: controller.userData!["full_name"],
                   deviceWidth: MediaQuery.of(context).size.width,
                   ctx: context,
                 ),

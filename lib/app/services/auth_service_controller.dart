@@ -1,3 +1,4 @@
+import 'package:digitag/app/modules/screens/OTP/otp_view_binding.dart';
 import 'package:digitag/app/modules/screens/OTP/otp_view_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class AuthServiceController extends GetxController {
 
   Future<void> phoneLogIn(String phoneNo) async {
     await _authInstence.verifyPhoneNumber(
-      phoneNumber: phoneNo,
+      phoneNumber: Get.find<OtpViewController>().phonenocontroller.toString(),
       verificationCompleted: (PhoneAuthCredential credential) async {
         await _authInstence.signInWithCredential(credential);
       },
@@ -65,7 +66,7 @@ class AuthServiceController extends GetxController {
         isLoadig.value = false;
         _verificationCode = verificationId;
       },
-      timeout: const Duration(seconds: 60),
+      timeout: const Duration(seconds: 45),
     );
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextformField extends StatelessWidget {
   final String? labelText;
@@ -8,8 +9,12 @@ class CustomTextformField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   void Function()? onTap;
+  AutovalidateMode? autoValid;
+  int? maxLength;
   CustomTextformField({
     this.maxLines = 1,
+    this.maxLength,
+    this.autoValid,
     this.textCapitalization = TextCapitalization.sentences,
     this.keyboardType,
     this.validator,
@@ -25,6 +30,8 @@ class CustomTextformField extends StatelessWidget {
       maxLines: maxLines,
       textCapitalization: textCapitalization,
       onTap: onTap,
+      maxLength: maxLength,
+      autovalidateMode: autoValid,
       keyboardType: keyboardType,
       validator: validator,
       controller: controller,
@@ -33,13 +40,21 @@ class CustomTextformField extends StatelessWidget {
       cursorColor: const Color(0xff28407D),
       style: TextStyle(
         fontFamily: "SofiaPro",
-        fontSize: 16,
+        fontSize: 14,
         color: const Color(0xff28407D).withOpacity(0.8),
       ),
       decoration: InputDecoration(
+        counterText: "",
         contentPadding: const EdgeInsets.symmetric(
           vertical: 16,
           horizontal: 20,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(7.0),
+          borderSide: const BorderSide(
+            color: Color(0xffB2C2ED),
+            width: 2,
+          ),
         ),
         isDense: true,
         labelText: labelText,
@@ -72,6 +87,8 @@ class CustomTextformField extends StatelessWidget {
             width: 2,
           ),
         ),
+        errorStyle: GoogleFonts.montserrat(
+            fontSize: 10, color: Colors.white.withOpacity(0.75)),
       ),
     );
   }
