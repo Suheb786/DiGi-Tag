@@ -1,11 +1,10 @@
-import 'package:digitag/app/modules/widgets/login_in_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../Decoration/decoration.dart';
-
 import '../../widgets/bit_text.dart';
 import '../../widgets/footerText.dart';
+import '../../widgets/login_in_widgets.dart';
 import '../../widgets/otpField.dart';
 import '../../widgets/textfield.dart';
 import 'otp_view_controller.dart';
@@ -24,7 +23,7 @@ class OtpViewView extends GetView<OtpViewController> {
           width: double.infinity,
           decoration: Decorations.grdntBG,
           child: Form(
-            // key: controller.phonekey,
+            key: controller.phonekey,
             child: Column(
               children: [
                 SizedBox(height: responsive.height / 10),
@@ -49,9 +48,12 @@ class OtpViewView extends GetView<OtpViewController> {
                           )
                         ]),
                     child: CustomField(
-                        validator: (phone) => controller.validphone(phone),
-                        hint: 'Enter Your Phone No.',
-                        controller: controller.phonenocontroller),
+                      keyboardType: TextInputType.phone,
+                      prefix: const Text("+91 "),
+                      validator: (phone) => controller.validphone(phone),
+                      hint: 'Enter Your Phone No.',
+                      controller: controller.phonenocontroller,
+                    ),
                   ),
                 ),
                 SizedBox(height: responsive.height / 30),
@@ -61,9 +63,7 @@ class OtpViewView extends GetView<OtpViewController> {
                 SignUpRoundButton(
                   extraBigCircle: Container(height: 0),
                   widget: InkWell(
-                      onTap: () {
-                        controller.phonecheck();
-                      },
+                      onTap: controller.submitOtp,
                       child: getINicon()),
                 ),
                 FooterText(),
