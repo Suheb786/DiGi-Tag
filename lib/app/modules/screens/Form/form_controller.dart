@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:digitag/app/services/database_service_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -389,11 +390,6 @@ class FormController extends GetxController {
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
 
 //!-------------------------- Firebase work ----------------------->>>//
-  Future addUsers(Map<String, dynamic> userData) async {
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
-    
-    final users = await firestore.collection('users').add(userData);
-  }
 
 //*-- databse writing ---->>
   checkSubmitButton() async {
@@ -417,7 +413,7 @@ class FormController extends GetxController {
         'vacination': vaccinationcheck(),
         'phoneNo': phoneNo,
       };
-      addUsers(addUser);
+      Get.find<DatabaseServiceController>().addUsers(addUser);
     }
   }
 
