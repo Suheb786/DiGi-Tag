@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:digitag/app/modules/widgets/enums.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
@@ -5,14 +8,32 @@ import '../../../routes/app_pages.dart';
 import '../../../services/database_service_controller.dart';
 
 class ProfileController extends GetxController {
+  TextEditingController comment = TextEditingController();
+  final feedbackFormKey = GlobalKey<FormState>();
+
   var status = false.obs;
   var wrapPadding = 50.0.obs;
   var spacing = 5.0.obs;
+  var showFeedbackField = false.obs;
+  // var liked = false.obs;
 
+  // var disliked = false.obs;
+  var voting = Voting.up.obs;
   ScrollController profileScrollController = ScrollController();
   var scrollOffset = 0.0.obs;
 
   Map<String, dynamic>? userData = {};
+
+  void toggleLikeDislikeButton(Voting vote) {
+    log('Toggle like dislike called');
+    voting.value = vote;
+    // if (voting.value == Voting.up) {
+    //   voting.value = Voting.down;
+    // } else {
+    //   voting.value = Voting.up;
+    // }
+    // log(voting.value.toString());
+  }
 
   @override
   void onInit() async {
@@ -44,7 +65,17 @@ class ProfileController extends GetxController {
     } else {}
   }
 
+//* FeedBack validation
+
+  commentValidation(comment) {
+    if (comment.toString().isEmpty) {
+      return "";
+    }
+  }
+
   Future<bool> onBack() async {
+    showFeedbackField.value = false;
+
     if (status.value) {
       status.value = false;
       return false;

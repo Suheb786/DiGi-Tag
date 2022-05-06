@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:photo_view/photo_view.dart';
 
 import '../../../Decoration/decoration.dart';
+import '../../../services/Notifications/callNotification.dart';
 import '../../widgets/medical_Support_Icon.dart';
 import '../../widgets/slidableContainerDecoration.dart';
 import '../../widgets/sliderPin.dart';
@@ -183,7 +184,6 @@ class MedicalSupportView extends GetView<MedicalsupportController> {
                                       border: Border.all(
                                           color: const Color(0xff8c8c8c),
                                           width: 2)),
-
                                   child: GetBuilder<MedicalsupportController>(
                                     builder: (controller) {
                                       if (controller.pickedImage == null) {
@@ -204,31 +204,6 @@ class MedicalSupportView extends GetView<MedicalsupportController> {
                                       }
                                     },
                                   ),
-                                  // child: Padding(
-                                  //   padding: EdgeInsets.all(3.0),
-                                  //   child: imagepath == null
-                                  //       ? Icon(
-                                  //           Icons.add_photo_alternate_rounded,
-                                  //           size: 35,
-                                  //           color: Color(0xff6E819F),
-                                  //         )
-                                  //       : GestureDetector(
-                                  //           onTap: () {
-                                  //             Container(
-                                  //               child: PhotoView(
-                                  //                 imageProvider: AssetImage(
-                                  //                     imagepath!.path),
-                                  //               ),
-                                  //             );
-                                  //             print("fdf");
-                                  //           },
-                                  //           child: Image.file(
-                                  //             File(imagepath!.path),
-                                  //             height: 30,
-                                  //             width: 30,
-                                  //           ),
-                                  //         ),
-                                  // ),
                                 ),
                               ),
                               SendButton(
@@ -333,7 +308,9 @@ class MedicalSupportView extends GetView<MedicalsupportController> {
       double horizontalPadding = 12,
       double verticalPadding = 8}) {
     return InkWell(
-      onTap: () => onTap,
+      onTap: () => sendCallNotification(
+          "eZ-HccEeQhOmRDTX6s1MzR:APA91bGcgW6z-640aSZYvPXgYjs9QUWVWLe60djnlRQ7OYAEJnUq3YmNyo1_E85HP9GLoQRvRl84zT7vvmfyiewY9ptu24r4SpgmRlmqv1rR0o2H7jcSpTjMCKbVIiYsW5RlvQTsMdoW",
+          "fdo"),
       child: Container(
         decoration: BoxDecoration(
           color: color,

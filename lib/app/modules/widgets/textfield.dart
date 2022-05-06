@@ -8,11 +8,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 LoginController loginController = Get.find<LoginController>();
 
-TextFormField CustomField({
-  required String? Function(String?) validator,
-  required String hint,
-  required TextEditingController controller,
-}) {
+TextFormField CustomField(
+    {String? Function(String?)? validator,
+    required String hint,
+    required TextEditingController controller,
+    void Function()? onTap}) {
   return TextFormField(
     autovalidateMode: AutovalidateMode.onUserInteraction,
     // maxLength: 10,

@@ -23,7 +23,7 @@ class AuditCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
         height: 110,

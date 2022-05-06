@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 
 class MedicalsupportController extends GetxController {
   TextEditingController title = TextEditingController();
+  TextEditingController comment = TextEditingController();
 
   //TODO: Implement MedialsupportController
   File? pickGeneralImage;
@@ -19,12 +20,12 @@ class MedicalsupportController extends GetxController {
   }
 
   void openEmergencyCamera(BuildContext context) async {
-    final pickedFile = await ImagePicker().pickImage(
+    final pickAFile = await ImagePicker().pickImage(
       source: ImageSource.camera,
     );
 
-    if (pickedFile != null) {
-      pickedImage = File(pickedFile.path);
+    if (pickAFile != null) {
+      pickedImage = File(pickAFile.path);
     } else {
       pickedImage = null;
     }

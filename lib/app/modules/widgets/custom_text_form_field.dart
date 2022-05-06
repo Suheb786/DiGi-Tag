@@ -5,6 +5,7 @@ class CustomTextformField extends StatelessWidget {
   final String? labelText;
   final int? maxLines;
   final TextCapitalization textCapitalization;
+  final Widget? suffixIcon;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
@@ -13,6 +14,7 @@ class CustomTextformField extends StatelessWidget {
   int? maxLength;
   CustomTextformField({
     this.maxLines = 1,
+    this.suffixIcon,
     this.maxLength,
     this.autoValid,
     this.textCapitalization = TextCapitalization.sentences,
@@ -44,6 +46,8 @@ class CustomTextformField extends StatelessWidget {
         color: const Color(0xff28407D).withOpacity(0.8),
       ),
       decoration: InputDecoration(
+        suffixIcon: suffixIcon,
+        filled: true,
         counterText: "",
         contentPadding: const EdgeInsets.symmetric(
           vertical: 16,

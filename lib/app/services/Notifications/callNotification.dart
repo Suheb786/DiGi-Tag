@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:digitag/app/modules/screens/MedicalSupport/medialsupport_controller.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 Future<http.Response> sendCallNotification(
     String peerToken, String content) async {
-  debugPrint("send notification call");
   final body = jsonEncode(
     {
       "to": peerToken,
@@ -18,8 +19,7 @@ Future<http.Response> sendCallNotification(
       "notification": {
         "vibrate": "300",
         "priority": "high",
-        "image":
-            "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-674010.jpg&fm=jpg",
+        "image": "https://picsum.photos/48/48",
         "body": content,
         "title": "Test with the S10 application",
         "sound": "custom.mp3",
@@ -38,6 +38,7 @@ Future<http.Response> sendCallNotification(
     },
     body: body,
   );
-  debugPrint("send notifications is ${body.toString()}");
+  debugPrint("send notification call");
+  // debugPrint("send notifications is ${body.toString()}");
   return response;
 }

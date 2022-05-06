@@ -26,7 +26,11 @@ class ProfileView extends GetView<ProfileController> {
       },
     );
     return WillPopScope(
-      onWillPop: () => controller.onBack(),
+      onWillPop: () async {
+        controller.onBack();
+
+        return Future.value(true);
+      },
       child: Scaffold(
         extendBodyBehindAppBar: true,
         extendBody: true,
