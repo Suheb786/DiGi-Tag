@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -239,9 +240,11 @@ class FormController extends GetxController {
   checkPickedImage() {
     if (pickedImage != null) {
       return true;
-    } else
+    } else {
       showSnackbar("Profile Pic not added",
           "You have to upload a profile pic that will be visible on your public profile");
+      return false;
+    }
   }
 
   bool checkPersonalDetails() {
@@ -391,7 +394,7 @@ class FormController extends GetxController {
 //!-------------------------- Firebase work ----------------------->>>//
   Future addUsers(Map<String, dynamic> userData) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    
+
     final users = await firestore.collection('users').add(userData);
   }
 
@@ -401,7 +404,10 @@ class FormController extends GetxController {
     studentcheck();
     if (medicalFormKey.currentState!.validate()) {
       Map<String, dynamic> addUser = {
-        'full_name': nameController.text,
+        'isVarified': false,
+        'isAdmin': false,
+        'version': 1,
+        'fullName': nameController.text,
         'email': emailController.text,
         'dob': dobController.text,
         'city': cityController.text,
@@ -409,15 +415,16 @@ class FormController extends GetxController {
         'course': currentSelectedCourse.value.toString(),
         'branch': currentSelectedBranch.value.toString(),
         'semester': currentSelectedSemester.value.toString(),
-        'roll_no': rollNoController.text,
-        'enrollment_no': enrollmentNoController.text,
-        'blood_group': bloodGroupcontroller.text,
+        'rollNo': rollNoController.text,
+        'enrollmentNo': enrollmentNoController.text,
+        'bloodGroup': bloodGroupcontroller.text,
         'alergy': allergyController.text,
-        'student_type': studentcheck(),
+        'studentType': studentcheck(),
         'vacination': vaccinationcheck(),
         'phoneNo': phoneNo,
       };
-      addUsers(addUser);
+      //  await addUsers(addUser);
+      log(addUser.toString());
     }
   }
 

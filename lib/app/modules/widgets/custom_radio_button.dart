@@ -25,12 +25,15 @@ class CustomRadioButton extends GetView<FormController> {
         groupValue: groupValue,
         onChanged: onChanged,
         title: Align(
-          child: Text(
-            title,
-            style: TextStyle(
-              fontFamily: "Sofia",
-              fontSize: 14,
-              color: const Color(0xff28407D).withOpacity(0.8),
+          child: FittedBox(
+            child: Text(
+              title,
+              maxLines: 1,
+              style: TextStyle(
+                fontFamily: "Sofia",
+                fontSize: 14,
+                color: const Color(0xff28407D).withOpacity(0.8),
+              ),
             ),
           ),
           alignment: const Alignment(-1.6, 0),

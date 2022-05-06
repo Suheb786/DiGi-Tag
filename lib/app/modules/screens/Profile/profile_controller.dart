@@ -9,6 +9,11 @@ class ProfileController extends GetxController {
   var wrapPadding = 50.0.obs;
   var spacing = 5.0.obs;
 
+  void setStatusValue(bool val) {
+    status.value = val;
+    update();
+  }
+
   ScrollController profileScrollController = ScrollController();
   var scrollOffset = 0.0.obs;
 
