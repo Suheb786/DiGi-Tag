@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:digitag/app/modules/screens/QrGenerator/qr_generator_controller.dart';
@@ -61,7 +62,7 @@ class QrGeneratorView extends GetView<QrGeneratorController> {
                               child: Center(
                                   child: customText("Mohammad Suheb", 20))),
                         ),
-                        Expanded(
+                        const Expanded(
                           flex: 3,
                           child: QrStack(
                             uid: 'JIT185451003',
@@ -95,34 +96,7 @@ class QrGeneratorView extends GetView<QrGeneratorController> {
                                       overlayColor: MaterialStateProperty.all(
                                           Colors.transparent),
                                     ),
-                                    onPressed: () {
-                                      controller.takingScreenShot.value = true;
-                                      controller.screenshotController
-                                          .capture(
-                                              delay: Duration(milliseconds: 20))
-                                          .then((image) async {
-                                        // ShowCapturedWidget(
-                                        //     context, capturedImage!);
-                                        if (image != null) {
-                                          final directory =
-                                              await getApplicationDocumentsDirectory();
-                                          final imagePath = await File(
-                                                  '${directory.path}/DiGi-QR | Mohammad Suheb.png')
-                                              .create();
-                                          await imagePath.writeAsBytes(image);
-
-                                          /// Share Plugin
-                                          await Share.shareFiles(
-                                              [imagePath.path]);
-                                        }
-                                        controller.takingScreenShot.value =
-                                            false;
-                                      }).catchError((onError) {
-                                        print(onError);
-                                        controller.takingScreenShot.value =
-                                            false;
-                                      });
-                                    },
+                                    onPressed: controller.shareProfileTrigger,
                                     icon: const Icon(
                                       Icons.share,
                                       color: Color.fromRGBO(210, 231, 255, 0.8),

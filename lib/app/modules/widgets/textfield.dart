@@ -1,3 +1,4 @@
+import 'package:digitag/app/services/auth_service_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,20 +29,34 @@ TextFormField CustomField({
         fontWeight: FontWeight.bold),
     decoration: InputDecoration(
         prefix: prefix,
-        suffixIcon: TextButton(
-          child: Text("Send OTP",
-              style: TextStyle(
-                  fontFamily: "SofiaPro",
-                  color: Colors.teal[600],
-                  fontWeight: FontWeight.w400)),
-          //   style: ,
-          // onPressed: () {
-          //   Get.find<AuthServiceController>().phoneLogIn(
-          //       "+91 ${Get.find<OtpViewController>().phonenocontroller.text}");
-          //   // print(Get.find<OtpViewController>().phonenocontroller.text);
-          // },
-          onPressed: Get.find<OtpViewController>().sendOtpTrigger,
-        ),
+        suffixIcon: Obx(() {
+          if (Get.find<AuthServiceController>().isLoadig.value) {
+            return Container(
+              padding: EdgeInsets.all(12),
+              height: 40,
+              width: 40,
+              child: CircularProgressIndicator(),
+            );
+          } else if (Get.find<OtpViewController>().seconds.value == 0 ||
+              Get.find<OtpViewController>().seconds.value == 60) {
+            return TextButton(
+              child: Text("Send OTP",
+                  style: TextStyle(
+                      fontFamily: "SofiaPro",
+                      color: Colors.teal[600],
+                      fontWeight: FontWeight.w400)),
+              //   style: ,
+              // onPressed: () {
+              //   Get.find<AuthServiceController>().phoneLogIn(
+              //       "+91 ${Get.find<OtpViewController>().phonenocontroller.text}");
+              //   // print(Get.find<OtpViewController>().phonenocontroller.text);
+              // },
+              onPressed: Get.find<OtpViewController>().sendOtpTrigger,
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
+        }),
         counterText: "",
         // isDense: true,
         filled: true,

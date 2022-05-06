@@ -29,7 +29,9 @@ void main() async {
       theme: Themes.lighttheme,
       // initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
-      home: const LoadingOnAuthStateCheck(),
+      home: const Scaffold(
+        body: LoadingOnAuthStateCheck(),
+      ),
     ),
   );
 }
