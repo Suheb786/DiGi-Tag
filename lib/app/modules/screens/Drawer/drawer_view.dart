@@ -1,10 +1,13 @@
+import 'package:digitag/app/modules/screens/Home/home_controller.dart';
+import 'package:digitag/app/modules/screens/QrGenerator/qr_generator_controller.dart';
+import 'package:digitag/app/services/auth_service_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
 import '../Home/home_view.dart';
-import '../Login/login_view.dart';
+
 import '../Profile/profile_controller.dart';
 
 class DrawerView extends GetView<DrawerController> {
@@ -130,7 +133,52 @@ class MenuPage extends StatelessWidget {
                 children: [
                   const SizedBox(width: 25),
                   InkWell(
-                    onTap: (() => Get.to(LoginView())),
+                    onTap: (() => showDialog(
+                          context: context,
+                          builder: (_) => AlertDialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(13),
+                            ),
+                            title: const Text(
+                              "Log Out",
+                              style: TextStyle(
+                                color: Color(0xff779FE5),
+                                fontFamily: "SofiaPro",
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            content: const Text(
+                              "Are you sure?",
+                              style: TextStyle(
+                                color: Color(0xff779FE5),
+                                fontFamily: "SofiaPro",
+                              ),
+                            ),
+                            actions: [
+                              TextButton(
+                                  onPressed:
+                                      Get.find<AuthServiceController>().logOut,
+                                  child: const Text(
+                                    'Log Out',
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 230, 59, 53),
+                                      fontFamily: "SofiaPro",
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )),
+                              TextButton(
+                                  onPressed: () => Get.back(),
+                                  child: const Text(
+                                    'Cancel',
+                                    style: TextStyle(
+                                      color: Color(0xff779FE5),
+                                      fontFamily: "SofiaPro",
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  )),
+                            ],
+                          ),
+                        )),
                     child: const Text(
                       "Log Out",
                       style: TextStyle(
@@ -143,13 +191,13 @@ class MenuPage extends StatelessWidget {
                   Transform.rotate(
                     angle: -1.57,
                     child: Container(
-                      color: Color(0xff5B76C8),
+                      color: const Color(0xff5B76C8),
                       width: 23,
                       height: 2,
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: Get.find<HomeController>().softKruUrlLaunch,
                     child: RichText(
                         text: const TextSpan(children: [
                       TextSpan(
@@ -188,7 +236,7 @@ class MenuPage extends StatelessWidget {
         leading: Icon(
           item.icon,
           size: 22,
-          color: Color(0xff9FDDFF),
+          color: const Color(0xff9FDDFF),
         ),
         title: Text(
           item.title,
@@ -237,6 +285,12 @@ class MenuPage extends StatelessWidget {
             case "Show QR":
               Get.find<ProfileController>().status.value = false;
               Get.toNamed(Routes.QR_GENERATOR);
+              break;
+            case "Share Profile":
+              Get.find<ProfileController>().status.value = false;
+              Get.toNamed(Routes.QR_GENERATOR,arguments: {"shareProfile" : true});
+              // Get.find<QrGeneratorController>().shareProfileTrigger();
+
               break;
             default:
 

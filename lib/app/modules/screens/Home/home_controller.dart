@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeController extends GetxController {
+  final Uri _softKruUrl = Uri.parse('https://softkru.com/');
   DateTime? currentBackPressTime;
 
   ScrollController homeScrollController = ScrollController();
+
+  //* Launch SoftKru url
+  void softKruUrlLaunch() async {
+    if (!await launchUrl(_softKruUrl)) throw 'Could not launch $_softKruUrl';
+  }
 
   twiceBackToast() async {
     DateTime now = DateTime.now();
