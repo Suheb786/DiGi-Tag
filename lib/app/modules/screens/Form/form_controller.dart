@@ -138,7 +138,7 @@ class FormController extends GetxController {
     if (currentSelectedBranch.value.isEmpty ||
         currentSelectedCourse.value.isEmpty ||
         currentSelectedSemester.value.isEmpty) {
-      showSnackbar(
+      showRedSnackbar(
         "Empty Fields",
         "Selection of Course, Branch, Semester are required",
       );
@@ -147,7 +147,7 @@ class FormController extends GetxController {
     }
   }
 
-  SnackbarController showSnackbar(text, massage) {
+  SnackbarController showRedSnackbar(text, massage) {
     return Get.snackbar(
       "",
       "",
@@ -157,6 +157,30 @@ class FormController extends GetxController {
       dismissDirection: DismissDirection.horizontal,
       icon: const Icon(
         Icons.error,
+        color: Colors.white,
+      ),
+      titleText: Text(
+        text,
+        style: GoogleFonts.montserrat(
+            fontWeight: FontWeight.bold, color: Colors.white),
+      ),
+      messageText: Text(
+        massage,
+        style: GoogleFonts.montserrat(color: Colors.white),
+      ),
+    );
+  }
+
+  SnackbarController showGreenSnackbar(text, massage) {
+    return Get.snackbar(
+      "",
+      "",
+      backgroundColor: Colors.green,
+      borderRadius: 5,
+      colorText: Colors.white,
+      dismissDirection: DismissDirection.horizontal,
+      icon: const Icon(
+        Icons.check_rounded,
         color: Colors.white,
       ),
       titleText: Text(
@@ -241,7 +265,7 @@ class FormController extends GetxController {
     if (pickedImage != null) {
       return true;
     } else
-      showSnackbar("Profile Pic not added",
+      showRedSnackbar("Profile Pic not added",
           "You have to upload a profile pic that will be visible on your public profile");
   }
 

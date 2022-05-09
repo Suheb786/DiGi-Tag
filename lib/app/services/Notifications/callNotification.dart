@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:digitag/app/modules/screens/MedicalSupport/medialsupport_controller.dart';
@@ -13,14 +14,14 @@ Future<http.Response> sendCallNotification(
       "to": peerToken,
       "priority": "high",
       "data": {
-        "id": "12345",
+        "id": "mI1ejboWToUzc1XJ4KSc",
         "payload": "This is payload",
       },
       "notification": {
         "vibrate": "300",
         "priority": "high",
         "image": "https://picsum.photos/48/48",
-        "body": content,
+        "body": "content",
         "title": "Test with the S10 application",
         "sound": "custom.mp3",
         "android_channel_id":
@@ -38,7 +39,7 @@ Future<http.Response> sendCallNotification(
     },
     body: body,
   );
-  debugPrint("send notification call");
+  log("send notification call");
   // debugPrint("send notifications is ${body.toString()}");
   return response;
 }

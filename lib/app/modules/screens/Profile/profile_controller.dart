@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:digitag/app/modules/widgets/enums.dart';
+import 'package:digitag/app/services/auth_service_controller.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +25,7 @@ class ProfileController extends GetxController {
   var scrollOffset = 0.0.obs;
 
   Map<String, dynamic>? userData = {};
+  dynamic userfeedback;
 
   void toggleLikeDislikeButton(Voting vote) {
     log('Toggle like dislike called');
@@ -37,11 +40,11 @@ class ProfileController extends GetxController {
 
   @override
   void onInit() async {
-    profileScrollController.addListener(() => updatePadding());
+    // profileScrollController.addListener(() => updatePadding());
     userData = await Get.find<DatabaseServiceController>()
         .getProfile(uid: "mI1ejboWToUzc1XJ4KSc");
+    userfeedback = await Get.find<DatabaseServiceController>().getAudit();
     super.onInit();
-    print(userData);
   }
 
   void updatePadding() {
@@ -83,9 +86,19 @@ class ProfileController extends GetxController {
       Get.offAllNamed(Routes.DRAWER);
       // ZoomDrawer.of(context)!.close();
       status.value = false;
+      showFeedbackField.value = false;
 
       return false;
     }
+  }
+
+  postComment() async {
+    Map<String, dynamic> addComment = {
+      "feedback": comment.text,
+      "like_dislike": voting.value.toString(),
+    };
+    Get.find<DatabaseServiceController>().addAudit(addComment);
+    userfeedback = await Get.find<DatabaseServiceController>().getAudit();
   }
 
   void audioSwitchCheck() {

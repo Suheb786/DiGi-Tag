@@ -110,7 +110,7 @@ class FormView extends GetView<FormController> {
                                         formButton: FormButton.academic);
                                   } else if (controller.activeButton.value ==
                                       FormButton.personal) {
-                                    controller.showSnackbar(
+                                    controller.showRedSnackbar(
                                         "Validation isn't completed",
                                         "Academic Details will show when you complete Personal Details");
                                   }
@@ -129,12 +129,12 @@ class FormView extends GetView<FormController> {
                                         FormButton.medical;
                                   } else if (controller.activeButton.value ==
                                       FormButton.academic) {
-                                    controller.showSnackbar(
+                                    controller.showRedSnackbar(
                                         "Validation isn't completed",
                                         "Medical Form will show when you complete Academic Details");
                                   } else if (controller.activeButton.value ==
                                       FormButton.personal) {
-                                    controller.showSnackbar(
+                                    controller.showRedSnackbar(
                                         "Validation isn't completed",
                                         "Medical Form will show when you complete Academic Details");
                                   }

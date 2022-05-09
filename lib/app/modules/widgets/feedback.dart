@@ -1,16 +1,18 @@
 import 'dart:developer';
 
+import 'package:digitag/app/modules/screens/Form/form_controller.dart';
 import 'package:digitag/app/modules/screens/Profile/profile_controller.dart';
 import 'package:digitag/app/modules/widgets/custom_text_form_field.dart';
 import 'package:digitag/app/modules/widgets/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 ProfileController profileController = Get.find<ProfileController>();
-Padding AddFeedback(BuildContext context) {
+Widget AddFeedback(BuildContext? context) {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
+    padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
     child: InkWell(
       onTap: (() {
         if (profileController.showFeedbackField.value) {
@@ -21,7 +23,7 @@ Padding AddFeedback(BuildContext context) {
       }),
       child: Container(
         height: 110,
-        width: MediaQuery.of(context).size.width - 20,
+        width: MediaQuery.of(context!).size.width - 20,
         decoration: BoxDecoration(
           color: Color(0xBFFFFFFF),
           borderRadius: BorderRadius.circular(15),
@@ -56,7 +58,7 @@ Padding AddFeedback(BuildContext context) {
   );
 }
 
-Padding FeedbackField() {
+Padding FeedbackField(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
     child: Container(
@@ -87,6 +89,51 @@ Padding FeedbackField() {
                     if (profileController.feedbackFormKey.currentState!
                         .validate()) {
                       print("saved Now send this to database");
+                      showDialog(
+                          context: context,
+                          builder: (_) {
+                            return AlertDialog(
+                              title: Text(
+                                "Publish comment",
+                                style: GoogleFonts.montserrat(
+                                    color: Colors.black87, fontSize: 13),
+                              ),
+                              content: Text(
+                                "This comment will be visible to all user who visit ${profileController.userData!['full_name']} audit profile",
+                                style: GoogleFonts.montserrat(
+                                    color: Colors.black54, fontSize: 12),
+                              ),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    child: Text("Edit",
+                                        style: GoogleFonts.montserrat(
+                                            color: Colors.redAccent))),
+                                TextButton(
+                                  onPressed: () {
+                                    Get.find<ProfileController>().postComment();
+
+                                    Get.back();
+                                    Get.find<ProfileController>()
+                                        .showFeedbackField
+                                        .value = false;
+                                    Get.find<ProfileController>().comment.text =
+                                        "";
+
+                                    Get.find<FormController>().showGreenSnackbar(
+                                        "Successfully added",
+                                        "Your comment is now visible to all");
+                                  },
+                                  child: Text("Post",
+                                      style: GoogleFonts.montserrat(
+                                          color: Colors.blueAccent)),
+                                ),
+                              ],
+                              backgroundColor: Color(0xffD2EAFF),
+                            );
+                          });
                     }
                   },
                   child: Icon(

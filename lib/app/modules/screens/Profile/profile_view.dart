@@ -76,10 +76,13 @@ class ProfileView extends GetView<ProfileController> {
                           SliverFillRemaining(
                             // fillOverscroll: true,
                             hasScrollBody: false,
-                            child: Obx(
-                              () => controller.status.value
-                                  ? AuditOnWidget()
-                                  : AuditOffWidget(),
+                            child: Form(
+                              key: controller.feedbackFormKey,
+                              child: Obx(
+                                () => controller.status.value
+                                    ? AuditOnWidget()
+                                    : AuditOffWidget(),
+                              ),
                             ),
                           ),
                         ],
