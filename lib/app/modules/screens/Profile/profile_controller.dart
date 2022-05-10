@@ -13,6 +13,7 @@ class ProfileController extends GetxController {
   TextEditingController comment = TextEditingController();
   final feedbackFormKey = GlobalKey<FormState>();
 
+  var reload = false.obs;
   var status = false.obs;
   var wrapPadding = 50.0.obs;
   var spacing = 5.0.obs;
@@ -25,7 +26,7 @@ class ProfileController extends GetxController {
   var scrollOffset = 0.0.obs;
 
   Map<String, dynamic>? userData = {};
-  dynamic userfeedback;
+  QuerySnapshot? userfeedback;
 
   void toggleLikeDislikeButton(Voting vote) {
     log('Toggle like dislike called');
@@ -38,13 +39,21 @@ class ProfileController extends GetxController {
     // log(voting.value.toString());
   }
 
-  @override
-  void onInit() async {
-    // profileScrollController.addListener(() => updatePadding());
+  callingAudit() async {
+    log("onInitworking");
     userData = await Get.find<DatabaseServiceController>()
         .getProfile(uid: "mI1ejboWToUzc1XJ4KSc");
+
     userfeedback = await Get.find<DatabaseServiceController>().getAudit();
+    print("Profile controller userFeedBack data ${userfeedback!.docs}");
+  }
+
+  @override
+  void onInit() {
+    callingAudit();
     super.onInit();
+
+    // profileScrollController.addListener(() => updatePadding());
   }
 
   void updatePadding() {
@@ -98,7 +107,7 @@ class ProfileController extends GetxController {
       "like_dislike": voting.value.toString(),
     };
     Get.find<DatabaseServiceController>().addAudit(addComment);
-    userfeedback = await Get.find<DatabaseServiceController>().getAudit();
+    //userfeedback = await Get.find<DatabaseServiceController>().getAudit();
   }
 
   void audioSwitchCheck() {
