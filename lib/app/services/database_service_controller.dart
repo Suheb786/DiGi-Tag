@@ -85,13 +85,12 @@ class DatabaseServiceController extends GetxController {
     final users = await firestore.collection('users').add(userData);
   }
 
-//* Audit add in database -------->>>
+//**** Audit add in database -------->>>
 
   dynamic getAudit() async {
     QuerySnapshot userFeedback =
         await FirebaseFirestore.instance.collection("audits").get();
-    print(
-        "Userfeedback data ${userFeedback.docs.elementAt(0).get("feedback")}");
+
     return userFeedback;
   }
 

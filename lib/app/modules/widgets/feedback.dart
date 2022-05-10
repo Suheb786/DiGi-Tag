@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:digitag/app/modules/screens/Form/form_controller.dart';
 import 'package:digitag/app/modules/screens/Profile/profile_controller.dart';
 import 'package:digitag/app/modules/widgets/custom_text_form_field.dart';
@@ -9,7 +10,10 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../services/database_service_controller.dart';
+
 ProfileController profileController = Get.find<ProfileController>();
+
 Widget AddFeedback(BuildContext? context) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
@@ -58,7 +62,7 @@ Widget AddFeedback(BuildContext? context) {
   );
 }
 
-Padding FeedbackField(BuildContext context) {
+Widget FeedbackField(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
     child: Container(
@@ -112,15 +116,20 @@ Padding FeedbackField(BuildContext context) {
                                         style: GoogleFonts.montserrat(
                                             color: Colors.redAccent))),
                                 TextButton(
-                                  onPressed: () {
-                                    Get.find<ProfileController>().postComment();
+                                  onPressed: () async {
+                                    profileController.postComment();
+                                    profileController.reload.value = true;
+
+                                    Get.find<DatabaseServiceController>()
+                                        .getAudit();
+                                    profileController.onInit();
+
+                                    profileController.showFeedbackField.value =
+                                        false;
 
                                     Get.back();
-                                    Get.find<ProfileController>()
-                                        .showFeedbackField
-                                        .value = false;
-                                    Get.find<ProfileController>().comment.text =
-                                        "";
+                                    profileController.status.value == true;
+                                    profileController.comment.text = "";
 
                                     Get.find<FormController>().showGreenSnackbar(
                                         "Successfully added",

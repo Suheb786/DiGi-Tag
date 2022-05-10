@@ -30,9 +30,7 @@ Future<void> main() async {
 
   // Get.put(AuthServiceController());
   Get.put(PushNotificationController());
-
   Get.put(AuthServiceController());
-
   Get.put(DatabaseServiceController());
   Get.put(HomeController());
   Get.put(LoginController());
