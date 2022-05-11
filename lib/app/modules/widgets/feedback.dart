@@ -117,20 +117,11 @@ Widget FeedbackField(BuildContext context) {
                                             color: Colors.redAccent))),
                                 TextButton(
                                   onPressed: () async {
-                                    profileController.postComment();
-                                    profileController.reload.value = true;
-
-                                    Get.find<DatabaseServiceController>()
-                                        .getAudit();
-                                    profileController.onInit();
-
                                     profileController.showFeedbackField.value =
                                         false;
-
-                                    Get.back();
-                                    profileController.status.value == true;
+                                    profileController.postComment();
                                     profileController.comment.text = "";
-
+                                    Get.back();
                                     Get.find<FormController>().showGreenSnackbar(
                                         "Successfully added",
                                         "Your comment is now visible to all");
