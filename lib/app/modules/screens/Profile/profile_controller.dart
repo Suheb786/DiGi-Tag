@@ -56,6 +56,10 @@ class ProfileController extends GetxController {
     // profileScrollController.addListener(() => updatePadding());
   }
 
+  Stream<dynamic> auditstream = FirebaseFirestore.instance
+      .collection('audits')
+      .orderBy("postedAt", descending: true)
+      .snapshots();
   void updatePadding() {
     // print(profileScrollController.offset);
 
@@ -101,11 +105,15 @@ class ProfileController extends GetxController {
     }
   }
 
+  late DateTime postedAt;
+
   postComment() async {
     Map<String, dynamic> addComment = {
       "feedback": comment.text,
       "like_dislike": voting.value.toString(),
+      "postedAt": DateTime.now().millisecondsSinceEpoch
     };
+    postedAt = DateTime.fromMillisecondsSinceEpoch(addComment['postedAt']);
     Get.find<DatabaseServiceController>().addAudit(addComment);
     //userfeedback = await Get.find<DatabaseServiceController>().getAudit();
   }

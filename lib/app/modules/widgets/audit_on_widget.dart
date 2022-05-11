@@ -32,7 +32,7 @@ class AuditOnWidget extends StatelessWidget {
         return false;
       },
       child: StreamBuilder<dynamic>(
-          stream: findDBcontroller.auditstream,
+          stream: profileController.auditstream,
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             return SingleChildScrollView(
               child: SafeArea(
