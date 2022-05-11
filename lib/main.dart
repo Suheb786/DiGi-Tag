@@ -28,7 +28,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  // Get.put(AuthServiceController());
   Get.put(PushNotificationController());
   Get.put(AuthServiceController());
   Get.put(DatabaseServiceController());
@@ -48,7 +47,7 @@ Future<void> main() async {
       debugShowCheckedModeBanner: false,
       title: "Application",
       theme: Themes.lighttheme,
-      // initialRoute: AppPages.INITIAL,
+      initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       home: const Scaffold(
         body: LoadingOnAuthStateCheck(),

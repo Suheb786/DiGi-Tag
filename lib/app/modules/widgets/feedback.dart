@@ -122,9 +122,13 @@ Widget FeedbackField(BuildContext context) {
                                     profileController.postComment();
                                     profileController.comment.text = "";
                                     Get.back();
-                                    Get.find<FormController>().showGreenSnackbar(
-                                        "Successfully added",
-                                        "Your comment is now visible to all");
+                                    Get.find<FormController>()
+                                        .showGreenSnackbar(
+                                      snackPosition: SnackPosition.BOTTOM,
+                                      massage:
+                                          "Your comment is now visible to all",
+                                      text: "Successfully added",
+                                    );
                                   },
                                   child: Text("Post",
                                       style: GoogleFonts.montserrat(

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:digitag/app/modules/screens/Form/form_controller.dart';
 import 'package:digitag/app/modules/screens/MedicalSupport/medialsupport_controller.dart';
 import 'package:digitag/app/modules/screens/Profile/profile_controller.dart';
 import 'package:digitag/app/modules/widgets/feedback.dart';
@@ -11,6 +12,7 @@ import 'package:digitag/app/modules/widgets/textfield.dart';
 import 'package:digitag/app/services/database_service_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../models/audit_card_model.dart';
 import 'audit_card.dart';
@@ -34,43 +36,51 @@ class AuditOnWidget extends StatelessWidget {
       child: StreamBuilder<dynamic>(
           stream: profileController.auditstream,
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            return SingleChildScrollView(
-              child: SafeArea(
-                child: Column(
-                  children: [
-                    Obx(() {
-                      if (Get.find<ProfileController>()
-                          .showFeedbackField
-                          .value) {
-                        return FeedbackField(context);
-                      } else {
-                        return AddFeedback(context);
-                      }
-                    }),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height *
-                          0.1399 *
-                          // snapshot.data.docs.length,
-                          (profileController.userfeedback!.docs.length)
-                              .toDouble(),
+            return snapshot.hasData
+                ? SingleChildScrollView(
+                    child: SafeArea(
+                      child: Column(
+                        children: [
+                          Obx(() {
+                            if (Get.find<ProfileController>()
+                                .showFeedbackField
+                                .value) {
+                              return FeedbackField(context);
+                            } else {
+                              return AddFeedback(context);
+                            }
+                          }),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height *
+                                0.1399 *
+                                snapshot.data.docs.length,
+                            // (profileController.userfeedback!.docs.length)
+                            //     .toDouble(),
 
-                      // snapshot.data.docs.length,
-                      // MediaQuery.of(context).size.height *
-                      //     0.134 *
-                      //     (profileController.userfeedback.length).toDouble(),
-                      child: AuditList(snapshot),
+                            // snapshot.data.docs.length,
+                            // MediaQuery.of(context).size.height *
+                            //     0.134 *
+                            //     (profileController.userfeedback.length).toDouble(),
+                            child: AuditList(snapshot, context),
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
-            );
+                  )
+                : const Center(
+                    child: CircularProgressIndicator(
+                    color: Colors.white70,
+                  ));
           }),
     );
   }
 
-  Widget AuditList(AsyncSnapshot<dynamic> snapshot) {
+  Widget AuditList(AsyncSnapshot<dynamic> snapshot, BuildContext context) {
     if (snapshot.hasError) {
-      return Text('Connection Lost from DataBase');
+      return Padding(
+        padding: const EdgeInsets.only(top: 100.0),
+        child: const Text('Connection Lost from DataBase'),
+      );
     }
 
     if (snapshot.connectionState == ConnectionState.waiting) {
@@ -82,7 +92,7 @@ class AuditOnWidget extends StatelessWidget {
 
     return (snapshot.data.docs.length > 0)
         ? ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: snapshot.data.docs.length,
             // itemCount: profileController.userfeedback!.docs.length,
@@ -100,6 +110,14 @@ class AuditOnWidget extends StatelessWidget {
                   // "${profileController.userfeedback!.docs.elementAt(index).get('like_dislike')}",
                   );
             })
-        : Text("No comments on this Profile");
+        : const Padding(
+            padding: const EdgeInsets.only(top: 100.0),
+            child: Center(
+                child: Icon(
+              Icons.error_rounded,
+              size: 100,
+              color: Colors.white24,
+            )),
+          );
   }
 }

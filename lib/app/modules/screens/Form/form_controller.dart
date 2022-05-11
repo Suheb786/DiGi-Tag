@@ -171,12 +171,16 @@ class FormController extends GetxController {
     );
   }
 
-  SnackbarController showGreenSnackbar(text, massage) {
+  SnackbarController showGreenSnackbar(
+      {required String text,
+      required String massage,
+      SnackPosition snackPosition = SnackPosition.TOP}) {
     return Get.snackbar(
       "",
       "",
       backgroundColor: Colors.green,
       borderRadius: 5,
+      snackPosition: snackPosition,
       colorText: Colors.white,
       dismissDirection: DismissDirection.horizontal,
       icon: const Icon(

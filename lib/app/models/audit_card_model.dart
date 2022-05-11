@@ -7,7 +7,7 @@ class AuditCard {
   final String branch;
   final Voting voting;
 
-  const AuditCard({
+  AuditCard({
     required this.facultyName,
     required this.message,
     required this.userImageUrl,
