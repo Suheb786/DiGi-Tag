@@ -90,8 +90,7 @@ Widget FeedbackField(BuildContext context) {
                 maxLines: 3,
                 suffixIcon: GestureDetector(
                   onTap: () {
-                    if (profileController.feedbackFormKey.currentState!
-                        .validate()) {
+                    if (profileController.comment.text.length > 20) {
                       print("saved Now send this to database");
                       showDialog(
                           context: context,
@@ -138,6 +137,10 @@ Widget FeedbackField(BuildContext context) {
                               backgroundColor: Color(0xffD2EAFF),
                             );
                           });
+                    } else {
+                      Get.find<FormController>().showRedSnackbar(
+                          "Comment is too short",
+                          "Your Feedback must be as long as it can describe your point of view");
                     }
                   },
                   child: Icon(
