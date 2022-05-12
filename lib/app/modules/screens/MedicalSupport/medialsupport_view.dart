@@ -3,6 +3,8 @@ import 'dart:ui';
 
 import 'package:digitag/app/modules/widgets/custom_appbar.dart';
 import 'package:digitag/app/modules/widgets/textfield.dart';
+import 'package:digitag/app/services/Notifications/pushNotification_controller.dart';
+import 'package:digitag/app/services/database_service_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -308,9 +310,9 @@ class MedicalSupportView extends GetView<MedicalsupportController> {
       double horizontalPadding = 12,
       double verticalPadding = 8}) {
     return InkWell(
-      onTap: () => sendCallNotification(
-          "eZ-HccEeQhOmRDTX6s1MzR:APA91bGcgW6z-640aSZYvPXgYjs9QUWVWLe60djnlRQ7OYAEJnUq3YmNyo1_E85HP9GLoQRvRl84zT7vvmfyiewY9ptu24r4SpgmRlmqv1rR0o2H7jcSpTjMCKbVIiYsW5RlvQTsMdoW",
-          "fdo"),
+      onTap: () async {
+        await Get.find<PushNotificationController>().pushNotificationTrigger();
+      },
       child: Container(
         decoration: BoxDecoration(
           color: color,
@@ -321,7 +323,7 @@ class MedicalSupportView extends GetView<MedicalsupportController> {
             vertical: verticalPadding,
             horizontal: horizontalPadding,
           ),
-          child: Text(
+          child:const Text(
             "Send",
             style: TextStyle(color: Colors.white, fontFamily: "SofiaPro"),
           ),
@@ -340,11 +342,11 @@ class MedicalSupportView extends GetView<MedicalsupportController> {
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(7),
-              border: Border.all(color: Color(0xfff8C8C8C), width: 1)),
+              border: Border.all(color:const Color(0xfff8C8C8C), width: 1)),
           child: GetBuilder<MedicalsupportController>(
             builder: (controller) {
               if (controller.pickGeneralImage == null) {
-                return Icon(
+                return const Icon(
                   Icons.add_photo_alternate_rounded,
                   size: 40,
                   color: Color(0xff6E819F),

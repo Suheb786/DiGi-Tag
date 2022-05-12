@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:digitag/app/services/Notifications/local_notification.dart';
+import 'package:digitag/app/services/database_service_controller.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../routes/app_pages.dart';
+import 'callNotification.dart';
 
 class PushNotificationController extends GetxController {
   @override
@@ -59,5 +62,27 @@ class PushNotificationController extends GetxController {
         }
       },
     );
+  }
+
+  Future<void> pushNotificationTrigger() async {
+    // Get.back();
+    log("Push notification triggered");
+
+    // final List<String> selectedDeviceIds = getSelectedDeviceList();
+
+    for (var item
+        in await Get.find<DatabaseServiceController>().readDevices()) {
+      log(item.deviceName);
+      var response = await sendCallNotification(
+        id: "hello",
+        token: item.deviceId,
+        title: "Testing Notification",
+        bodyText: item.deviceName,
+        imageUrl: "https://picsum.photos/200",
+        payLoad: "This is a payload",
+      );
+
+      log(response.body);
+    }
   }
 }

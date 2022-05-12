@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:digitag/app/modules/screens/MedicalSupport/medialsupport_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -41,8 +43,8 @@ Future<void> main() async {
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   LocalNotificationService.initialize();
 
-  final token = await FirebaseMessaging.instance.getToken();
-  print("Device ID is : $token"); //to print id Token
+  // final token = await FirebaseMessaging.instance.getToken();
+  // log("Device ID is : $token"); //to print id Token
 
   runApp(
     GetMaterialApp(

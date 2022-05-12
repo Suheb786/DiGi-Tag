@@ -2,28 +2,32 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:digitag/app/modules/screens/MedicalSupport/medialsupport_controller.dart';
-import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
+
 import 'package:http/http.dart' as http;
 
-Future<http.Response> sendCallNotification(
-    String peerToken, String content) async {
+Future<http.Response> sendCallNotification({
+  required String id,
+  required String token,
+  required String bodyText,
+  required String imageUrl,
+  required String title,
+  required String payLoad,
+}) async {
   final body = jsonEncode(
     {
-      "to": peerToken,
+      "to": token,
       "priority": "high",
       "data": {
-        "id": "mI1ejboWToUzc1XJ4KSc",
-        "payload": "This is payload",
+        "id": id,
+        "payload": payLoad,
       },
       "notification": {
         "vibrate": "300",
         "priority": "high",
-        "image": "https://picsum.photos/48/48",
-        "body": "content",
-        "title": "Test with the S10 application",
-        "sound": "custom.mp3",
+        "image": imageUrl,
+        "body": bodyText,
+        "title": title,
+        
         "android_channel_id":
             "pushnotificationapp" /* android's sound is set within the app using notification channels */
       }
@@ -35,7 +39,7 @@ Future<http.Response> sendCallNotification(
     headers: {
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.authorizationHeader:
-          "key=AAAAJpEcLjY:APA91bHXkx2vrKIxgQVE9og-6huoyv5aIPuwRprDU5dXec5IJEUqCto5r1spNPJjlQbJdwLVmFJmD_2qPeGsGsLZycrQUAUiOEcNHMulFJiMok5HaXrvbFtS8nYg9QzPgt206oiXLc78"
+          "key=AAAAaqmsu4Q:APA91bEc4iWtUJyMUKYll9PviP0zJJ0wqQuUZ2jcvBS-lkSLwuy6wERFQ5DPMwdjDQFlm1WrsIWsHJlKkwPAU7mt4NNLVaSCEJFCQSAsWaZVc0iNwjlZfxnwtmASpoB64d4bvqO7Y-oK"
     },
     body: body,
   );

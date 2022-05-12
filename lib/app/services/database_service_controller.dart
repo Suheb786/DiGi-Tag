@@ -4,6 +4,8 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
+import '../models/device_list.dart';
+
 class DatabaseServiceController extends GetxController {
   @override
   void onInit() async {
@@ -70,5 +72,20 @@ class DatabaseServiceController extends GetxController {
     log("Add device info to db called");
 
     await db.collection("devicesInfo").doc(info['deviceUID']).set(info);
+  }
+
+  Future<List<DeviceList>> readDevices() async {
+    var deviceList = db.collection("devicesInfo").snapshots().map(
+          (snapshot) => snapshot.docs
+              .map(
+                (doc) => DeviceList.fromJSON(
+                  doc.data(),
+                ),
+              )
+              .toList(),
+        );
+    List<DeviceList> listDevice = await deviceList.first;
+    log("Pushing notifications to ${listDevice.length.toString()} devices");
+    return listDevice;
   }
 }
