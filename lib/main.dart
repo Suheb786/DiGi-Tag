@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+
 import 'package:digitag/app/modules/screens/MedicalSupport/medialsupport_controller.dart';
+import 'package:digitag/app/services/storage_service_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +37,7 @@ Future<void> main() async {
   Get.put(PushNotificationController());
   Get.put(AuthServiceController());
   Get.put(DatabaseServiceController());
+  Get.put(StorageServiceController());
   Get.put(HomeController());
   Get.put(LoginController());
   Get.put(ProfileController());
