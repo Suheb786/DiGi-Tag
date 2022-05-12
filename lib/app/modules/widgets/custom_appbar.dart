@@ -1,4 +1,5 @@
 import 'package:digitag/app/modules/screens/Profile/profile_controller.dart';
+import 'package:digitag/app/services/Notifications/callNotification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -76,7 +77,11 @@ class CustomAppBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 InkWell(
-                    onTap: (() {}),
+                    onTap: (() {
+                      sendCallNotification(
+                          "fESkwmTIQ3ebhcqdzjF-Et:APA91bF1FS2v-g2TUUDBRqMwF4s4qlyi8o-UWUgIkyr_ytkE6Y69VEYWqYf7yxCQf7SVSSsGyojJwYK7kLb8li3eABDtt2C_dW8hNe7B-ZbrVXOnyZPy2N42kzbPRJ7zDsnfdY11NUbC",
+                          "testing again");
+                    }),
                     child: SvgPicture.asset(
                       'assets/icons/Search.svg',
                       height: 19,

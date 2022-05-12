@@ -26,7 +26,11 @@ class ProfileView extends GetView<ProfileController> {
       },
     );
     return WillPopScope(
-      onWillPop: () => controller.onBack(),
+      onWillPop: () async {
+        controller.onBack();
+
+        return Future.value(true);
+      },
       child: Scaffold(
         extendBodyBehindAppBar: true,
         extendBody: true,
@@ -72,10 +76,13 @@ class ProfileView extends GetView<ProfileController> {
                           SliverFillRemaining(
                             // fillOverscroll: true,
                             hasScrollBody: false,
-                            child: Obx(
-                              () => controller.status.value
-                                  ? AuditOnWidget()
-                                  : AuditOffWidget(),
+                            child: Form(
+                              key: controller.feedbackFormKey,
+                              child: Obx(
+                                () => controller.status.value
+                                    ? AuditOnWidget()
+                                    : AuditOffWidget(),
+                              ),
                             ),
                           ),
                         ],

@@ -17,3 +17,12 @@ enum StudentType {
   hosteler,
   dayScholor,
 }
+
+enum Liked {
+  blue,
+  grey,
+}
+enum Disliked {
+  red,
+  grey,
+}

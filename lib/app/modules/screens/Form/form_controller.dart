@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:digitag/app/services/database_service_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -138,7 +139,7 @@ class FormController extends GetxController {
     if (currentSelectedBranch.value.isEmpty ||
         currentSelectedCourse.value.isEmpty ||
         currentSelectedSemester.value.isEmpty) {
-      showSnackbar(
+      showRedSnackbar(
         "Empty Fields",
         "Selection of Course, Branch, Semester are required",
       );
@@ -147,7 +148,7 @@ class FormController extends GetxController {
     }
   }
 
-  SnackbarController showSnackbar(text, massage) {
+  SnackbarController showRedSnackbar(text, massage) {
     return Get.snackbar(
       "",
       "",
@@ -157,6 +158,34 @@ class FormController extends GetxController {
       dismissDirection: DismissDirection.horizontal,
       icon: const Icon(
         Icons.error,
+        color: Colors.white,
+      ),
+      titleText: Text(
+        text,
+        style: GoogleFonts.montserrat(
+            fontWeight: FontWeight.bold, color: Colors.white),
+      ),
+      messageText: Text(
+        massage,
+        style: GoogleFonts.montserrat(color: Colors.white),
+      ),
+    );
+  }
+
+  SnackbarController showGreenSnackbar(
+      {required String text,
+      required String massage,
+      SnackPosition snackPosition = SnackPosition.TOP}) {
+    return Get.snackbar(
+      "",
+      "",
+      backgroundColor: Colors.green,
+      borderRadius: 5,
+      snackPosition: snackPosition,
+      colorText: Colors.white,
+      dismissDirection: DismissDirection.horizontal,
+      icon: const Icon(
+        Icons.check_rounded,
         color: Colors.white,
       ),
       titleText: Text(
@@ -240,8 +269,10 @@ class FormController extends GetxController {
   checkPickedImage() {
     if (pickedImage != null) {
       return true;
-    } else {
-      showSnackbar("Profile Pic not added",
+
+    } else
+      showRedSnackbar("Profile Pic not added",
+
           "You have to upload a profile pic that will be visible on your public profile");
       return false;
     }
@@ -392,11 +423,13 @@ class FormController extends GetxController {
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
 
 //!-------------------------- Firebase work ----------------------->>>//
+
   Future addUsers(Map<String, dynamic> userData) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
 
     final users = await firestore.collection('users').add(userData);
   }
+
 
 //*-- databse writing ---->>
   checkSubmitButton() async {
@@ -423,8 +456,12 @@ class FormController extends GetxController {
         'vacination': vaccinationcheck(),
         'phoneNo': phoneNo,
       };
+
+      Get.find<DatabaseServiceController>().addUsers(addUser);
+
       //  await addUsers(addUser);
       log(addUser.toString());
+
     }
   }
 

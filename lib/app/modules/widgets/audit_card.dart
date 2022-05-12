@@ -9,7 +9,7 @@ class AuditCardWidget extends StatelessWidget {
   final String facultyName;
   final String userImageUrl;
   final String branch;
-  final Voting voting;
+  final String voting;
 
   const AuditCardWidget({
     Key? key,
@@ -23,7 +23,7 @@ class AuditCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
         height: 110,
@@ -151,7 +151,7 @@ class AuditCardWidget extends StatelessWidget {
                           image: DecorationImage(
                               fit: BoxFit.fitWidth,
                               image: Image.asset(
-                                voting == Voting.up
+                                voting == "Voting.up"
                                     ? "assets/icons/profile_icons/like_Icon.png"
                                     : "assets/icons/profile_icons/dislikeIcon.png",
                               ).image),

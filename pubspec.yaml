@@ -35,7 +35,14 @@ dependencies:
   qr_flutter: ^4.0.0
   screenshot: ^1.2.3
   share_plus: ^4.0.4
+
+
+  firebase_messaging: ^11.3.0
+  flutter_local_notifications: ^9.5.0
+  http: ^0.13.4
+
   shared_preferences: ^2.0.13
+
   url_launcher: ^6.1.0
 
 dev_dependencies:

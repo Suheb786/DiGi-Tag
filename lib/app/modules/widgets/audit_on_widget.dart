@@ -1,77 +1,123 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:digitag/app/modules/screens/Form/form_controller.dart';
+import 'package:digitag/app/modules/screens/MedicalSupport/medialsupport_controller.dart';
+import 'package:digitag/app/modules/screens/Profile/profile_controller.dart';
+import 'package:digitag/app/modules/widgets/feedback.dart';
+import 'package:digitag/app/modules/widgets/custom_text_form_field.dart';
 import 'package:digitag/app/modules/widgets/enums.dart';
+import 'package:digitag/app/modules/widgets/medical_form_fields.dart';
+import 'package:digitag/app/modules/widgets/textfield.dart';
+import 'package:digitag/app/services/database_service_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../models/audit_card_model.dart';
 import 'audit_card.dart';
 
 class AuditOnWidget extends StatelessWidget {
-  // ProfileController profileController = Get.put(ProfileController());
-  // ProfileController profileController = Get.find<ProfileController>();
-  AuditOnWidget({Key? key}) : super(key: key);
+  DatabaseServiceController findDBcontroller =
+      Get.find<DatabaseServiceController>();
+  MedicalsupportController findMedController =
+      Get.find<MedicalsupportController>();
 
-  final List<AuditCard> auditCardList = [
-    const AuditCard(
-      branch: "CSE",
-      facultyName: "Abhimanue Mishra",
-      message: "Good work keep it up",
-      userImageUrl: "assets/images/demopic.png",
-      voting: Voting.up,
-    ),
-    const AuditCard(
-        branch: "ME",
-        facultyName: "Akhil Mishra",
-        message: "Quick brown fox jump",
-        userImageUrl: "assets/images/demopic.png",
-        voting: Voting.down),
-    const AuditCard(
-      branch: "CSE",
-      facultyName: "Abhimanue Mishra",
-      message: "Good work keep it up",
-      userImageUrl: "assets/images/demopic.png",
-      voting: Voting.up,
-    ),
-    const AuditCard(
-        branch: "ME",
-        facultyName: "Akhil Mishra",
-        message: "Quick brown fox jump",
-        userImageUrl: "assets/images/demopic.png",
-        voting: Voting.down),
-    const AuditCard(
-      branch: "CSE",
-      facultyName: "Abhimanue Mishra",
-      message: "Good work keep it up",
-      userImageUrl: "assets/images/demopic.png",
-      voting: Voting.up,
-    ),
-    const AuditCard(
-        branch: "ME",
-        facultyName: "Akhil Mishra",
-        message: "Quick brown fox jump",
-        userImageUrl: "assets/images/demopic.png",
-        voting: Voting.down),
-  ];
+  List feedbackList = [];
+  AuditOnWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // return ListView.builder(
-    //   shrinkWrap: true,
-    //   physics: const NeverScrollableScrollPhysics(),
-    //   itemCount: auditCardList.length,
-    //   itemBuilder: (_, index) => AuditCardWidget(
-    //       facultyName: auditCardList[index].facultyName,
-    //       message: auditCardList[index].message,
-    //       userImageUrl: auditCardList[index].userImageUrl,
-    //       branch: auditCardList[index].branch,
-    //       voting: auditCardList[index].voting),
-    // );
-    return Column(
-        children: auditCardList.map((e) {
-      return AuditCardWidget(
-          facultyName: e.facultyName,
-          message: e.message,
-          userImageUrl: e.userImageUrl,
-          branch: e.branch,
-          voting: e.voting);
-    }).toList());
+    return WillPopScope(
+      onWillPop: () async {
+        profileController.callingAudit();
+        return false;
+      },
+      child: StreamBuilder<dynamic>(
+          stream: profileController.auditstream,
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            return snapshot.hasData
+                ? SingleChildScrollView(
+                    child: SafeArea(
+                      child: Column(
+                        children: [
+                          Obx(() {
+                            if (Get.find<ProfileController>()
+                                .showFeedbackField
+                                .value) {
+                              return FeedbackField(context);
+                            } else {
+                              return AddFeedback(context);
+                            }
+                          }),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height *
+                                0.1399 *
+                                snapshot.data.docs.length,
+                            // (profileController.userfeedback!.docs.length)
+                            //     .toDouble(),
+
+                            // snapshot.data.docs.length,
+                            // MediaQuery.of(context).size.height *
+                            //     0.134 *
+                            //     (profileController.userfeedback.length).toDouble(),
+                            child: AuditList(snapshot, context),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                : const Center(
+                    child: CircularProgressIndicator(
+                    color: Colors.white70,
+                  ));
+          }),
+    );
+  }
+
+  Widget AuditList(AsyncSnapshot<dynamic> snapshot, BuildContext context) {
+    if (snapshot.hasError) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 100.0),
+        child: const Text('Connection Lost from DataBase'),
+      );
+    }
+
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return const CircularProgressIndicator();
+    }
+    // if (!snapshot.hasData) {
+    //   return CircularProgressIndicator();
+    // }
+
+    return (snapshot.data.docs.length > 0)
+        ? ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: snapshot.data.docs.length,
+            // itemCount: profileController.userfeedback!.docs.length,
+            itemBuilder: (_, index) {
+              DocumentSnapshot documentSnapshot = snapshot.data.docs[index];
+              return AuditCardWidget(
+                  facultyName: "Mohammad",
+                  //message: "",
+                  message: profileController.userfeedback != null
+                      ? documentSnapshot["feedback"]
+                      : '- - -',
+                  userImageUrl: "kjh",
+                  branch: "cse",
+                  voting: documentSnapshot["like_dislike"]
+                  // "${profileController.userfeedback!.docs.elementAt(index).get('like_dislike')}",
+                  );
+            })
+        : const Padding(
+            padding: const EdgeInsets.only(top: 100.0),
+            child: Center(
+                child: Icon(
+              Icons.error_rounded,
+              size: 100,
+              color: Colors.white24,
+            )),
+          );
   }
 }
