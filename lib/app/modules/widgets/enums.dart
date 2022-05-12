@@ -13,16 +13,16 @@ enum FormButton {
   academic,
   medical,
 }
-enum StudentType {
-  hosteler,
-  dayScholor,
+enum UserType {
+  student,
+  faculty,
 }
 
-enum Liked {
+enum ifLiked {
   blue,
   grey,
 }
-enum Disliked {
+enum ifDisliked {
   red,
   grey,
 }
