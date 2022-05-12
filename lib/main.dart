@@ -18,6 +18,7 @@ import 'app/services/Notifications/pushNotification_controller.dart';
 import 'app/services/auth_service_controller.dart';
 
 import 'app/services/database_service_controller.dart';
+import 'app/services/device_id_controller.dart';
 
 Future<void> backgroundHandler(RemoteMessage message) async {
   debugPrint("onBackgroundMessageHandler called");
@@ -27,6 +28,7 @@ Future<void> backgroundHandler(RemoteMessage message) async {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Get.put(DeviceIdController());
 
   Get.put(PushNotificationController());
   Get.put(AuthServiceController());
