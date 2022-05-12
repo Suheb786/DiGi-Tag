@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:digitag/app/services/database_service_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,15 @@ class AuthServiceController extends GetxController {
 
   void _setInitialScreen(User? user) async {
     if (user != null) {
-      Get.offAllNamed(Routes.DRAWER);
+      if (await Get.find<DatabaseServiceController>()
+          .userExistCheck(uid: getUid)) {
+        log("$getUid : user exist in Database Redirecting => Home");
+        Get.offAllNamed(Routes.DRAWER);
+      } else {
+        log("User does not exist in Database Redirecting => Form");
+        Get.offAllNamed(Routes.FORM);
+      }
+
       isLoadingGetIn.value = false;
     } else {
       Get.offAllNamed(Routes.OTP_VIEW);

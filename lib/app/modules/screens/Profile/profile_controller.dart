@@ -20,8 +20,16 @@ class ProfileController extends GetxController {
   var showFeedbackField = false.obs;
   // var liked = false.obs;
 
+
   // var disliked = false.obs;
   var voting = Voting.up.obs;
+
+  void setStatusValue(bool val) {
+    status.value = val;
+    update();
+  }
+
+
   ScrollController profileScrollController = ScrollController();
   var scrollOffset = 0.0.obs;
 

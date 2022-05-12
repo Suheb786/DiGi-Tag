@@ -27,7 +27,8 @@ class HomeView extends GetView<HomeController> {
         // Get.find<ProfileController>().onBack();
 
         if (profilecontroller.status.value == true) {
-          profilecontroller.status.value = false;
+          // profilecontroller.status.value = false;
+          profilecontroller.setStatusValue(false);
           return Future.value(false);
         } else if (currentBackPressTime == null ||
             now.difference(currentBackPressTime!) >
