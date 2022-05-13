@@ -91,7 +91,7 @@ Widget FeedbackField(BuildContext context) {
                 suffixIcon: GestureDetector(
                   onTap: () {
                     if (profileController.comment.text.length > 20) {
-                      print("saved Now send this to database");
+                      log("saved Now send this to database");
                       showDialog(
                           context: context,
                           builder: (_) {

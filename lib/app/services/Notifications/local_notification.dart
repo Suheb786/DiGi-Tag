@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:http/http.dart' as http;
@@ -43,6 +45,13 @@ class LocalNotificationService {
     );
   }
 
+  static Future<String> _assetBase64EncodedImage(String path) async {
+    ByteData bytes = await rootBundle.load(path);
+    var buffer = bytes.buffer;
+    var m = base64.encode(Uint8List.view(buffer));
+    return m;
+  }
+
   static Future<String> _base64encodedImage(String url) async {
     final http.Response response = await http.get(Uri.parse(url));
     final String base64Data = base64Encode(response.bodyBytes);
@@ -53,7 +62,8 @@ class LocalNotificationService {
     // print("Notification Message : ${message.notification!.android!.imageUrl.toString()}");
 
     final String largeIcon =
-        await _base64encodedImage('https://picsum.photos/48/48');
+        // await _base64encodedImage('https://picsum.photos/48/48');
+        await _assetBase64EncodedImage("assets/icons/alert.png");
     final String bigPicture = await _base64encodedImage(
         message.notification!.android!.imageUrl.toString());
 

@@ -49,7 +49,7 @@ class AuditCardWidget extends StatelessWidget {
                       image: DecorationImage(
                           fit: BoxFit.fitWidth,
                           // TODO: Impliment network image here
-                          image: Image.asset(
+                          image: Image.network(
                             userImageUrl,
                           ).image),
                       shape: BoxShape.circle),

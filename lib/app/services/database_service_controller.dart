@@ -2,7 +2,11 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:digitag/app/models/notification.dart';
+import 'package:digitag/app/services/auth_service_controller.dart';
 import 'package:get/get.dart';
+
+import '../models/device_list.dart';
 
 class DatabaseServiceController extends GetxController {
   @override
@@ -70,5 +74,25 @@ class DatabaseServiceController extends GetxController {
     log("Add device info to db called");
 
     await db.collection("devicesInfo").doc(info['deviceUID']).set(info);
+  }
+
+  Future<List<DeviceList>> readDevices() async {
+    var deviceList = db.collection("devicesInfo").snapshots().map(
+          (snapshot) => snapshot.docs
+              .map(
+                (doc) => DeviceList.fromJSON(
+                  doc.data(),
+                ),
+              )
+              .toList(),
+        );
+    List<DeviceList> listDevice = await deviceList.first;
+    log("Pushing notifications to ${listDevice.length.toString()} devices");
+    return listDevice;
+  }
+
+  Future<void> emergencyNotification(NotificationModel notification) async {
+    log("Add Notification data to db is called");
+    await db.collection('emergencyNotifications').add(notification.toMap());
   }
 }

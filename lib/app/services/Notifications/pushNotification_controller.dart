@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:digitag/app/services/Notifications/local_notification.dart';
+import 'package:digitag/app/services/auth_service_controller.dart';
+import 'package:digitag/app/services/database_service_controller.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../routes/app_pages.dart';
+import 'callNotification.dart';
 
 class PushNotificationController extends GetxController {
   @override
@@ -29,6 +33,7 @@ class PushNotificationController extends GetxController {
         if (message.notification != null) {
           debugPrint(
               "onMessage listener triggered ${message.notification!.android!.toString()}");
+          
           // msg.value =
           // "Pushed on forground state Payload : ${message.data['payload']}";
 
@@ -44,6 +49,7 @@ class PushNotificationController extends GetxController {
     //* 3. This method only call when App in background and not terminated(not closed)
     FirebaseMessaging.onMessageOpenedApp.listen(
       (message) {
+        log(message.data['id']);
         // LocalNotificationService.createanddisplaynotification(message);
         // print("FirebaseMessaging.onMessageOpenedApp.listen");
         if (message.notification != null) {
@@ -59,5 +65,32 @@ class PushNotificationController extends GetxController {
         }
       },
     );
+  }
+
+  Future<void> pushNotificationTrigger({
+    required String title,
+    required String body,
+    required String imageUrl,
+  }) async {
+    // Get.back();
+    log("Push notification triggered");
+
+    // final List<String> selectedDeviceIds = getSelectedDeviceList();
+
+    for (var item
+        in await Get.find<DatabaseServiceController>().readDevices()) {
+      log(item.deviceName);
+      var response = await sendCallNotification(
+        id: Get.find<AuthServiceController>().getUid,
+        token:
+            item.deviceId,
+        title: title,
+        bodyText: body,
+        imageUrl: imageUrl,
+        payLoad: "This is a payload",
+      );
+
+      log(response.body);
+    }
   }
 }
