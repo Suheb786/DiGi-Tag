@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-
 import 'package:digitag/app/modules/screens/MedicalSupport/medialsupport_controller.dart';
 import 'package:digitag/app/services/storage_service_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -62,3 +61,5 @@ Future<void> main() async {
     ),
   );
 }
+
+//! something is wrong in merging the branches
