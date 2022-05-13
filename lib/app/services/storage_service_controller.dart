@@ -15,7 +15,7 @@ class StorageServiceController extends GetxController {
   //   });
   // }
 
-  Future<String?> upladImageToFirebaseStorage({
+  Future<String?> uploadImageToFirebaseStorage({
     required String path,
     required File file,
     required String fileName,
