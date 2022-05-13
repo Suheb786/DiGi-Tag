@@ -58,7 +58,7 @@ class MedicalsupportController extends GetxController {
 
   Future<void> sendEmergencyNotification() async {
     final imageUrl =
-        await Get.find<StorageServiceController>().upladImageToFirebaseStorage(
+        await Get.find<StorageServiceController>().uploadImageToFirebaseStorage(
       path: 'notification',
       file: pickedImage!,
       fileName: DateTime.now().toString(),

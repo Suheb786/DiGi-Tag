@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:digitag/app/services/database_service_controller.dart';
+import 'package:digitag/app/services/storage_service_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -423,9 +424,14 @@ class FormController extends GetxController {
   checkSubmitButton() async {
     final phoneNo = Get.find<AuthServiceController>().getPhoneNumber;
     studentcheck();
+
     if (medicalFormKey.currentState!.validate()) {
+      Get.find<StorageServiceController>().uploadImageToFirebaseStorage(
+          path: "user profile",
+          file: pickedImage!,
+          fileName: "dp : ${DateTime.now().toString()}");
       Map<String, dynamic> addUser = {
-        'uid':Get.find<AuthServiceController>().getUid,
+        'uid': Get.find<AuthServiceController>().getUid,
         'isAdmin': false,
         'full_name': nameController.text,
         'email': emailController.text,

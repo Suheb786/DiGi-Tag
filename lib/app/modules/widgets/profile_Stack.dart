@@ -41,9 +41,10 @@ class ProfileStack extends StatelessWidget {
             backgroundColor: const Color(0x4Dffffff),
             radius: 55,
             child: Container(
-              child: Image.asset(
-                'assets/images/demopic.png',
-              ),
+              // child: Image.network(src),
+              // child: Image.asset(
+              //   'assets/images/demopic.png',
+              // ),
               decoration: const BoxDecoration(
                 color: Color(0x4Dffffff),
                 shape: BoxShape.circle,
