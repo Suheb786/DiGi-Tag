@@ -45,7 +45,7 @@ class ProfileController extends GetxController {
         .getProfile(uid: Get.find<AuthServiceController>().getUid);
 
     userfeedback = await Get.find<DatabaseServiceController>().getAudit();
-    print("Profile controller userFeedBack data ${userfeedback!.docs}");
+    log("Profile controller userFeedBack data ${userfeedback!.docs}");
   }
 
   @override
