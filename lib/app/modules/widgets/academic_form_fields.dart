@@ -8,7 +8,7 @@ import 'custom_text_form_field.dart';
 import 'enums.dart';
 
 class AcademicFormFields extends GetView<FormController> {
-  AcademicFormFields({
+  const AcademicFormFields({
     Key? key,
     required this.screenHeight,
   }) : super(key: key);
@@ -50,23 +50,21 @@ class AcademicFormFields extends GetView<FormController> {
                 () => Row(
                   children: [
                     CustomRadioButton(
-                      title: "Student",
+                      title: "Hosteler",
                       groupValue: controller.studentType.value,
-                      value: UserType.student,
+                      value: StudentType.hosteler,
                       onChanged: (val) {
                         controller.studentcheck();
 
-                        controller.studentType.value = val as UserType;
-                        controller.visible.value = true;
+                        controller.studentType.value = val as StudentType;
                       },
                     ),
                     CustomRadioButton(
-                      title: "Faculty",
-                      value: UserType.faculty,
+                      title: "Day Scholar",
+                      value: StudentType.dayScholor,
                       groupValue: controller.studentType.value,
                       onChanged: (val) {
-                        controller.studentType.value = val as UserType;
-                        controller.visible.value = false;
+                        controller.studentType.value = val as StudentType;
                       },
                     ),
                   ],
@@ -83,21 +81,18 @@ class AcademicFormFields extends GetView<FormController> {
               // ),
 
               Obx(
-                () => Visibility(
-                  visible: controller.visible.value,
-                  child: CustomDropdownTextFormField(
-                    dropDownListOfItems: controller.courseList,
-                    onChanged: (newValue) {
-                      controller.currentSelectedCourse.value = newValue ?? "";
-                    },
-                    hintText: "Course",
-                    isEmpty: controller.currentSelectedCourse.value.isEmpty
-                        ? true
-                        : false,
-                    value: controller.currentSelectedCourse.value.isEmpty
-                        ? null
-                        : controller.currentSelectedCourse.value,
-                  ),
+                () => CustomDropdownTextFormField(
+                  dropDownListOfItems: controller.courseList,
+                  onChanged: (newValue) {
+                    controller.currentSelectedCourse.value = newValue ?? "";
+                  },
+                  hintText: "Course",
+                  isEmpty: controller.currentSelectedCourse.value.isEmpty
+                      ? true
+                      : false,
+                  value: controller.currentSelectedCourse.value.isEmpty
+                      ? null
+                      : controller.currentSelectedCourse.value,
                 ),
               ),
 
@@ -123,62 +118,40 @@ class AcademicFormFields extends GetView<FormController> {
                 height: 15,
               ),
               Obx(
-                () => Visibility(
-                  visible: controller.visible.value,
-                  child: CustomDropdownTextFormField(
-                    dropDownListOfItems: controller.semesterList,
-                    onChanged: (newValue) {
-                      controller.currentSelectedSemester.value = newValue ?? "";
-                    },
-                    hintText: "Year",
-                    isEmpty: controller.currentSelectedSemester.value.isEmpty
-                        ? true
-                        : false,
-                    value: controller.currentSelectedSemester.value.isEmpty
-                        ? null
-                        : controller.currentSelectedSemester.value,
-                  ),
+                () => CustomDropdownTextFormField(
+                  dropDownListOfItems: controller.semesterList,
+                  onChanged: (newValue) {
+                    controller.currentSelectedSemester.value = newValue ?? "";
+                  },
+                  hintText: "Year",
+                  isEmpty: controller.currentSelectedSemester.value.isEmpty
+                      ? true
+                      : false,
+                  value: controller.currentSelectedSemester.value.isEmpty
+                      ? null
+                      : controller.currentSelectedSemester.value,
                 ),
               ),
               const SizedBox(
                 height: 15,
               ),
-              Obx(() => Visibility(
-                    visible: controller.visible.isTrue,
-                    child: CustomTextformField(
-                      validator: (p0) => controller.validateRollNo(p0),
-                      controller: controller.rollNoController,
-                      labelText: "Roll no.",
-                      keyboardType: TextInputType.text,
-                      textCapitalization: TextCapitalization.characters,
-                    ),
-                  )),
-              Obx(() => Visibility(
-                    visible: controller.visible.isFalse,
-                    child: CustomTextformField(
-                      validator: (p0) => controller.validateEmployeeNo(p0),
-                      controller: controller.rollNoController,
-                      labelText: "Employee ID",
-                      keyboardType: TextInputType.text,
-                      textCapitalization: TextCapitalization.characters,
-                    ),
-                  )),
-              const SizedBox(
-                height: 15,
+              CustomTextformField(
+                validator: (p0) => controller.validateRollNo(p0),
+                controller: controller.rollNoController,
+                labelText: "Roll no.",
+                keyboardType: TextInputType.text,
+                textCapitalization: TextCapitalization.characters,
               ),
               const SizedBox(
                 height: 15,
               ),
-              Obx(() => Visibility(
-                    visible: controller.visible.value,
-                    child: CustomTextformField(
-                      validator: (p0) => controller.validateEnrollNo(p0),
-                      controller: controller.enrollmentNoController,
-                      labelText: "Enrollment No.",
-                      keyboardType: TextInputType.text,
-                      textCapitalization: TextCapitalization.characters,
-                    ),
-                  )),
+              CustomTextformField(
+                validator: (p0) => controller.validateEnrollNo(p0),
+                controller: controller.enrollmentNoController,
+                labelText: "Enrollment No.",
+                keyboardType: TextInputType.text,
+                textCapitalization: TextCapitalization.characters,
+              ),
             ],
           ),
         ),

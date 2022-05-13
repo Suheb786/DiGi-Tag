@@ -68,18 +68,18 @@ class AuditOffWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ProfileDetailsCard(
-                          assetImagePath:
-                              "assets/icons/profile_icons/contactIcon.jpg",
-                          shadowColor: Color(0xffFC8787),
-                          mainTitleColor: Color(0xffE93434),
-                          mainTitle: "Contact",
-                          middleTitle: profileController.userData!['email'],
-                          bottomTitle: profileController.userData!['phoneNo']
-                          // bottomTitle: Get.find<AuthServiceController>()
-                          //     .getPhoneNumber
-                          //     .toString(),
-                          //  bottomTitle: "8381824339" //Todo add phone no,
-                          ),
+                        assetImagePath:
+                            "assets/icons/profile_icons/contactIcon.jpg",
+                        shadowColor: Color(0xffFC8787),
+                        mainTitleColor: Color(0xffE93434),
+                        mainTitle: "Contact",
+                        middleTitle: profileController.userData!['email'],
+                        bottomTitle: profileController.userData!['phoneNo'],
+                        // bottomTitle: Get.find<AuthServiceController>()
+                        //     .getPhoneNumber
+                        //     .toString(),
+                        //  bottomTitle: "8381824339" //Todo add phone no,
+                      ),
                       ProfileDetailsCard(
                         assetImagePath:
                             "assets/icons/profile_icons/medicalIcon.jpg",

@@ -41,14 +41,9 @@ class MedicalFormFields extends GetView<FormController> {
         child: Form(
           key: controller.medicalFormKey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             // mainAxisSize: MainAxisSize.max,
             // mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text(
-                "Covid Vaccination :",
-                style: TextStyle(color: Color(0xcc28407D), fontFamily: "sofia"),
-              ),
               Obx(
                 () => Row(
                   children: [
@@ -59,9 +54,9 @@ class MedicalFormFields extends GetView<FormController> {
                       onChanged: (val) {
                         if (controller.vaccination.value ==
                             Vaccination.firstDose) {
-                          controller.vaccination.value = Vaccination.secondDose;
-                        } else {
                           controller.vaccination.value = Vaccination.firstDose;
+                        } else {
+                          controller.vaccination.value = Vaccination.secondDose;
                         }
                       },
                     ),

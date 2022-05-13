@@ -11,14 +11,13 @@ import '../../../services/auth_service_controller.dart';
 import '../../widgets/enums.dart';
 
 class FormController extends GetxController {
-  var visible = true.obs;
   //* Form controllers------------------------------------------>>>>>>>>>>>
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController dobController = TextEditingController();
   TextEditingController cityController = TextEditingController();
-  TextEditingController employeeController = TextEditingController();
+
   TextEditingController rollNoController = TextEditingController();
   TextEditingController enrollmentNoController = TextEditingController();
   TextEditingController bloodGroupcontroller = TextEditingController();
@@ -26,7 +25,7 @@ class FormController extends GetxController {
 
   //* Observable variables------------------->>>>>>>>>>>>
   var activeButton = FormButton.personal.obs;
-  var studentType = UserType.student.obs;
+  var studentType = StudentType.hosteler.obs;
   var vaccination = Vaccination.firstDose.obs;
 
   //* Catagory button press handler --------->>>>>>
@@ -45,7 +44,7 @@ class FormController extends GetxController {
   }
 
   String studentcheck() {
-    if (studentType.value == UserType.student) {
+    if (studentType.value == StudentType.hosteler) {
       return "Hostelers";
     } else {
       return "DayScholar";
@@ -209,13 +208,6 @@ class FormController extends GetxController {
   }
 
   String? validateEnrollNo(enrollNo) {
-    if (enrollNo!.toString().isEmpty ||
-        enrollNo == null && enrollNo.toString().length <= 10) {
-      return "Please Enter a Valid Enrollment No.";
-    }
-  }
-
-  String? validateEmployeeNo(enrollNo) {
     if (enrollNo!.toString().isEmpty ||
         enrollNo == null && enrollNo.toString().length <= 10) {
       return "Please Enter a Valid Enrollment No.";
