@@ -62,7 +62,7 @@ class DatabaseServiceController extends GetxController {
         .update({'deviceId': deviceId});
   }
 
-  //* Check if device already added in DB :
+  //* Check if user already added in DB :
   Future<bool> userExistCheck({required String uid}) async {
     var temp = await db.collection('users').doc(uid).get();
     return temp.exists;
