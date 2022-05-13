@@ -25,7 +25,10 @@ class DatabaseServiceController extends GetxController {
 
   Future addUsers(Map<String, dynamic> userData) async {
     try {
-      await db.collection('users').add(userData);
+      await db
+          .collection('users')
+          .doc(Get.find<AuthServiceController>().getUid)
+          .set(userData);
     } catch (e) {
       log(e.toString());
     }
