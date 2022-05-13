@@ -42,7 +42,7 @@ class ProfileController extends GetxController {
   callingAudit() async {
     log("onInitworking");
     userData = await Get.find<DatabaseServiceController>()
-        .getProfile(uid: "mI1ejboWToUzc1XJ4KSc");
+        .getProfile(uid: Get.find<AuthServiceController>().getUid);
 
     userfeedback = await Get.find<DatabaseServiceController>().getAudit();
     print("Profile controller userFeedBack data ${userfeedback!.docs}");
