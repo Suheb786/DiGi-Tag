@@ -103,8 +103,8 @@ class HomeView extends GetView<HomeController> {
                               // fillOverscroll: true,
                               hasScrollBody: false,
                               child: Form(
-                                key: Get.find<ProfileController>()
-                                    .feedbackFormKey,
+                                // key: Get.find<ProfileController>()
+                                //     .feedbackFormKey,
                                 child: Obx(
                                   () => Get.find<ProfileController>()
                                           .status

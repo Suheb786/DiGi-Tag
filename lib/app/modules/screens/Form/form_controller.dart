@@ -425,6 +425,7 @@ class FormController extends GetxController {
     studentcheck();
     if (medicalFormKey.currentState!.validate()) {
       Map<String, dynamic> addUser = {
+        'isAdmin': false,
         'full_name': nameController.text,
         'email': emailController.text,
         'dob': dobController.text,

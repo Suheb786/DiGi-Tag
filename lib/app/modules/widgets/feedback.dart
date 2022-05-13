@@ -38,22 +38,22 @@ Widget AddFeedback(BuildContext? context) {
             height: 53,
             width: 53,
             decoration: const BoxDecoration(
-                color: Colors.white,
+                color: Color(0xffCADCF5),
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                      offset: Offset(-3, -2),
-                      blurRadius: 4,
-                      color: Color(0x40FFFFFF)),
+                      offset: Offset(-5, -9),
+                      blurRadius: 20,
+                      color: Color(0xffF6FBFF)),
                   BoxShadow(
-                      offset: Offset(1, 3),
-                      blurRadius: 4,
-                      color: Color(0x40B7B7B7))
+                      offset: Offset(4, 6),
+                      blurRadius: 30,
+                      color: Color(0x807292C0))
                 ]),
             child: Icon(
               Icons.add_rounded,
               size: 50,
-              color: Color(0xffE6E6E6),
+              color: Colors.white,
             ),
           ),
         ),
@@ -90,8 +90,7 @@ Widget FeedbackField(BuildContext context) {
                 maxLines: 3,
                 suffixIcon: GestureDetector(
                   onTap: () {
-                    if (profileController.feedbackFormKey.currentState!
-                        .validate()) {
+                    if (profileController.comment.text.length > 20) {
                       log("saved Now send this to database");
                       showDialog(
                           context: context,
@@ -138,6 +137,10 @@ Widget FeedbackField(BuildContext context) {
                               backgroundColor: Color(0xffD2EAFF),
                             );
                           });
+                    } else {
+                      Get.find<FormController>().showRedSnackbar(
+                          "Comment is too short",
+                          "Your Feedback must be as long as it can describe your point of view");
                     }
                   },
                   child: Icon(

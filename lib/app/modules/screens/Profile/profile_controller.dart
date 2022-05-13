@@ -11,7 +11,7 @@ import '../../../services/database_service_controller.dart';
 
 class ProfileController extends GetxController {
   TextEditingController comment = TextEditingController();
-  final feedbackFormKey = GlobalKey<FormState>();
+  // final feedbackFormKey = GlobalKey<FormState>();
 
   var reload = false.obs;
   var status = false.obs;
