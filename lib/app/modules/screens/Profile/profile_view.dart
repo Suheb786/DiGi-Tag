@@ -43,7 +43,7 @@ class ProfileView extends GetView<ProfileController> {
                 CustomAppBar(
                   // title:
                   //     "Hi, ${controller.userData!["full_name"].toString().split(" ")[0]} ",
-                  title: controller.userData!["full_name"],
+                  title: controller.userData?["full_name"],
                   deviceWidth: MediaQuery.of(context).size.width,
                   ctx: context,
                 ),
