@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:digitag/app/models/notification.dart';
 import 'package:digitag/app/services/auth_service_controller.dart';
 import 'package:get/get.dart';
 
@@ -18,8 +19,7 @@ class DatabaseServiceController extends GetxController {
 
 //* Profile add in database------- >>>>>>>>
   Future<Map<String, dynamic>?> getProfile({required String uid}) async {
-    final userData =
-        await db.collection("users").doc("9sFX0SQlMGMiaqPDeW3v").get();
+    final userData = await db.collection("users").doc(uid).get();
     // print(userData.data());
     return userData.data();
   }
@@ -92,5 +92,10 @@ class DatabaseServiceController extends GetxController {
     List<DeviceList> listDevice = await deviceList.first;
     log("Pushing notifications to ${listDevice.length.toString()} devices");
     return listDevice;
+  }
+
+  Future<void> emergencyNotification(NotificationModel notification) async {
+    log("Add Notification data to db is called");
+    await db.collection('emergencyNotifications').add(notification.toMap());
   }
 }
