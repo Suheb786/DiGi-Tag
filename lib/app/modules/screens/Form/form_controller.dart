@@ -425,7 +425,7 @@ class FormController extends GetxController {
     studentcheck();
     if (medicalFormKey.currentState!.validate()) {
       Map<String, dynamic> addUser = {
-        'uid':Get.find<AuthServiceController>().getUid,
+        'uid': Get.find<AuthServiceController>().getUid,
         'isAdmin': false,
         'full_name': nameController.text,
         'email': emailController.text,

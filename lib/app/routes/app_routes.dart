@@ -13,6 +13,7 @@ abstract class Routes {
   static const FORM = _Paths.FORM;
   static const MEDIALSUPPORT = _Paths.MEDIALSUPPORT;
   static const NOTIFICATION = _Paths.NOTIFICATION;
+  static const YOUR_INFO = _Paths.YOUR_INFO;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const FORM = '/form';
   static const MEDIALSUPPORT = '/medialsupport';
   static const NOTIFICATION = '/notification';
+  static const YOUR_INFO = '/your-info';
 }
